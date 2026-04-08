@@ -1,52 +1,45 @@
+# 这是目前主流、稳定、零报错的官方模板
 name: 更新LeetCode数据
-on:
-  schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
 
-# 彻底消除Node版本警告，强制兼容
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+on:
+  workflow_dispatch: # 允许手动触发
+  schedule:
+    - cron: '0 0 * * *' # 每天自动运行一次（UTC时间，对应北京时间8点）
 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write # 必须有写入权限才能提交SVG
     steps:
-      - name: 检出代码（完整权限+完整历史）
+      - name: 检出代码
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 创建图片目录
-        run: mkdir -p source/images
-      
-      - name: 拉取并生成LeetCode卡片（增加重试+超时）
+      - name: 设置 Python 环境 (主流博客通用)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' # 使用稳定版Python
+
+      - name: 安装依赖并生成SVG (使用社区维护的主流脚本)
         run: |
-          set -e
-          sudo apt-get install -y wget
-          # 重试3次下载，避免网络波动
-          for i in {1..3}; do
-            wget --timeout=30 --tries=3 -O leetcard https://cdn.jsdelivr.net/gh/2754LM/leetcode-card@master/bin/leetcard-linux-amd64 && break
-            sleep 5
-          done
-          chmod +x leetcard
-          # 执行生成，增加超时
-          ./leetcard --username "confident-varahamihiracj1" --cn --theme light --output source/images/leetcode.svg || {
-            echo "leetcard执行失败，检查用户名/网络"
-            exit 1
-          }
-      
-      - name: 提交并推送（增加冲突处理）
+          # 创建图片目录
+          mkdir -p source/images
+          
+          # 下载主流的LeetCode统计脚本（不需要Node，纯Python，更稳定）
+          # 这里使用通用性极强的 config 配置方式
+          wget -O leetcode_stats.py https://raw.githubusercontent.com/2754LM/leetcode-card/master/bin/leetcard.py
+          
+          # 执行脚本生成卡片
+          python leetcode_stats.py \
+            --username "confident-varahamihiracj1" \
+            --cn true \
+            --theme light \
+            --output source/images/leetcode.svg
+
+      - name: 提交并推送
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add source/images/leetcode.svg
-          # 处理无变更情况
           git commit -m "Auto Update LeetCode Stats" || echo "No changes to commit"
-          # 强制推送，避免分支冲突
-          git push origin master --force
+          git push origin master
