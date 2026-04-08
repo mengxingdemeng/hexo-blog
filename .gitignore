@@ -1,2 +1,15 @@
-node_modules
+﻿# Hexo 相关
+.deploy_git/
+node_modules/
+public/
+.npm-cache/
 themes/butterfly/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE 相关
+.vscode/
+.idea/
