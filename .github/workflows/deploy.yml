@@ -3,29 +3,29 @@ name: Deploy Hexo Blog
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC 0点=北京时间8点自动触发
+    - cron: '0 0 * *'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          submodules: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: |
           npm install
           npm install -g hexo-cli
 
-      - name: Generate SVG stats
+      - name: Generate Stats SVG
         run: |
           node scripts/leetcode.js
           node scripts/nowcoder.js
@@ -39,9 +39,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
-          # 👇 这行是核心！必须指定要部署的目录是public！
           publish_dir: ./public
           publish_branch: gh-pages
           force_orphan: true
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
