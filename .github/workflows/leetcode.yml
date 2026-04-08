@@ -4,6 +4,10 @@ on:
     - cron: "0 0 * * *"
   workflow_dispatch:
 
+# 👇 强制使用 Node 24（解决 GitHub 官方弃用问题）
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +22,7 @@ jobs:
       - name: 创建图片目录
         run: mkdir -p source/images
       
-      - name: 拉取并生成LeetCode卡片
+      - name: 生成LeetCode卡片
         run: |
           sudo apt-get install -y wget
           wget -O leetcard https://cdn.jsdelivr.net/gh/2754LM/leetcode-card@master/bin/leetcard-linux-amd64
@@ -30,5 +34,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add source/images/leetcode.svg
-          git commit -m "Auto Update LeetCode Stats" || echo "No changes to commit"
+          git commit -m "Auto Update LeetCode Stats" || echo "No changes"
           git push origin master
