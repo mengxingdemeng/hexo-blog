@@ -1,15 +1,33 @@
----
-title: 刷题统计
-date: 2026-04-08 12:00:00
----
+name: 更新LeetCode数据
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # 每天UTC 0点，对应北京时间8点自动更新
 
-# 📊 我的刷题统计（自动实时更新）
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 核心：给Actions写入仓库权限
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
 
-<div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0;">
-  <img src="/images/leetcode.svg" alt="LeetCode Stats" style="border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-  <img src="/images/luogu.svg" alt="Luogu Stats" style="border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-  <img src="/images/nowcoder.svg" alt="NowCoder Stats" style="border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
-</div>
+      - name: 生成LeetCode统计卡片（使用官方维护的Action，彻底避坑）
+        uses: 2754LM/leetcode-card@master
+        with:
+          username: "confident-varahamihiracj1" # 你的LeetCode用户名
+          cn: "true" # 国内站点
+          theme: "light" # 主题
+          output: "source/images/leetcode.svg" # 输出路径，和你的页面完全匹配
 
-<br>
-🔧 数据每日自动刷新，由 GitHub Actions 实时同步。
+      - name: 提交并推送
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add source/images/leetcode.svg
+          git commit -m "Auto Update LeetCode Stats" || echo "No changes to commit"
+          git push origin master
