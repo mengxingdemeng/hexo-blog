@@ -1,33 +1,28 @@
 name: Deploy Hexo Blog
 
 on:
-  workflow_dispatch:  # 仅保留手动触发，彻底避免push循环
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 每天UTC 0点=北京时间8点自动触发
+    - cron: '0 0 * * *'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      # 强制用Node24，彻底消除版本警告
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
         run: |
           npm install
-          # 关键：全局安装hexo-cli，确保Actions环境能找到hexo命令
           npm install -g hexo-cli
 
       - name: Generate SVG stats
@@ -35,21 +30,10 @@ jobs:
           node scripts/leetcode.js
           node scripts/nowcoder.js
 
-      - name: Commit SVG updates（仅commit不push，避免循环）
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add source/shuati/*.svg
-          # 仅commit，不执行git push，彻底避免CI循环
-          git commit -m "auto: update stats svg [skip ci]" || echo "No changes to commit"
-
-      - name: Build Hexo blog（强制完整编译+校验）
+      - name: Build Hexo
         run: |
           hexo clean
           hexo generate
-          # 校验index.html非空，确保编译成功
-          ls -lh public/
-          test -s public/index.html || (echo "❌ index.html为空，编译失败" && exit 1)
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -57,7 +41,4 @@ jobs:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          # 强制覆盖gh-pages分支，彻底清空旧的空文件
           force_orphan: true
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
