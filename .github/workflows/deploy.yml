@@ -3,7 +3,7 @@ name: Deploy Hexo Blog
 on:
   workflow_dispatch:  # 手动触发
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 0点 = 北京时间8点，5个字段完整
+    - cron: '0 0 * * *'  # 每天 UTC 0点 = 北京时间8点
   push:
     branches:
       - master  # 推送代码时自动触发
@@ -25,7 +25,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          # 关键：全局安装hexo-cli，确保编译环境完整
+          npm install -g hexo-cli
 
       - name: Generate SVG stats
         run: |
@@ -40,13 +43,18 @@ jobs:
           git commit -m "auto: update stats svg [skip ci]" || echo "No changes to commit"
           git push origin master
 
-      - name: Build Hexo blog
+      - name: Build Hexo blog (强制完整编译)
         run: |
-          npx hexo clean
-          npx hexo generate
+          hexo clean
+          hexo generate
+          # 关键：验证编译结果，确保index.html非空
+          ls -lh public/
+          test -s public/index.html || (echo "index.html is empty, build failed" && exit 1)
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
           publish_dir: ./public
+          publish_branch: gh-pages
+          force_orphan: true  # 强制生成干净的gh-pages分支，覆盖旧文件
