@@ -15,13 +15,6 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # 👇 新增：指定Node 22环境，彻底消除弃用警告
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
       - name: 创建图片目录
         run: mkdir -p source/images
       
