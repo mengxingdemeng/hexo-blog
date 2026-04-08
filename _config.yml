@@ -29,7 +29,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-  - source/shuati/*.svg
+  - shuati/*.svg
 
 # Writing
 new_post_name: :title.md
@@ -92,4 +92,3 @@ deploy:
   type: git
   repo: https://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@github.com/mengxingdemeng/hexo-blog.git
   branch: gh-pages
-

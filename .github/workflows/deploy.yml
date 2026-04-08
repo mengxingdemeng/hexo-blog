@@ -1,48 +1,47 @@
 name: Deploy Hexo Blog
 
 on:
-  workflow_dispatch:  # 手动触发
+  workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 0点（北京时间8点）自动触发
+    - cron: '0 0 * *'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}  # 用PAT授权，解决权限问题
+          token: ${{ secrets.ACCESS_TOKEN }}
           fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Generate SVG stats
+      - name: Generate SVG
         run: |
           node scripts/leetcode.js
           node scripts/nowcoder.js
 
-      - name: Commit SVG updates
+      - name: Commit SVG
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "actions"
+          git config --global user.email "actions@github.com"
           git add source/shuati/*.svg
-          git commit -m "auto: update stats svg [skip ci]" || echo "No changes to commit"
+          git commit -m "update svg" || exit 0
           git push origin master
 
-      - name: Build Hexo blog
-        run: npm run build
+      - name: Build Hexo
+        run: |
+          npx hexo clean
+          npx hexo generate
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
