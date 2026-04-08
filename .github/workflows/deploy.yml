@@ -34,6 +34,8 @@ jobs:
         run: |
           hexo clean
           hexo generate
+          ls -lh
+          ls -lh public/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
