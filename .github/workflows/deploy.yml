@@ -3,7 +3,10 @@ name: Deploy Hexo Blog
 on:
   workflow_dispatch:  # 手动触发
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 0点（北京时间8点）自动触发，5个字段完整
+    - cron: '0 0 * * *'  # 每天 UTC 0点 = 北京时间8点，5个字段完整
+  push:
+    branches:
+      - master  # 推送代码时自动触发
 
 jobs:
   build-and-deploy:
