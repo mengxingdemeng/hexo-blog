@@ -21,6 +21,7 @@ menu:
   首页: /
   归档: /archives/
   刷题统计: /shuati/
+  网页模板: /tools || fa fa-th-list
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
