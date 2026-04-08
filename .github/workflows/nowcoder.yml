@@ -1,0 +1,28 @@
+name: 更新牛客数据
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 创建图片目录
+        run: mkdir -p source/images
+        
+      - name: 生成牛客卡片
+        run: |
+          wget -O ncard https://cdn.jsdelivr.net/gh/2754LM/nowcoder-card@master/bin/nowcoder-card-linux-amd64
+          chmod +x ncard
+          ./ncard --uid 618231729 --theme light --output source/images/nowcoder.svg
+          
+      - name: 提交并推送
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add source/images/nowcoder.svg
+          git commit -m "Auto Update NowCoder Stats" || echo "No changes"
+          git push

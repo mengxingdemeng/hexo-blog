@@ -1,0 +1,31 @@
+name: 更新LeetCode数据
+on:
+  schedule:
+    - cron: "0 0 * * *" # 每天凌晨0点更新
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 创建图片目录
+        run: mkdir -p source/images
+        
+      - name: 拉取并生成LeetCode卡片
+        run: |
+          # 使用国内友好的代理源拉取脚本
+          sudo apt-get install -y wget
+          wget -O leetcard https://cdn.jsdelivr.net/gh/2754LM/leetcode-card@master/bin/leetcard-linux-amd64
+          chmod +x leetcard
+          # 生成卡片，输出到博客图片目录
+          ./leetcard --username "confident-varahamihiracj1" --cn --theme light --output source/images/leetcode.svg
+          
+      - name: 提交并推送
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add source/images/leetcode.svg
+          git commit -m "Auto Update LeetCode Stats" || echo "No changes"
+          git push

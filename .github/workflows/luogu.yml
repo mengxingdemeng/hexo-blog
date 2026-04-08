@@ -1,0 +1,28 @@
+name: 更新洛谷数据
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: 创建图片目录
+        run: mkdir -p source/images
+        
+      - name: 生成洛谷卡片
+        run: |
+          wget -O lgcard https://cdn.jsdelivr.net/gh/2754LM/luogu-card@master/bin/luogu-card-linux-amd64
+          chmod +x lgcard
+          ./lgcard --uid 1570933 --theme light --output source/images/luogu.svg
+          
+      - name: 提交并推送
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add source/images/luogu.svg
+          git commit -m "Auto Update Luogu Stats" || echo "No changes"
+          git push
