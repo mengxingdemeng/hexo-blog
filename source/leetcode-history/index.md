@@ -28,15 +28,15 @@ layout: page
 <div id="today-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#fff9e5;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#cc7722;">今日新增</h3>
-    <p id="today-add-total" style="font-size:30px;font-weight:bold;margin:0;color:#FF8C00;">0</p>
+    <p id="today-add-total" style="font-size:30px;font-weight:bold;margin:0;color:#FFA116;">0</p>
   </div>
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#e6fffa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#28a745;">简单</h3>
     <p id="today-add-easy" style="font-size:30px;font-weight:bold;margin:0;color:#28a745;">0</p>
   </div>
-  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f0f7ff;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-    <h3 style="margin:0 0 10px 0;color:#007bff;">中等</h3>
-    <p id="today-add-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007bff;">0</p>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f07ff;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#007BFF;">中等</h3>
+    <p id="today-add-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007BFF;">0</p>
   </div>
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#fff0f0;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#dc3545;">困难</h3>
@@ -56,7 +56,7 @@ layout: page
   </div>
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#444;">累计中等</h3>
-    <p id="total-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007bff;">0</p>
+    <p id="total-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007BFF;">0</p>
   </div>
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#444;">累计困难</h3>
@@ -81,7 +81,7 @@ const CONFIG = {
   // 图表主题色：与博客Butterfly主题适配
   theme: {
     total: "#FFA116",
-    easy: "#28A745",
+    easy: "#28a745",
     medium: "#007BFF",
     hard: "#DC3545",
     bg: "#f8f9fa",
@@ -174,12 +174,8 @@ async function loadLeetCodeData() {
 }
 
 // ==============================================
-// 【原版功能1：表格渲染】100%保留原有逻辑
+// 【修复】每日刷题表格：显示【当日做题量】= 今天 - 昨天
 // ==============================================
-/**
- * 渲染每日刷题记录表
- * @param {Array} data 排序后的数据
- */
 function renderHistoryTable(data) {
   const tableBody = document.getElementById("history-table");
   if (!tableBody) {
@@ -193,28 +189,31 @@ function renderHistoryTable(data) {
   }
 
   let tableHtml = "";
-  data.forEach(item => {
+  for (let i = 0; i < data.length; i++) {
+    const prev = i === 0 ? { solved:0, easy:0, medium:0, hard:0 } : data[i-1];
+    const curr = data[i];
+    const daySolved = Math.max(0, curr.solved - prev.solved);
+    const dayEasy = Math.max(0, curr.easy - prev.easy);
+    const dayMedium = Math.max(0, curr.medium - prev.medium);
+    const dayHard = Math.max(0, curr.hard - prev.hard);
+
     tableHtml += `
     <tr>
-      <td>${item.date}</td>
-      <td>${item.solved}</td>
-      <td>${item.easy}</td>
-      <td>${item.medium}</td>
-      <td>${item.hard}</td>
+      <td>${curr.date}</td>
+      <td>${daySolved}</td>
+      <td>${dayEasy}</td>
+      <td>${dayMedium}</td>
+      <td>${dayHard}</td>
     </tr>`;
-  });
+  }
 
   tableBody.innerHTML = tableHtml;
   console.log("✅ 表格渲染完成");
 }
 
 // ==============================================
-// 【原版功能2：总题数折线图】100%保留原有样式
+// 【修复】折线图：直接使用累计数据，不再重复累加
 // ==============================================
-/**
- * 渲染原版总题数趋势图
- * @param {Array} data 排序后的数据
- */
 function renderOriginalChart(data) {
   const chartDom = document.getElementById("original-chart");
   if (!chartDom) {
@@ -229,7 +228,7 @@ function renderOriginalChart(data) {
 
   const chart = echarts.init(chartDom);
   const dates = data.map(item => item.date);
-  const solvedData = data.map(item => item.solved);
+  const solvedList = data.map(item => item.solved);
 
   chart.setOption({
     tooltip: {
@@ -253,7 +252,7 @@ function renderOriginalChart(data) {
     series: [{
       name: "总AC数",
       type: "line",
-      data: solvedData,
+      data: solvedList,
       smooth: true,
       lineStyle: { width: 3, color: CONFIG.theme.total },
       itemStyle: { color: CONFIG.theme.total },
@@ -265,7 +264,7 @@ function renderOriginalChart(data) {
           x: 0,
           y: 0,
           x2: 0,
-          y2: 1,
+          y: 1,
           colorStops: [{
             offset: 0,
             color: `${CONFIG.theme.total}80`
@@ -278,18 +277,13 @@ function renderOriginalChart(data) {
     }]
   });
 
-  // 窗口大小变化自动适配
   window.addEventListener("resize", () => chart.resize());
   console.log("✅ 原版总题数图表渲染完成");
 }
 
 // ==============================================
-// 【豪华功能1：多维度趋势图】4条折线完整增强
+// 【修复】豪华图表：直接使用累计数据
 // ==============================================
-/**
- * 渲染豪华版多维度趋势图
- * @param {Array} data 排序后的数据
- */
 function renderAdvanceChart(data) {
   const chartDom = document.getElementById("advance-chart");
   if (!chartDom) {
@@ -304,10 +298,6 @@ function renderAdvanceChart(data) {
 
   const chart = echarts.init(chartDom);
   const dates = data.map(item => item.date);
-  const solvedData = data.map(item => item.solved);
-  const easyData = data.map(item => item.easy);
-  const mediumData = data.map(item => item.medium);
-  const hardData = data.map(item => item.hard);
 
   chart.setOption({
     title: {
@@ -369,7 +359,7 @@ function renderAdvanceChart(data) {
       {
         name: '总题数',
         type: 'line',
-        data: solvedData,
+        data: data.map(i=>i.solved),
         smooth: true,
         symbolSize: 8,
         lineStyle: { width: 3, color: CONFIG.theme.total },
@@ -380,71 +370,14 @@ function renderAdvanceChart(data) {
             x: 0,
             y: 0,
             x2: 0,
-            y2: 1,
-            colorStops: [{
-              offset: 0,
-              color: `${CONFIG.theme.total}60`
-            }, {
-              offset: 1,
-              color: `${CONFIG.theme.total}00`
-            }]
+            y: 1,
+            colorStops: [{ offset: 0, color: `${CONFIG.theme.total}60` }, { offset: 1, color: `${CONFIG.theme.total}00` }]
           }
         },
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowColor: `${CONFIG.theme.total}80`
-          }
-        }
       },
-      {
-        name: '简单',
-        type: 'line',
-        data: easyData,
-        smooth: true,
-        lineStyle: { width: 2, color: CONFIG.theme.easy },
-        itemStyle: { color: CONFIG.theme.easy },
-        symbol: 'circle',
-        symbolSize: 6,
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 8,
-            shadowColor: `${CONFIG.theme.easy}80`
-          }
-        }
-      },
-      {
-        name: '中等',
-        type: 'line',
-        data: mediumData,
-        smooth: true,
-        lineStyle: { width: 2, color: CONFIG.theme.medium },
-        itemStyle: { color: CONFIG.theme.medium },
-        symbol: 'circle',
-        symbolSize: 6,
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 8,
-            shadowColor: `${CONFIG.theme.medium}80`
-          }
-        }
-      },
-      {
-        name: '困难',
-        type: 'line',
-        data: hardData,
-        smooth: true,
-        lineStyle: { width: 2, color: CONFIG.theme.hard },
-        itemStyle: { color: CONFIG.theme.hard },
-        symbol: 'circle',
-        symbolSize: 6,
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 8,
-            shadowColor: `${CONFIG.theme.hard}80`
-          }
-        }
-      }
+      { name: '简单', type: 'line', data: data.map(i=>i.easy), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.easy } },
+      { name: '中等', type: 'line', data: data.map(i=>i.medium), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.medium } },
+      { name: '困难', type: 'line', data: data.map(i=>i.hard), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.hard } },
     ]
   });
 
@@ -453,82 +386,39 @@ function renderAdvanceChart(data) {
 }
 
 // ==============================================
-// 【原版今日卡片】100%保留
+// 【废弃】无用函数，保留空实现
 // ==============================================
-function renderTodayCard(data) {
-  if (!data || data.length === 0) {
-    console.warn("⚠️ 无数据，今日卡片显示默认值");
-    return;
-  }
-
-  // 获取最新一条数据（最后一条，已按日期正序排序）
-  const latestData = data[data.length - 1];
-  const today = formatDate(new Date());
-
-  // 更新卡片数据
-  const todayTotal = document.getElementById("today-total");
-  const todayEasy = document.getElementById("today-easy");
-  const todayMedium = document.getElementById("today-medium");
-  const todayHard = document.getElementById("today-hard");
-  
-  if (todayTotal) todayTotal.textContent = latestData.solved;
-  if (todayEasy) todayEasy.textContent = latestData.easy;
-  if (todayMedium) todayMedium.textContent = latestData.medium;
-  if (todayHard) todayHard.textContent = latestData.hard;
-
-  console.log("✅ 今日数据卡片渲染完成，最新日期：", latestData.date);
-}
+function renderTodayCard(data) {}
 
 // ==============================================
-// 【新增】今日新增做题数（严格按自然日匹配，修复断更错误）
+// 【修复】今日新增 = 今天 - 昨天
 // ==============================================
 function renderTodayAdd() {
   if (!allData || allData.length < 1) return;
-  
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(yesterday.getDate() - 1);
-  
-  const todayStr = today.toISOString().split("T")[0];
-  const yesterdayStr = yesterday.toISOString().split("T")[0];
+  const today = allData[allData.length - 1];
+  const yesterday = allData.length >= 2 ? allData[allData.length - 2] : { solved:0, easy:0, medium:0, hard:0 };
 
-  const todayItem = allData.find(i => i.date === todayStr);
-  const yesterdayItem = allData.find(i => i.date === yesterdayStr);
-
-  const todayData = todayItem || { solved: 0, easy: 0, medium: 0, hard: 0 };
-  const yesterdayData = yesterdayItem || { solved: 0, easy: 0, medium: 0, hard: 0 };
-
-  const addTotal = Math.max(0, todayData.solved - yesterdayData.solved);
-  const addEasy = Math.max(0, todayData.easy - yesterdayData.easy);
-  const addMedium = Math.max(0, todayData.medium - yesterdayData.medium);
-  const addHard = Math.max(0, todayData.hard - yesterdayData.hard);
-
-  document.getElementById("today-add-total").innerText = addTotal;
-  document.getElementById("today-add-easy").innerText = addEasy;
-  document.getElementById("today-add-medium").innerText = addMedium;
-  document.getElementById("today-add-hard").innerText = addHard;
+  document.getElementById("today-add-total").innerText = Math.max(0, today.solved - yesterday.solved);
+  document.getElementById("today-add-easy").innerText = Math.max(0, today.easy - yesterday.easy);
+  document.getElementById("today-add-medium").innerText = Math.max(0, today.medium - yesterday.medium);
+  document.getElementById("today-add-hard").innerText = Math.max(0, today.hard - yesterday.hard);
 }
 
 // ==============================================
-// 【新增】累计总数卡片
+// 【修复】累计总数 = 取最后一天数据
 // ==============================================
 function renderTotalSummary() {
   if (!allData || allData.length === 0) return;
   const last = allData[allData.length - 1];
 
-  const t1 = document.getElementById("total-all");
-  const t2 = document.getElementById("total-easy");
-  const t3 = document.getElementById("total-medium");
-  const t4 = document.getElementById("total-hard");
-
-  if (t1) t1.innerText = last.solved;
-  if (t2) t2.innerText = last.easy;
-  if (t3) t3.innerText = last.medium;
-  if (t4) t4.innerText = last.hard;
+  document.getElementById("total-all").innerText = last.solved;
+  document.getElementById("total-easy").innerText = last.easy;
+  document.getElementById("total-medium").innerText = last.medium;
+  document.getElementById("total-hard").innerText = last.hard;
 }
 
 // ==============================================
-// 【新增】每日刷题明细列表
+// 【修复】每日明细：显示当日做题量
 // ==============================================
 function renderDailyList() {
   const dom = document.getElementById("daily-list");
@@ -543,23 +433,32 @@ function renderDailyList() {
 
   let html = '<div style="display:flex;flex-direction:column;gap:14px;">';
   pageData.forEach(item => {
-    html += `
-    <div style="padding:18px;border-radius:12px;background:#fafafa;border:1px solid #eee;">
-      <div style="font-weight:bold;font-size:17px;">📅 ${item.date}</div>
-      <div style="margin-top:8px;display:flex;gap:16px;">
-        <span>总：${item.solved}</span>
-        <span style="color:${CONFIG.theme.easy}">简单：${item.easy}</span>
-        <span style="color:${CONFIG.theme.medium}">中等：${item.medium}</span>
-        <span style="color:${CONFIG.theme.hard}">困难：${item.hard}</span>
-      </div>
-    </div>`;
+    const idx = allData.findIndex(x => x.date === item.date);
+    const prev = idx > 0 ? allData[idx - 1] : { solved:0, easy:0, medium:0, hard:0 };
+    const dayDone = Math.max(0, item.solved - prev.solved);
+
+    // 先算出当天各难度数量
+const dayEasy = Math.max(0, item.easy - prev.easy);
+const dayMedium = Math.max(0, item.medium - prev.medium);
+const dayHard = Math.max(0, item.hard - prev.hard);
+
+html += `
+<div style="padding:18px;border-radius:12px;background:#fafafa;border:1px solid #eee;">
+  <div style="font-weight:bold;font-size:17px;">📅 ${item.date}</div>
+  <div style="margin-top:8px;display:flex;gap:14px;flex-wrap:wrap;">
+    <span>总：${dayDone}</span>
+    <span style="color:${CONFIG.theme.easy}">简单：${dayEasy}</span>
+    <span style="color:${CONFIG.theme.medium}">中等：${dayMedium}</span>
+    <span style="color:${CONFIG.theme.hard}">困难：${dayHard}</span>
+  </div>
+</div>`;
   });
   html += "</div>";
   dom.innerHTML = html;
 }
 
 // ==============================================
-// 【新增】分页按钮
+// 【新增】分页按钮（完全不变）
 // ==============================================
 function renderPagination() {
   const dom = document.getElementById("pagination");
@@ -596,20 +495,15 @@ function goPage(page) {
 waitForDOMReady(async () => {
   console.log("🚀 页面DOM加载完成，开始执行渲染...");
   
-  // 1. 加载数据
   const data = await loadLeetCodeData();
   if (!data || data.length === 0) {
     console.warn("⚠️ 无有效数据，终止后续渲染");
     return;
   }
 
-  // 2. 渲染原版所有功能
   renderHistoryTable(data);
   renderOriginalChart(data);
   renderAdvanceChart(data);
-  renderTodayCard(data);
-  
-  // 3. 渲染新增功能
   renderTodayAdd();
   renderTotalSummary();
   renderDailyList();
@@ -619,10 +513,9 @@ waitForDOMReady(async () => {
 });
 
 // ==============================================
-// 【Hexo环境适配】监听Hexo热重载事件，重新渲染图表
+// 【Hexo环境适配】
 // ==============================================
 if (typeof window !== "undefined" && window.location.hostname === "localhost") {
-  // 本地开发环境：监听热重载，自动重新渲染
   window.addEventListener("message", (event) => {
     if (event.data && event.data.type === "hexo.reload") {
       console.log("🔄 监听到Hexo热重载，重新渲染页面...");
@@ -631,7 +524,6 @@ if (typeof window !== "undefined" && window.location.hostname === "localhost") {
         renderHistoryTable(data);
         renderOriginalChart(data);
         renderAdvanceChart(data);
-        renderTodayCard(data);
         renderTodayAdd();
         renderTotalSummary();
         renderDailyList();
