@@ -5,5 +5,19 @@
     "easy": 4,
     "medium": 1,
     "hard": 0
+  },
+  {
+    "date": "2026-04-10",
+    "solved": 0,
+    "easy": 0,
+    "medium": 0,
+    "hard": 0
+  },
+  {
+    "date": "2026-04-11",
+    "solved": 9,
+    "easy": 5,
+    "medium": 4,
+    "hard": 0
   }
 ]
