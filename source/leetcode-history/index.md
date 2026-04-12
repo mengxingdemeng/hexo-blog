@@ -5,26 +5,52 @@ type: page
 layout: page
 ---
 
-# 📊 LeetCode刷题历史统计
+###
+<span style="font-size: 30px; color: #00ccff;
+            text-shadow: 0 0 5px #00ccff, 0 0 10px #66ffff;
+            animation: blueshine 1.4s infinite alternate;">
+  LeetCode刷题历史统计
+</span>
 
-## 📋 每日刷题记录表
-| 日期 | 总题数 | 简单 | 中等 | 困难 |
-| ---- | ------ | ---- | ---- | ---- |
-<tbody id="history-table"></tbody>
+##
+<span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;">
+总题数趋势图
+</span>
 
----
-
-## 📈 总题数趋势图（原版保留）
 <div id="original-chart" style="width:100%;height:400px;margin:20px 0;"></div>
 
 ---
 
-## 🚀 刷题趋势大盘（豪华增强版）
+##
+<span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;">
+刷题趋势大盘
+</span>
 <div id="advance-chart" style="width:100%;height:500px;margin:30px 0;"></div>
 
 ---
 
-## 🔥 今日新增刷题数据（当天完成量）
+##
+<span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;">
+今日新增刷题数据
+</span>
 <div id="today-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#fff9e5;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#cc7722;">今日新增</h3>
@@ -44,7 +70,16 @@ layout: page
   </div>
 </div>
 
-## 📊 累计总刷题数据（LeetCode 总数）
+##
+<span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;">
+累计总刷题数据（LeetCode 总数）
+</span>
 <div id="total-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
     <h3 style="margin:0 0 10px 0;color:#444;">累计总题数</h3>
@@ -66,7 +101,16 @@ layout: page
 
 ---
 
-# 📜 每日刷题明细（10条/页 分页展示）
+##
+<span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;">
+每日刷题明细
+</span>
 <div id="daily-list" style="margin:30px 0;"></div>
 <div id="pagination" style="text-align:center;margin:25px 0;"></div>
 

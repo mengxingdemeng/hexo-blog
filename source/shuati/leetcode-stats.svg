@@ -10,7 +10,7 @@
 
   <!-- 总AC -->
   <text x="30" y="100" font-size="26" font-weight="bold" fill="#FFA116">
-    AC 9 / 4281 题
+    AC 17 / 4289 题
   </text>
 
   <!-- 排名 -->
@@ -20,12 +20,12 @@
 
   <!-- 进度条 -->
   <rect x="30" y="120" width="390" height="14" fill="#313244" rx="7"/>
-  <rect x="30" y="120" width="0.8199018920812895" height="14" fill="#FFA116" rx="7"/>
+  <rect x="30" y="120" width="1.545814875262299" height="14" fill="#FFA116" rx="7"/>
 
   <!-- 难度统计（只改这里） -->
-  <text x="30" y="160" font-size="15" fill="#22C55E">简单 5/1055</text>
-  <text x="130" y="160" font-size="15" fill="#EAB308">中等 4/2235</text>
-  <text x="230" y="160" font-size="15" fill="#EF4444">困难 0/991</text>
+  <text x="30" y="160" font-size="15" fill="#22C55E">简单 9/1057</text>
+  <text x="130" y="160" font-size="15" fill="#EAB308">中等 8/2239</text>
+  <text x="230" y="160" font-size="15" fill="#EF4444">困难 0/993</text>
 
 </svg>
   
