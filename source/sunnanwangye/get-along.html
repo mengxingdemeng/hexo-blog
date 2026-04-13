@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>与我相处</title>
+    <link rel="stylesheet" href="./subpage.css" />
+    <style>
+      .along-wrap { padding: 26px 0 34px; }
+      .along-head h1 { margin: 8px 0 10px; font-size: clamp(34px, 4vw, 56px); }
+      .along-head p { margin: 0; color: var(--muted); line-height: 1.9; max-width: 900px; }
+      .along-grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: 16px;
+      }
+      .along-card {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: #fff;
+        padding: 16px;
+      }
+      .along-card h3 { margin: 0 0 8px; font-size: 22px; }
+      .along-card p { margin: 0; color: var(--muted); line-height: 1.8; }
+      .along-photo {
+        margin-top: 22px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+      .along-photo img { width: 100%; display: block; max-height: 320px; object-fit: cover; }
+      @media (max-width: 980px) {
+        .along-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container head">
+        <a class="brand" href="./index.html.html"><span class="brand-dot"></span><span>个人主页</span></a>
+        <a class="back" href="./index.html.html">← 返回首页</a>
+      </div>
+    </header>
+    <main class="container along-wrap">
+      <section class="along-head">
+        <div class="kicker">GET ALONG</div>
+        <h1>与我相处</h1>
+        <p>心向脚下存安，不念远方虚欢。</p>
+      </section>
+      <section class="along-grid">
+        <article class="along-card">
+          <h3>沟通方式</h3>
+          <p>有话可以直说的，这样都方便。其实没那么尴尬，解决不了的问题我一定不解决，能解决的问题我一定问题。</p>
+        </article>
+        <article class="along-card">
+          <h3>相处偏好</h3>
+          <p>尊重彼此时间与习惯，保持真实和稳定。不过多占用即可。实话实说 我自然坦诚相待。</p>
+        </article>
+        <article class="along-card">
+          <h3>对我建议</h3>
+          <p>我倒是愿意听听你的想法。</p>
+        </article>
+      </section>
+      <div class="along-photo">
+        <img src="./封3.jpg" alt="与我相处展示图" />
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">© <span id="yearAlong"></span> Personal Home</div>
+    </footer>
+    <script>document.getElementById("yearAlong").textContent = new Date().getFullYear();</script>
+  </body>
+  </html>
+

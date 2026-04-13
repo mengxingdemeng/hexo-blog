@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品与技能 - CodeArts</title>
+    <link rel="stylesheet" href="./subpage.css" />
+    <link rel="stylesheet" href="./codearts.css" />
+  </head>
+  <body class="codearts-page">
+    <header>
+      <div class="container head">
+        <a class="brand" href="./index.html"><span class="brand-dot"></span><span>个人主页</span></a>
+        <a class="back" href="./index.html">← 返回首页</a>
+      </div>
+    </header>
+    <main class="container">
+      <section class="codearts-poster">
+        <div class="codearts-left">
+          <div class="codearts-mask-stack" aria-label="作品蒙版层叠展示">
+            <article class="mask-card mask-a"><img src="./封1.jpg" alt="作品封面1" /></article>
+            <article class="mask-card mask-b"><img src="./封2.jpg" alt="作品封面2" /></article>
+            <article class="mask-card mask-c"><img src="./封3.jpg" alt="作品封面3" /></article>
+            <article class="mask-card mask-d"><img src="./封1.jpg" alt="作品封面4" /></article>
+            <article class="mask-card mask-e"><img src="./封2.jpg" alt="作品封面5" /></article>
+          </div>
+        </div>
+        <div class="codearts-right">
+          <div class="kicker">作品集 · CodeArts</div>
+          <h1 class="poster-title">多样作品展示</h1>
+          <p class="poster-sub">展示我的各类作品，包括设计、开发和创意项目。通过这些作品，你可以快速了解我的视觉风格、交互思路与实现能力。</p>
+          <div class="poster-note">
+            <div>进行中：项目打磨 / 视觉统一 / 交互优化</div>
+            <div class="poster-highlight">更新频率：每周同步</div>
+          </div>
+          <div class="actions">
+            <a class="btn-primary btn" href="#showcase">查看展示</a>
+            <a class="btn" href="./index.html#contact">联系我</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="showcase">
+        <div class="feature-strip">
+          <div class="feature-cover">
+            <div class="feature-strip-media">
+              <img src="./封2.jpg" alt="封面图" />
+            </div>
+            <div class="feature-strip-content">
+              <div class="kicker">SHOWCASE</div>
+              <h2 class="feature-strip-title">智译千面</h2>
+              <p class="feature-strip-desc">
+                智译千面 -- 跨境电商垂直型AI-SaaS工具，致力于打造全生态操作系统。
+              </p>
+              <div class="actions">
+                <button class="btn btn-primary js-enter-carousel" type="button">下一页</button>
+                <a class="btn" href="./index.html#contact">联系我</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-carousel-view" hidden>
+            <div class="split-carousel-full" data-split-carousel>
+              <div class="split-track">
+                <div class="split-slide is-active">
+                  <div class="split-pane"><img src="./预留1.png" alt="预留图1" /></div>
+                  <div class="split-pane"><img src="./预留2.png" alt="预留图2" /></div>
+                </div>
+                <div class="split-slide">
+                  <div class="split-pane"><img src="./预留3.png" alt="预留图3" /></div>
+                  <div class="split-pane"><img src="./预留4.png" alt="预留图4" /></div>
+                </div>
+              </div>
+              <div class="split-actions">
+                <button class="btn js-back-cover" type="button">返回封面</button>
+                <button class="btn btn-primary js-next-page" type="button">下一页</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">© <span id="y2"></span> Personal Home</div>
+    </footer>
+    <script src="./subpage.js"></script>
+  </body>
+  </html>
+

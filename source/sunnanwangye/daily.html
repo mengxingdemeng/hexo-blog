@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的日常</title>
+    <link rel="stylesheet" href="./subpage.css" />
+    <link rel="stylesheet" href="./daily.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container head">
+        <a class="brand" href="./index.html.html"><span class="brand-dot"></span><span>个人主页</span></a>
+        <a class="back" href="./index.html.html">← 返回首页</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="daily-full">
+        <div class="daily-left">
+          <div class="kicker">Calm do research</div>
+          <h1 class="daily-main-title">我的日常</h1>
+          <div class="daily-copy">
+            <p class="daily-main-desc">
+              远方的霓虹照亮过千万人的青春与梦想，身边的烟火始终独伴你安长。见多识广，不需要走过诗与远方，换个角度，你是否有了别样的成长？当然，不为成长也是成长。
+            </p>
+            <p class="daily-main-desc">
+              我的生活貌似有些平常：周末做不完的文档，比赛、表格、学习、锻炼，偶尔的放松和娱乐穿插其中。给在意的朋友送送礼物，去湖边散散步，出门走走等等。
+            </p>
+          </div>
+          <div class="daily-boxes" aria-label="日常图片预留">
+            <div class="daily-box"><img src="./日常 (1).jpg" alt="日常 1" /></div>
+            <div class="daily-box"><img src="./日常 (2).jpg" alt="日常 2" /></div>
+            <div class="daily-box"><img src="./日常 (3).jpg" alt="日常 3" /></div>
+          </div>
+        </div>
+        <div class="daily-right" aria-hidden="true">
+          <div class="daily-slice s1"><img src="./背景 (1).jpg" alt="日常图1" /></div>
+          <div class="daily-slice s2"><img src="./背景 (2).jpg" alt="日常图2" /></div>
+          <div class="daily-slice s3"><img src="./背景 (3).jpg" alt="日常图3" /></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">© <span id="y6"></span> Personal Home</div>
+    </footer>
+    <script>document.getElementById("y6").textContent = new Date().getFullYear();</script>
+  </body>
+  </html>
+
