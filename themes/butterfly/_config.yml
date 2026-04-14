@@ -23,7 +23,7 @@ menu:
   刷题统计: /shuati/
   网页模板: /tools || fa fa-th-list
   刷题历史: /leetcode-history/
-  sunmoumou: /sunnan/
+  
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
