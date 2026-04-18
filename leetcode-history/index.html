@@ -1,0 +1,721 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LeetCode刷题历史 | my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="LeetCode刷题历史统计 总题数趋势图    刷题趋势大盘    今日新增刷题数据         今日新增     0           简单     0           中等     0           困难     0      累计总刷题数据（LeetCode 总数）         累计总题数     0           累计简单     0           累">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LeetCode刷题历史">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/leetcode-history/index.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="LeetCode刷题历史统计 总题数趋势图    刷题趋势大盘    今日新增刷题数据         今日新增     0           简单     0           中等     0           困难     0      累计总刷题数据（LeetCode 总数）         累计总题数     0           累计简单     0           累">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-04-09T15:50:00.000Z">
+<meta property="article:modified_time" content="2026-04-18T16:38:26.534Z">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/leetcode-history/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LeetCode刷题历史',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/tools"><i class="fa-fw fa fa-th-list"></i><span> 网页模板</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div></div></div></div><div class="page type-page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/tools"><i class="fa-fw fa fa-th-list"></i><span> 网页模板</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">LeetCode刷题历史</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p><span style="font-size: 30px; color: #00ccff;
+            text-shadow: 0 0 5px #00ccff, 0 0 10px #66ffff;
+            animation: blueshine 1.4s infinite alternate;"><br>  LeetCode刷题历史统计<br></span></p>
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p><span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;"><br>总题数趋势图<br></span></p>
+<div id="original-chart" style="width:100%;height:400px;margin:20px 0;"></div>
+
+<hr>
+<h2 id="-2"><a href="#-2" class="headerlink" title=""></a></h2><p><span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;"><br>刷题趋势大盘<br></span></p>
+<div id="advance-chart" style="width:100%;height:500px;margin:30px 0;"></div>
+
+<hr>
+<h2 id="-3"><a href="#-3" class="headerlink" title=""></a></h2><p><span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;"><br>今日新增刷题数据<br></span></p>
+<div id="today-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#fff9e5;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#cc7722;">今日新增</h3>
+    <p id="today-add-total" style="font-size:30px;font-weight:bold;margin:0;color:#FFA116;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#e6fffa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#28a745;">简单</h3>
+    <p id="today-add-easy" style="font-size:30px;font-weight:bold;margin:0;color:#28a745;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f07ff;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#007BFF;">中等</h3>
+    <p id="today-add-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007BFF;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#fff0f0;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#dc3545;">困难</h3>
+    <p id="today-add-hard" style="font-size:30px;font-weight:bold;margin:0;color:#dc3545;">0</p>
+  </div>
+</div>
+
+<h2 id="-4"><a href="#-4" class="headerlink" title=""></a></h2><p><span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;"><br>累计总刷题数据（LeetCode 总数）<br></span></p>
+<div id="total-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#444;">累计总题数</h3>
+    <p id="total-all" style="font-size:30px;font-weight:bold;margin:0;color:#222;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#444;">累计简单</h3>
+    <p id="total-easy" style="font-size:30px;font-weight:bold;margin:0;color:#28a745;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#444;">累计中等</h3>
+    <p id="total-medium" style="font-size:30px;font-weight:bold;margin:0;color:#007BFF;">0</p>
+  </div>
+  <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+    <h3 style="margin:0 0 10px 0;color:#444;">累计困难</h3>
+    <p id="total-hard" style="font-size:30px;font-weight:bold;margin:0;color:#dc3545;">0</p>
+  </div>
+</div>
+
+<hr>
+<h2 id="-5"><a href="#-5" class="headerlink" title=""></a></h2><p><span style="font-size:28px; color:#66ffcc;
+            font-family: '微软雅黑', sans-serif;
+            font-weight: 900;
+            letter-spacing: 3px;
+            border-radius: 8px;
+            text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
+            animation: greenshine 1.4s infinite alternate;"><br>每日刷题明细<br></span></p>
+<div id="daily-list" style="margin:30px 0;"></div>
+<div id="pagination" style="text-align:center;margin:25px 0;"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+// ==============================================
+// 【核心配置】严格适配Hexo环境，路径100%正确
+// ==============================================
+const CONFIG = {
+  // JSON数据路径：适配Hexo子目录/hexo-blog/，本地+线上通用
+  jsonUrl: "/hexo-blog/leetcode-history/leetcode-history.json",
+  // 图表主题色：与博客Butterfly主题适配
+  theme: {
+    total: "#FFA116",
+    easy: "#28a745",
+    medium: "#007BFF",
+    hard: "#DC3545",
+    bg: "#f8f9fa",
+    text: "#333"
+  },
+  // 图表渲染延迟：确保DOM完全加载，避免Hexo渲染顺序问题
+  renderDelay: 200,
+  pageSize: 10
+};
+
+// ==============================================
+// 全局数据
+// ==============================================
+let allData = [];
+let allDataReverse = [];
+let currentPage = 1;
+
+// ==============================================
+// 【工具函数】通用方法，提升代码可维护性
+// ==============================================
+/**
+ * 等待DOM完全加载后执行回调
+ * @param {Function} callback 回调函数
+ */
+function waitForDOMReady(callback) {
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    setTimeout(callback, CONFIG.renderDelay);
+  } else {
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(callback, CONFIG.renderDelay);
+    });
+  }
+}
+
+/**
+ * 格式化日期为YYYY-MM-DD
+ * @param {Date} date 日期对象
+ * @returns {string} 格式化后的日期
+ */
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+/**
+ * 按日期正序排序数据（旧→新）
+ * @param {Array} data 原始数据
+ * @returns {Array} 排序后的数据
+ */
+function sortDataByDate(data) {
+  return [...data].sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
+// ==============================================
+// 【数据加载】核心逻辑，处理JSON请求与错误
+// ==============================================
+/**
+ * 加载LeetCode历史数据
+ * @returns {Promise<Array>} 排序后的数据
+ */
+async function loadLeetCodeData() {
+  try {
+    console.log("🔄 开始加载LeetCode历史数据...");
+    const res = await fetch(CONFIG.jsonUrl);
+    
+    if (!res.ok) {
+      throw new Error(`HTTP请求失败，状态码：${res.status}，请检查路径是否正确`);
+    }
+
+    const data = await res.json();
+    console.log("✅ 数据加载成功，共", data.length, "条记录");
+
+    if (!data || data.length === 0) {
+      console.warn("⚠️ 数据为空，显示默认提示");
+      return [];
+    }
+
+    const sortedData = sortDataByDate(data);
+    allData = sortedData;
+    allDataReverse = [...sortedData].reverse();
+    return sortedData;
+  } catch (err) {
+    console.error("❌ 数据加载失败：", err);
+    // 渲染错误提示到页面
+    document.getElementById("history-table").innerHTML = `<tr><td colspan='5'>数据加载失败：${err.message}</td></tr>`;
+    return [];
+  }
+}
+
+// ==============================================
+// 【修复】每日刷题表格：显示【当日做题量】= 今天 - 昨天
+// ==============================================
+function renderHistoryTable(data) {
+  const tableBody = document.getElementById("history-table");
+  if (!tableBody) {
+    console.error("❌ 找不到表格元素#history-table");
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    tableBody.innerHTML = "<tr><td colspan='5'>暂无刷题历史数据</td></tr>";
+    return;
+  }
+
+  let tableHtml = "";
+  for (let i = 0; i < data.length; i++) {
+    const prev = i === 0 ? { solved:0, easy:0, medium:0, hard:0 } : data[i-1];
+    const curr = data[i];
+    const daySolved = Math.max(0, curr.solved - prev.solved);
+    const dayEasy = Math.max(0, curr.easy - prev.easy);
+    const dayMedium = Math.max(0, curr.medium - prev.medium);
+    const dayHard = Math.max(0, curr.hard - prev.hard);
+
+    tableHtml += `
+    <tr>
+      <td>${curr.date}</td>
+      <td>${daySolved}</td>
+      <td>${dayEasy}</td>
+      <td>${dayMedium}</td>
+      <td>${dayHard}</td>
+    </tr>`;
+  }
+
+  tableBody.innerHTML = tableHtml;
+  console.log("✅ 表格渲染完成");
+}
+
+// ==============================================
+// 【修复】折线图：直接使用累计数据，不再重复累加
+// ==============================================
+function renderOriginalChart(data) {
+  const chartDom = document.getElementById("original-chart");
+  if (!chartDom) {
+    console.error("❌ 找不到原版图表容器#original-chart");
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    chartDom.innerHTML = "<p style='text-align:center;color:#999;line-height:400px;'>暂无数据，图表无法渲染</p>";
+    return;
+  }
+
+  const chart = echarts.init(chartDom);
+  const dates = data.map(item => item.date);
+  const solvedList = data.map(item => item.solved);
+
+  chart.setOption({
+    tooltip: {
+      trigger: "axis",
+      backgroundColor: "rgba(255,255,255,0.9)",
+      borderColor: "#eee",
+      textStyle: { color: CONFIG.theme.text }
+    },
+    xAxis: {
+      type: "category",
+      data: dates,
+      axisLabel: { color: CONFIG.theme.text },
+      axisLine: { lineStyle: { color: "#ccc" } }
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: { color: CONFIG.theme.text },
+      axisLine: { lineStyle: { color: "#ccc" } },
+      splitLine: { lineStyle: { color: "#f0f0f0" } }
+    },
+    series: [{
+      name: "总AC数",
+      type: "line",
+      data: solvedList,
+      smooth: true,
+      lineStyle: { width: 3, color: CONFIG.theme.total },
+      itemStyle: { color: CONFIG.theme.total },
+      symbol: "circle",
+      symbolSize: 8,
+      areaStyle: {
+        color: {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 0,
+          y: 1,
+          colorStops: [{
+            offset: 0,
+            color: `${CONFIG.theme.total}80`
+          }, {
+            offset: 1,
+            color: `${CONFIG.theme.total}00`
+          }]
+        }
+      }
+    }]
+  });
+
+  window.addEventListener("resize", () => chart.resize());
+  console.log("✅ 原版总题数图表渲染完成");
+}
+
+// ==============================================
+// 【修复】豪华图表：直接使用累计数据
+// ==============================================
+function renderAdvanceChart(data) {
+  const chartDom = document.getElementById("advance-chart");
+  if (!chartDom) {
+    console.error("❌ 找不到豪华图表容器#advance-chart");
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    chartDom.innerHTML = "<p style='text-align:center;color:#999;line-height:500px;'>暂无数据，图表无法渲染</p>";
+    return;
+  }
+
+  const chart = echarts.init(chartDom);
+  const dates = data.map(item => item.date);
+
+  chart.setOption({
+    title: {
+      text: '📚 LeetCode 刷题多维度趋势统计',
+      left: 'center',
+      textStyle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: CONFIG.theme.text
+      },
+      top: 10
+    },
+    tooltip: {
+      trigger: 'axis',
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      borderColor: 'transparent',
+      textStyle: { color: '#fff' },
+      axisPointer: {
+        type: 'cross',
+        lineStyle: { color: '#fff', type: 'dashed' }
+      }
+    },
+    legend: {
+      data: ['总题数', '简单', '中等', '困难'],
+      top: 50,
+      left: 'center',
+      textStyle: { color: CONFIG.theme.text },
+      icon: 'roundRect',
+      itemWidth: 12,
+      itemHeight: 12
+    },
+    grid: {
+      left: '3%',
+      right: '4%',
+      bottom: '8%',
+      top: '18%',
+      containLabel: true
+    },
+    xAxis: {
+      type: "category",
+      data: dates,
+      axisLabel: {
+        color: CONFIG.theme.text,
+        rotate: 30,
+        interval: 'auto'
+      },
+      axisLine: { lineStyle: { color: "#ccc" } },
+      axisTick: { lineStyle: { color: "#ccc" } }
+    },
+    yAxis: {
+      type: "value",
+      axisLabel: { color: CONFIG.theme.text },
+      axisLine: { lineStyle: { color: "#ccc" } },
+      axisTick: { lineStyle: { color: "#ccc" } },
+      splitLine: { lineStyle: { color: "#f0f0f0" } },
+      min: 0
+    },
+    series: [
+      {
+        name: '总题数',
+        type: 'line',
+        data: data.map(i=>i.solved),
+        smooth: true,
+        symbolSize: 8,
+        lineStyle: { width: 3, color: CONFIG.theme.total },
+        itemStyle: { color: CONFIG.theme.total },
+        areaStyle: {
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y: 1,
+            colorStops: [{ offset: 0, color: `${CONFIG.theme.total}60` }, { offset: 1, color: `${CONFIG.theme.total}00` }]
+          }
+        },
+      },
+      { name: '简单', type: 'line', data: data.map(i=>i.easy), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.easy } },
+      { name: '中等', type: 'line', data: data.map(i=>i.medium), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.medium } },
+      { name: '困难', type: 'line', data: data.map(i=>i.hard), smooth: true, lineStyle: { width: 2, color: CONFIG.theme.hard } },
+    ]
+  });
+
+  window.addEventListener("resize", () => chart.resize());
+  console.log("✅ 豪华版多维度图表渲染完成");
+}
+
+// ==============================================
+// 【废弃】无用函数，保留空实现
+// ==============================================
+function renderTodayCard(data) {}
+
+// ==============================================
+// 【修复】今日新增 = 今天 - 昨天
+// ==============================================
+function renderTodayAdd() {
+  if (!allData || allData.length < 1) return;
+  const today = allData[allData.length - 1];
+  const yesterday = allData.length >= 2 ? allData[allData.length - 2] : { solved:0, easy:0, medium:0, hard:0 };
+
+  document.getElementById("today-add-total").innerText = Math.max(0, today.solved - yesterday.solved);
+  document.getElementById("today-add-easy").innerText = Math.max(0, today.easy - yesterday.easy);
+  document.getElementById("today-add-medium").innerText = Math.max(0, today.medium - yesterday.medium);
+  document.getElementById("today-add-hard").innerText = Math.max(0, today.hard - yesterday.hard);
+}
+
+// ==============================================
+// 【修复】累计总数 = 取最后一天数据
+// ==============================================
+function renderTotalSummary() {
+  if (!allData || allData.length === 0) return;
+  const last = allData[allData.length - 1];
+
+  document.getElementById("total-all").innerText = last.solved;
+  document.getElementById("total-easy").innerText = last.easy;
+  document.getElementById("total-medium").innerText = last.medium;
+  document.getElementById("total-hard").innerText = last.hard;
+}
+
+// ==============================================
+// 【修复】每日明细：显示当日做题量
+// ==============================================
+function renderDailyList() {
+  const dom = document.getElementById("daily-list");
+  if (!dom || !allDataReverse || allDataReverse.length === 0) {
+    if (dom) dom.innerHTML = "<div style='text-align:center;padding:30px;'>暂无每日明细</div>";
+    return;
+  }
+
+  const start = (currentPage - 1) * CONFIG.pageSize;
+  const end = start + CONFIG.pageSize;
+  const pageData = allDataReverse.slice(start, end);
+
+  let html = '<div style="display:flex;flex-direction:column;gap:14px;">';
+  pageData.forEach(item => {
+    const idx = allData.findIndex(x => x.date === item.date);
+    const prev = idx > 0 ? allData[idx - 1] : { solved:0, easy:0, medium:0, hard:0 };
+    const dayDone = Math.max(0, item.solved - prev.solved);
+
+    // 先算出当天各难度数量
+const dayEasy = Math.max(0, item.easy - prev.easy);
+const dayMedium = Math.max(0, item.medium - prev.medium);
+const dayHard = Math.max(0, item.hard - prev.hard);
+
+html += `
+<div style="padding:18px;border-radius:12px;background:#fafafa;border:1px solid #eee;">
+  <div style="font-weight:bold;font-size:17px;">📅 ${item.date}</div>
+  <div style="margin-top:8px;display:flex;gap:14px;flex-wrap:wrap;">
+    <span>总：${dayDone}</span>
+    <span style="color:${CONFIG.theme.easy}">简单：${dayEasy}</span>
+    <span style="color:${CONFIG.theme.medium}">中等：${dayMedium}</span>
+    <span style="color:${CONFIG.theme.hard}">困难：${dayHard}</span>
+  </div>
+</div>`;
+  });
+  html += "</div>";
+  dom.innerHTML = html;
+}
+
+// ==============================================
+// 【新增】分页按钮（完全不变）
+// ==============================================
+function renderPagination() {
+  const dom = document.getElementById("pagination");
+  if (!dom || !allDataReverse || allDataReverse.length === 0) {
+    if (dom) dom.innerHTML = "";
+    return;
+  }
+
+  const totalPage = Math.ceil(allDataReverse.length / CONFIG.pageSize);
+  let html = "";
+  for (let i = 1; i <= totalPage; i++) {
+    html += `<button onclick="goPage(${i})"
+      style="width:44px;height:40px;margin:0 8px;border-radius:8px;border:none;cursor:pointer;
+      ${currentPage === i ? 'background:#FFA116;color:white' : 'background:#f1f1f1'}">
+      ${i}
+    </button>`;
+  }
+  dom.innerHTML = html;
+}
+
+function goPage(page) {
+  currentPage = page;
+  renderDailyList();
+  renderPagination();
+  window.scrollTo({
+    top: document.getElementById("daily-list").offsetTop - 100,
+    behavior: "smooth"
+  });
+}
+
+// ==============================================
+// 【主入口】页面加载完成后执行所有渲染逻辑
+// ==============================================
+waitForDOMReady(async () => {
+  console.log("🚀 页面DOM加载完成，开始执行渲染...");
+  
+  const data = await loadLeetCodeData();
+  if (!data || data.length === 0) {
+    console.warn("⚠️ 无有效数据，终止后续渲染");
+    return;
+  }
+
+  renderHistoryTable(data);
+  renderOriginalChart(data);
+  renderAdvanceChart(data);
+  renderTodayAdd();
+  renderTotalSummary();
+  renderDailyList();
+  renderPagination();
+
+  console.log("🎉 所有模块渲染完成，页面正常运行！");
+});
+
+// ==============================================
+// 【Hexo环境适配】
+// ==============================================
+if (typeof window !== "undefined" && window.location.hostname === "localhost") {
+  window.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "hexo.reload") {
+      console.log("🔄 监听到Hexo热重载，重新渲染页面...");
+      waitForDOMReady(async () => {
+        const data = await loadLeetCodeData();
+        renderHistoryTable(data);
+        renderOriginalChart(data);
+        renderAdvanceChart(data);
+        renderTodayAdd();
+        renderTotalSummary();
+        renderDailyList();
+        renderPagination();
+      });
+    }
+  });
+  console.log("✅ 已适配Hexo本地热重载");
+}
+</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/18/hello-world/" title="Hello World">Hello World</a><time datetime="2026-04-18T16:38:26.532Z" title="发表于 2026-04-19 00:38:26">2026-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/15/%E9%AD%94%E6%B3%95%E5%A4%A9%E5%B9%B3/" title="MC0366 魔法天平">MC0366 魔法天平</a><time datetime="2026-04-15T08:37:46.000Z" title="发表于 2026-04-15 16:37:46">2026-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/14/hi/" title="hi">hi</a><time datetime="2026-04-14T13:11:00.000Z" title="发表于 2026-04-14 21:11:00">2026-04-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/hexo-blog/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"><span class="card-category-list-name">算法刷题</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/hexo-blog/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/hexo-blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/hexo-blog/tags/%E9%92%BB%E7%9F%B3%E9%A2%98/" style="font-size: 1.1em; color: #999">钻石题</a> <a href="/hexo-blog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">3</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-18T16:38:50.975Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
