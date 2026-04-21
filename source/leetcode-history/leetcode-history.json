@@ -75,5 +75,19 @@
     "easy": 16,
     "medium": 24,
     "hard": 4
+  },
+  {
+    "date": "2026-04-20",
+    "solved": 44,
+    "easy": 16,
+    "medium": 24,
+    "hard": 4
+  },
+  {
+    "date": "2026-04-21",
+    "solved": 56,
+    "easy": 19,
+    "medium": 32,
+    "hard": 5
   }
 ]

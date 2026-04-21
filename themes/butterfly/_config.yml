@@ -24,7 +24,7 @@ menu:
   网页模板: /tools || fa fa-th-list
   刷题历史: /leetcode-history/
   关于我: /hoster/
-  
+  洛谷: /luogu/
 
 code_blocks:
   # Code block theme: darker / pale night / light / ocean / false
