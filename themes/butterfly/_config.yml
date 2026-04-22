@@ -1067,6 +1067,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
+    - <script src="/js/guard.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN Settings
