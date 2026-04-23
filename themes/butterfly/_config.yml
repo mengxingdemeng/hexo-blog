@@ -1064,10 +1064,9 @@ css_prefix: true
 # Inject
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
-  head:
+  head: 
     - <link rel="stylesheet" href="/hexo-blog/css/custom.css">
   bottom:
-    - <script src="/hexo-blog/js/guard.js"></script>
     # - <script src="xxxx"></script>
 
 # CDN Settings
