@@ -92,20 +92,20 @@ deploy:
   repo: https://github.com/mengxingdemeng/hexo-blog.git
   branch: gh-pages
 
-# 全站加密配置
-encrypt:
-  enable: true
-  password: "hy4892694748"  # 改成你自己的全站密码，比如 123456
-  message: "🔒 请输入访问密码"
-  theme: "xray"  # 密码框样式，支持多种可选
-  wrong_pass_message: "❌ 密码错误，请重新输入"
-  wrong_hash_message: "❌ 验证失败，请刷新页面重试"
-  remember: true
-  rememberExpireDays: 1
+# # 全站加密配置
+# encrypt:
+#   enable: true
+#   password: "hy4892694748"  # 改成你自己的全站密码，比如 123456
+#   message: "🔒 请输入访问密码"
+#   theme: "xray"  # 密码框样式，支持多种可选
+#   wrong_pass_message: "❌ 密码错误，请重新输入"
+#   wrong_hash_message: "❌ 验证失败，请刷新页面重试"
+#   remember: true
+#   rememberExpireDays: 1
 
-hexo_password:
-  enable: true
-  password: hy4892694748 # 全站密码
-  include:
-    - "**/*"  # 加密所有页面（首页、文章、归档等）
-  exclude: []
+# hexo_password:
+#   enable: true
+#   password: hy4892694748 # 全站密码
+#   include:
+#     - "**/*"  # 加密所有页面（首页、文章、归档等）
+#   exclude: []
