@@ -21,7 +21,8 @@ menu:
   首页: /
   归档: /archives/
   刷题统计: /shuati/
-  刷题历史: /leetcode-history/
+  力扣刷题历史: /leetcode-history/
+  洛谷刷题历史: /luogu-history/
   关于我: /hoster/
   洛谷: /luogu/
 
