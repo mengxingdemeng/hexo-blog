@@ -77,7 +77,7 @@ layout: page
             border-radius: 8px;
             text-shadow:0 0 12px #66ffcc, 0 0 24px #99ffdd;
             animation: greenshine 1.4s infinite alternate;">
-累计总刷题数据（LeetCode 总数）
+累计总刷题数据（luogu 总数）
 </span>
 <div id="total-stats" style="display:flex;gap:20px;margin:30px 0;flex-wrap:wrap;">
   <div style="flex:1;min-width:150px;padding:22px;border-radius:12px;background:#f8f9fa;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
@@ -344,7 +344,7 @@ function renderAdvanceChart(data) {
 
   chart.setOption({
     title: {
-      text: '📚 LeetCode 刷题多维度趋势统计',
+      text: '📚 luogu 刷题多维度趋势统计',
       left: 'center',
       textStyle: {
         fontSize: 18,
