@@ -212,50 +212,57 @@ date: 2026-04-21 19:54:25
 
 ## [完整的题单戳这里](https://studyingfather.com/archives/841)
 
+  > 注：
+  难度评级：
+  简单（a）：入门、普及-、普及/提高-
+  中等（b）：普及+/提高、提高+/省选-
+  困难（c）：省选/NOI-、NOI/NOI+/CTSC
+  
+
 ## [Part 1 入门阶段](https://www.luogu.com.cn/training/9349)
 - Part  1.1 从零开始
-  - [P1421 小玉买文具](https://www.luogu.com.cn/problem/P1421)
-  - [P1909 买铅笔](https://www.luogu.com.cn/problem/P1909)
-  - [P1089 津津的储蓄计划](https://www.luogu.com.cn/problem/P1089)
-  - [P1085 不高兴的津津](https://www.luogu.com.cn/problem/P1085)
-  - [P1035 级数求和](https://www.luogu.com.cn/problem/P1035)
-  - [P1980 计数问题](https://www.luogu.com.cn/problem/P1980)
-  - [P1014 Cantor表](https://www.luogu.com.cn/problem/P1014)
-  - [P1307 数字反转](https://www.luogu.com.cn/problem/P1307)
+  - a[P1421 小玉买文具](https://www.luogu.com.cn/problem/P1421)4.24
+  - a[P1909 买铅笔](https://www.luogu.com.cn/problem/P1909)4.24
+  - a[P1089 津津的储蓄计划](https://www.luogu.com.cn/problem/P1089)4.24
+  - a[P1085 不高兴的津津](https://www.luogu.com.cn/problem/P1085)4.24
+  - a[P1035 级数求和](https://www.luogu.com.cn/problem/P1035)4.24
+  - a[P1980 计数问题](https://www.luogu.com.cn/problem/P1980)4.24
+  - a[P1014 Cantor表](https://www.luogu.com.cn/problem/P1014)4.24
+  - a[P1307 数字反转](https://www.luogu.com.cn/problem/P1307)4.24
 - Part  1.2 数组基础
-  - [P1046 陶陶摘苹果](https://www.luogu.com.cn/problem/P1046)
-  - [P1047 校门外的树](https://www.luogu.com.cn/problem/P1047)
-  - [P1427 小鱼的数字游戏](https://www.luogu.com.cn/problem/P1427)
-  - [P2141 珠心算测验](https://www.luogu.com.cn/problem/P2141)
-  - [P5594 【XR-4】模拟赛](https://www.luogu.com.cn/problem/P5594)
+  - a[P1046 陶陶摘苹果](https://www.luogu.com.cn/problem/P1046)4.24
+  - a[P1047 校门外的树](https://www.luogu.com.cn/problem/P1047)4.24
+  - a[P1427 小鱼的数字游戏](https://www.luogu.com.cn/problem/P1427)4.24
+  - a[P2141 珠心算测验](https://www.luogu.com.cn/problem/P2141)4.24
+  - a[P5594 【XR-4】模拟赛](https://www.luogu.com.cn/problem/P5594)4.24
 - Part  1.3 字符串基础
-  - [P5015 标题统计](https://www.luogu.com.cn/problem/P5015)
-  - [P1055 ISBN号码](https://www.luogu.com.cn/problem/P1055)
-  - [P1308 统计单词数](https://www.luogu.com.cn/problem/P1308)
-  - [P2010 回文日期](https://www.luogu.com.cn/problem/P2010)
-  - [P1012 拼数](https://www.luogu.com.cn/problem/P1012)
-  - [P5587 打字练习](https://www.luogu.com.cn/problem/P5587)
+  - a[P5015 标题统计](https://www.luogu.com.cn/problem/P5015)4.24
+  - a[P1055 ISBN号码](https://www.luogu.com.cn/problem/P1055)4.24
+  - a[P1308 统计单词数](https://www.luogu.com.cn/problem/P1308)4.24
+  - a[P2010 回文日期](https://www.luogu.com.cn/problem/P2010)4.25
+  - b[P1012 拼数](https://www.luogu.com.cn/problem/P1012)4.25
+  - a[P5587 打字练习](https://www.luogu.com.cn/problem/P5587)4.25
 - Part  1.4 函数，递归及递推
-  - [P1028 数的计算](https://www.luogu.com.cn/problem/P1028)
-  - [P1036 选数](https://www.luogu.com.cn/problem/P1036)
-  - [P1464 Function](https://www.luogu.com.cn/problem/P1464)
-  - [P5534 【XR-3】等差数列](https://www.luogu.com.cn/problem/P5534)
-  - [P1192 台阶问题](https://www.luogu.com.cn/problem/P1192)
-  - [P1025 数的划分](https://www.luogu.com.cn/problem/P1025)
-  - [P4994 终于结束的起点](https://www.luogu.com.cn/problem/P4994)
+  - a[P1028 数的计算](https://www.luogu.com.cn/problem/P1028)4.25
+  - a[P1036 选数](https://www.luogu.com.cn/problem/P1036)4.25
+  - a[P1464 Function](https://www.luogu.com.cn/problem/P1464)
+  - a[P5534 【XR-3】等差数列](https://www.luogu.com.cn/problem/P5534)
+  - a[P1192 台阶问题](https://www.luogu.com.cn/problem/P1192)
+  - a[P1025 数的划分](https://www.luogu.com.cn/problem/P1025)
+  - a[P4994 终于结束的起点](https://www.luogu.com.cn/problem/P4994)
 
 ## [Part 2 基础算法](https://www.luogu.com.cn/training/9374)
 - Part  2.1 模拟
-  - [P1003 铺地毯](https://www.luogu.com.cn/problem/P1003)
-  - [P1067 多项式输出](https://www.luogu.com.cn/problem/P1067)
-  - [P1328 生活大爆炸版石头剪刀布](https://www.luogu.com.cn/problem/P1328)
-  - [P1563 玩具谜题](https://www.luogu.com.cn/problem/P1563)
-  - [P1042 乒乓球](https://www.luogu.com.cn/problem/P1042)
-  - [P1179 数字统计](https://www.luogu.com.cn/problem/P1179)
-  - [P2615 神奇的幻方](https://www.luogu.com.cn/problem/P2615)
-  - [P3952 时间复杂度](https://www.luogu.com.cn/problem/P3952)
-  - [P2482 [SDOI2010]猪国杀](https://www.luogu.com.cn/problem/P2482)
-  - [P5380 [THUPC2019]鸭棋](https://www.luogu.com.cn/problem/P5380)
+  - a[P1003 铺地毯](https://www.luogu.com.cn/problem/P1003)
+  - a[P1067 多项式输出](https://www.luogu.com.cn/problem/P1067)
+  - a[P1328 生活大爆炸版石头剪刀布](https://www.luogu.com.cn/problem/P1328)
+  - a[P1563 玩具谜题](https://www.luogu.com.cn/problem/P1563)
+  - a[P1042 乒乓球](https://www.luogu.com.cn/problem/P1042)
+  - a[P1179 数字统计](https://www.luogu.com.cn/problem/P1179)
+  - a[P2615 神奇的幻方](https://www.luogu.com.cn/problem/P2615)
+  - b[P3952 时间复杂度](https://www.luogu.com.cn/problem/P3952)
+  - c[P2482 [SDOI2010]猪国杀](https://www.luogu.com.cn/problem/P2482)
+  - c[P5380 [THUPC2019]鸭棋](https://www.luogu.com.cn/problem/P5380)
 - Part  2.2 排序算法
   - [P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)
   - [P1059 明明的随机数](https://www.luogu.com.cn/problem/P1059)
