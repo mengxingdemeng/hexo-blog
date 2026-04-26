@@ -1,0 +1,1544 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>洛谷 | my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="能力全面提升综合题单我的洛谷主页这份题单包含了竞赛中，从入门，到 NOI、ICPC 等竞赛的常用算法和技巧，配以典型的例题用以练手，大部分是模版题和经典题，可以帮助了解算法竞赛中有哪些知识点，构建起知识框架。 可以把它作为查漏补缺和复习的大纲。如果希望熟练的掌握某个算法，还请另找相关题目多加练习。  建议先完成 Part 1,2 两部分内容，为接下来的学习打好基础。  对于要参加 CSP-S">
+<meta property="og:type" content="website">
+<meta property="og:title" content="洛谷">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/luogu/index.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="能力全面提升综合题单我的洛谷主页这份题单包含了竞赛中，从入门，到 NOI、ICPC 等竞赛的常用算法和技巧，配以典型的例题用以练手，大部分是模版题和经典题，可以帮助了解算法竞赛中有哪些知识点，构建起知识框架。 可以把它作为查漏补缺和复习的大纲。如果希望熟练的掌握某个算法，还请另找相关题目多加练习。  建议先完成 Part 1,2 两部分内容，为接下来的学习打好基础。  对于要参加 CSP-S">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-04-21T11:54:25.000Z">
+<meta property="article:modified_time" content="2026-04-26T16:40:45.312Z">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/luogu/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '洛谷',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/hexo-blog/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">洛谷</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!--
+# 能力全面提升综合题单
+## [我的洛谷主页](https://www.luogu.com.cn/user/1570933)
+
+
+这份题单包含了竞赛中，从入门，到 NOI、ICPC 等竞赛的常用算法和技巧，配以典型的例题用以练手，大部分是模版题和经典题，可以帮助了解算法竞赛中有哪些知识点，构建起知识框架。
+
+可以把它作为查漏补缺和复习的大纲。如果希望熟练的掌握某个算法，还请另找相关题目多加练习。
+
+
+- 建议先完成 Part 1,2 两部分内容，为接下来的学习打好基础。
+
+
+- 对于要参加 CSP-S/NOIP 提高组的，建议在前面的基础上优先完成 Part 3.1-3.4, 4.1-4.4, 6.1-6.5, 7.1-7.8, 8.1-8.7 的内容，在此基础上继续完成其他内容。
+
+- 每个专题下的题目先给出模板，剩下的题目均按照难度递增顺序排序，部分难度较高的综合性题目建议达到一定能力后再尝试解决。
+
+
+## [完整的题单戳这里](https://studyingfather.com/archives/841)
+
+## [Part 1 入门阶段](https://www.luogu.com.cn/training/9349)
+- Part  1.1 从零开始
+- Part  1.2 数组基础
+- Part  1.3 字符串基础
+- Part  1.4 函数，递归及递推
+
+## [Part 2 基础算法](https://www.luogu.com.cn/training/9374)
+- Part  2.1 模拟
+- Part  2.2 排序算法
+- Part  2.3 二分答案
+- Part  2.4 分治
+- Part  2.5 贪心
+- Part  2.6 构造
+- Part  2.7 高精度
+- Part  2.8 前缀和 & 差分
+
+## [Part 3 搜索](https://www.luogu.com.cn/training/9376)
+- Part  3.1 深度优先搜索
+- Part  3.2 广度优先搜索
+- Part  3.3 记忆化搜索
+- Part  3.4 搜索的剪枝
+- Part  3.5 双向搜索
+- Part  3.6 A*
+- Part  3.7 IDA*
+- Part  3.8 DLX
+
+## Part  4 动态规划
+### [Part 4.1-4.4 动态规划](https://www.luogu.com.cn/training/9350)
+- Part  4.1 线性动态规划
+- Part  4.2 背包动态规划
+- Part  4.3 区间动态规划
+- Part  4.4 树形动态规划
+
+### [Part 4.5-4.12 动态规划](https://www.luogu.com.cn/training/9352)
+- Part  4.5 状态压缩动态规划
+- Part  4.6 倍增优化动态规划
+- Part  4.7 数据结构优化动态规划
+- Part  4.8 单调队列优化动态规划
+- Part  4.9 斜率优化动态规划
+- Part  4.10 决策单调性优化动态规划
+- Part  4.11 数位统计类动态规划
+- Part  4.12 轮廓线动态规划
+
+## Part  5 字符串
+### [Part 5.1-5.6 字符串](https://www.luogu.com.cn/training/9372)
+- Part  5.1 字符串哈希
+- Part  5.2 KMP
+- Part  5.3 Manacher
+- Part  5.4 Trie树
+- Part  5.5 AC自动机
+- Part  5.6 回文自动机
+
+### [Part 5.7-5.8 字符串](https://www.luogu.com.cn/training/9373)
+- Part  5.7 后缀数组
+- Part  5.8 后缀自动机
+
+## Part  6 数学
+### [Part 6.1-6.4 数学](https://www.luogu.com.cn/training/9377)
+- Part  6.1 位运算
+- Part  6.2 整除相关
+  - Part  6.2.1 素数
+  - Part  6.2.2 最大公约数
+  - Part  6.2.3 欧拉函数
+- Part  6.3 同余方程
+  - Part  6.3.1 线性同余方程&乘法逆元
+  - Part  6.3.2 中国剩余定理
+  - Part  6.3.3 高次同余方程
+- Part  6.4 博弈论
+
+### [Part 6.5-6.6 数学](https://www.luogu.com.cn/training/9378)
+- Part  6.5 概率与期望
+- Part  6.6 组合数学
+  - Part  6.6.1 排列组合
+  - Part  6.6.2 卡特兰数&斯特林数
+  - Part  6.6.3 容斥原理
+
+### [Part 6.7-6.8 数学](https://www.luogu.com.cn/training/9379)
+- Part  6.7 线性代数
+  - Part  6.7.1 矩阵
+  - Part  6.7.2 高斯消元
+  - Part  6.7.3 线性基
+- Part  6.8 多项式
+
+### [Part 6.9-6.13 数学](https://www.luogu.com.cn/training/9380)
+- Part  6.9 莫比乌斯反演
+- Part  6.10 筛法
+- Part  6.11 线性规划
+- Part  6.12 数值方法
+  - Part  6.12.1 三分法
+  - Part  6.12.2 自适应辛普森法
+- Part  6.13 置换群
+
+## Part  7 数据结构
+### [Part 7.1-7.7 数据结构](https://www.luogu.com.cn/training/9381)
+- Part  7.1 链表
+- Part  7.2 栈
+- Part  7.3 队列
+- Part  7.4 并查集
+- Part  7.5 二叉堆
+- Part  7.6 ST表
+- Part  7.7 树状数组
+
+### [Part 7.8-7.12 数据结构](https://www.luogu.com.cn/training/9382)
+- Part  7.8 线段树
+- Part  7.9 分块
+- Part  7.10 可并堆
+- Part  7.11 主席树
+- Part  7.12 平衡树
+
+### [Part 7.13-7.18 数据结构](https://www.luogu.com.cn/training/9383)
+- Part  7.13 树链剖分
+- Part  7.14 树套树
+- Part  7.15 动态树
+- Part  7.16 可持久化数据结构
+- Part  7.17 K-D Tree
+- Part  7.18 珂朵莉树
+
+## Part  8 图论
+### [Part 8.1-8.6 图论](https://www.luogu.com.cn/training/9384)
+- Part  8.1 图的存储与遍历
+- Part  8.2 最短路问题
+- Part  8.3 树上问题
+  - Part  8.3.1 二叉树
+  - Part  8.3.2 树的直径
+  - Part  8.3.3 最近公共祖先
+- Part  8.4 生成树
+- Part  8.5 拓扑排序
+- Part  8.6 差分约束
+
+### [Part 8.7-8.9.2 图论](https://www.luogu.com.cn/training/9385)
+- Part  8.7 图的连通性相关
+- Part  8.8 二分图
+- Part  8.9 网络流
+  - Part  8.9.1 最大流
+  - Part  8.9.2 最小割
+
+### [Part 8.9.3-8.13 图论](https://www.luogu.com.cn/training/9386)
+- Part  8.9.3 费用流
+- Part  8.9.4 上下界网络流
+- Part  8.10 2-SAT
+- Part  8.11 点分治
+- Part  8.12 虚树
+- Part  8.13 矩阵树定理
+
+## [Part 9 计算几何](https://www.luogu.com.cn/training/9387)
+- Part  9.1 凸包
+- Part  9.2 旋转卡壳
+- Part  9.3 半平面交
+
+## [Part 10 杂项](https://www.luogu.com.cn/training/9388)
+- Part  10.1 模拟退火
+- Part  10.2 0/1 分数规划
+- Part  10.3 离线算法
+  - Part  10.3.1 CDQ 分治
+  - Part  10.3.2 整体二分
+  - Part  10.3.3 莫队
+- Part  10.4 奇怪的题目
+- Part  10.5 非传统题
+  - Part  10.5.1 提交答案题
+
+---
+
+### 修订记录
+2020.07.01：更新题单说明。
+
+2020.08.29：感谢 [_jwj_](https://www.luogu.com.cn/user/187543)提供了新的排版。
+
+2024.09.26：更新了说明 -->
+
+
+<h1 id="能力全面提升综合题单"><a href="#能力全面提升综合题单" class="headerlink" title="能力全面提升综合题单"></a>能力全面提升综合题单</h1><h2 id="我的洛谷主页"><a href="#我的洛谷主页" class="headerlink" title="我的洛谷主页"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/1570933">我的洛谷主页</a></h2><p>这份题单包含了竞赛中，从入门，到 NOI、ICPC 等竞赛的常用算法和技巧，配以典型的例题用以练手，大部分是模版题和经典题，可以帮助了解算法竞赛中有哪些知识点，构建起知识框架。</p>
+<p>可以把它作为查漏补缺和复习的大纲。如果希望熟练的掌握某个算法，还请另找相关题目多加练习。</p>
+<ul>
+<li><p>建议先完成 Part 1,2 两部分内容，为接下来的学习打好基础。</p>
+</li>
+<li><p>对于要参加 CSP-S&#x2F;NOIP 提高组的，建议在前面的基础上优先完成 Part 3.1-3.4, 4.1-4.4, 6.1-6.5, 7.1-7.8, 8.1-8.7 的内容，在此基础上继续完成其他内容。</p>
+</li>
+<li><p>每个专题下的题目先给出模板，剩下的题目均按照难度递增顺序排序，部分难度较高的综合性题目建议达到一定能力后再尝试解决。</p>
+</li>
+</ul>
+<h2 id="完整的题单戳这里"><a href="#完整的题单戳这里" class="headerlink" title="完整的题单戳这里"></a><a target="_blank" rel="noopener" href="https://studyingfather.com/archives/841">完整的题单戳这里</a></h2><blockquote>
+<p>注：<br>  难度评级：<br>  简单（a）：入门、普及-、普及&#x2F;提高-<br>  中等（b）：普及+&#x2F;提高、提高+&#x2F;省选-<br>  困难（c）：省选&#x2F;NOI-、NOI&#x2F;NOI+&#x2F;CTSC</p>
+</blockquote>
+<h2 id="Part-1-入门阶段"><a href="#Part-1-入门阶段" class="headerlink" title="Part 1 入门阶段"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9349">Part 1 入门阶段</a></h2><ul>
+<li>Part  1.1 从零开始<ul>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1421">P1421 小玉买文具</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1909">P1909 买铅笔</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1089">P1089 津津的储蓄计划</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1085">P1085 不高兴的津津</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1035">P1035 级数求和</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1980">P1980 计数问题</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1014">P1014 Cantor表</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1307">P1307 数字反转</a>4.24</li>
+</ul>
+</li>
+<li>Part  1.2 数组基础<ul>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1046">P1046 陶陶摘苹果</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1047">P1047 校门外的树</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1427">P1427 小鱼的数字游戏</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2141">P2141 珠心算测验</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5594">P5594 【XR-4】模拟赛</a>4.24</li>
+</ul>
+</li>
+<li>Part  1.3 字符串基础<ul>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5015">P5015 标题统计</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1055">P1055 ISBN号码</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1308">P1308 统计单词数</a>4.24</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2010">P2010 回文日期</a>4.25</li>
+<li>b<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1012">P1012 拼数</a>4.25</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5587">P5587 打字练习</a>4.25</li>
+</ul>
+</li>
+<li>Part  1.4 函数，递归及递推<ul>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1028">P1028 数的计算</a>4.25</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1036">P1036 选数</a>4.25</li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1464">P1464 Function</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5534">P5534 【XR-3】等差数列</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1192">P1192 台阶问题</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1025">P1025 数的划分</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4994">P4994 终于结束的起点</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-2-基础算法"><a href="#Part-2-基础算法" class="headerlink" title="Part 2 基础算法"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9374">Part 2 基础算法</a></h2><ul>
+<li>Part  2.1 模拟<ul>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1003">P1003 铺地毯</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1067">P1067 多项式输出</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1328">P1328 生活大爆炸版石头剪刀布</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1563">P1563 玩具谜题</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1042">P1042 乒乓球</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1179">P1179 数字统计</a></li>
+<li>a<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2615">P2615 神奇的幻方</a></li>
+<li>b<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3952">P3952 时间复杂度</a></li>
+<li>c<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2482">P2482 [SDOI2010]猪国杀</a></li>
+<li>c<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5380">P5380 [THUPC2019]鸭棋</a></li>
+</ul>
+</li>
+<li>Part  2.2 排序算法<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1177">P1177 【模板】快速排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1059">P1059 明明的随机数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1068">P1068 分数线划定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1051">P1051 谁拿了最多奖学金</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1309">P1309 瑞士轮</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1908">P1908 逆序对</a></li>
+</ul>
+</li>
+<li>Part  2.3 二分答案<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1024">P1024 一元三次方程求解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2678">P2678 跳石头</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1902">P1902 刺杀大使</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1314">P1314 聪明的质监员</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1083">P1083 借教室</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4343">P4343 [SHOI2015]自动刷题机</a></li>
+</ul>
+</li>
+<li>Part  2.4 分治<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1226">P1226 【模板】快速幂||取余运算</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1010">P1010 幂次方</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1429">P1429 平面最近点对（加强版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3612">P3612 [USACO17JAN]Secret Cow Code</a></li>
+</ul>
+</li>
+<li>Part  2.5 贪心<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1208">P1208 [USACO1.3]Mixing Milk</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4995">P4995 跳跳！</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1094">P1094 纪念品分组</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1199">P1199 三国游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2672">P2672 推销员</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1080">P1080 国王游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2123">P2123 皇后游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5521">P5521 [yLOI2019]梅深不见冬</a></li>
+</ul>
+</li>
+<li>Part  2.6 构造<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3599">P3599 Koishi Loves Construction</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5441">P5441 【XR-2】伤痕</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5595">P5595 【XR-4】歌唱比赛</a></li>
+</ul>
+</li>
+<li>Part  2.7 高精度<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1601">P1601 A+B Problem（高精）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2142">P2142 高精度减法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1303">P1303 A*B Problem</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1480">P1480 A&#x2F;B Problem</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1009">P1009 阶乘之和</a></li>
+</ul>
+</li>
+<li>Part  2.8 前缀和 &amp; 差分<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3131">P3131 [USACO16JAN]Subsequences Summing to Sevens</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1387">P1387 最大正方形</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397">P3397 地毯</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2280">P2280 [HNOI2003]激光炸弹</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4552">P4552 [Poetize6] IncDec Sequence</a></li>
+</ul>
+</li>
+<li>Part  2.9 双指针 &amp; 滑动窗口<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397">P1147 连续自然数和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397">P1638 逛画展</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3397">P2698 [USACO12MAR] Flowerpot S</a></li>
+</ul>
+</li>
+<li>Part  2.10 离散化<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1496">P1496 数列分段</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/1908">P1908 逆序对</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-3-搜索"><a href="#Part-3-搜索" class="headerlink" title="Part 3 搜索"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9376">Part 3 搜索</a></h2><ul>
+<li>Part  3.1 深度优先搜索<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1219">P1219 八皇后</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1019">P1019 单词接龙</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5194">P5194 [USACO05DEC]Scales</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5440">P5440 【XR-2】奇迹</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1378">P1378 油滴扩展</a></li>
+</ul>
+</li>
+<li>Part  3.2 广度优先搜索<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1162">P1162 填涂颜色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1443">P1443 马的遍历</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3956">P3956 棋盘</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1032">P1032 字串变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1126">P1126 机器人搬重物</a></li>
+</ul>
+</li>
+<li>Part  3.3 记忆化搜索<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1514">P1514 引水入城</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1535">P1535 游荡的奶牛</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1434">P1434 [SHOI2002]滑雪</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3953">P3953 逛公园</a></li>
+</ul>
+</li>
+<li>Part  3.4 搜索的剪枝<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1120">P1120 小木棍 ［数据加强版］</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1312">P1312 Mayan游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1074">P1074 靶形数独</a></li>
+</ul>
+</li>
+<li>Part  3.5 双向搜索<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3067">P3067 [USACO12OPEN]Balanced Cow Subsets</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4799">P4799 [CEOI2015 Day2]世界冰球锦标赛</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5195">P5195 [USACO05DEC]Knights of Ni</a></li>
+</ul>
+</li>
+<li>Part  3.6 A*<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1379">P1379 八数码难题</a></li>
+</ul>
+</li>
+<li>Part  3.7 IDA*<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2324">P2324 [SCOI2005]骑士精神</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2534">P2534 [AHOI2012]铁盘整理</a></li>
+</ul>
+</li>
+<li>Part  3.8 DLX<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4929">P4929 【模板】舞蹈链（DLX）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4205">P4205 [NOI2005]智慧珠游戏</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-4-动态规划"><a href="#Part-4-动态规划" class="headerlink" title="Part  4 动态规划"></a>Part  4 动态规划</h2><h3 id="Part-4-1-4-4-动态规划"><a href="#Part-4-1-4-4-动态规划" class="headerlink" title="Part 4.1-4.4 动态规划"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9350">Part 4.1-4.4 动态规划</a></h3><ul>
+<li>Part  4.1 线性动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1216">P1216 数字三角形</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1020">P1020 导弹拦截</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1091">P1091 合唱队形</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1095">P1095 守望者的逃离</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1541">P1541 乌龟棋</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1868">P1868 饥饿的奶牛</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2679">P2679 子串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2501">P2501 [HAOI2006]数字序列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3336">P3336 [ZJOI2013]话旧</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3558">P3558 [POI2013]BAJ-Bytecomputer</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4158">P4158 [SCOI2009]粉刷匠</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5301">P5301 [GXOI&#x2F;GZOI2019]宝牌一大堆</a></li>
+</ul>
+</li>
+<li>Part  4.2 背包动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1048">P1048 采药</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1060">P1060 开心的金明</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1855">P1855 榨取kkksc03</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5020">P5020 货币系统</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1757">P1757 通天之分组背包</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1064">P1064 金明的预算方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2946">P2946 [USACO09MAR]Cow Frisbee Team</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1156">P1156 垃圾陷阱</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5322">P5322 [BJOI2019]排兵布阵</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5289">P5289 [十二省联考2019]皮配</a></li>
+</ul>
+</li>
+<li>Part  4.3 区间动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1880">P1880 [NOI1995]石子合并</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3146">P3146 [USACO16OPEN]248</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1063">P1063 能量项链</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1005">P1005 矩阵取数游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4170">P4170 [CQOI2007]涂色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4302">P4302 [SCOI2003]字符串折叠</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2466">P2466 [SDOI2008]Sue的小球</a></li>
+</ul>
+</li>
+<li>Part  4.4 树形动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1352">P1352 没有上司的舞会</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1040">P1040 加分二叉树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1122">P1122 最大子树和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1273">P1273 有线电视网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2014">P2014 选课</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2585">P2585 [ZJOI2006]三色二叉树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3047">P3047 [USACO12FEB]Nearby Cows</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3698">P3698 [CQOI2017]小Q的棋盘</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5658">P5658 括号树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2607">P2607 [ZJOI2008]骑士</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3177">P3177 [HAOI2015]树上染色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4395">P4395 [BOI2003]Gem</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4516">P4516 [JSOI2018]潜入行动</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-4-5-4-12-动态规划"><a href="#Part-4-5-4-12-动态规划" class="headerlink" title="Part 4.5-4.12 动态规划"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9352">Part 4.5-4.12 动态规划</a></h3><ul>
+<li>Part  4.5 状态压缩动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2704">P2704 [NOI2001]炮兵阵地</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1879">P1879 [USACO06NOV]Corn Fields</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1896">P1896 [SCOI2005]互不侵犯</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3092">P3092 [USACO13NOV]No Change</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3694">P3694 邦邦的大合唱站队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4925">P4925 [1007]Scarlet的字符串不可能这么可爱</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2157">P2157 [SDOI2009]学校食堂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2167">P2167 [SDOI2009]Bill的挑战</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2396">P2396 yyy loves Maths VII</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4363">P4363 [九省联考2018]一双木棋</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5005">P5005 中国象棋 - 摆上马</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2150">P2150 [NOI2015]寿司晚宴</a></li>
+</ul>
+</li>
+<li>Part  4.6 倍增优化动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1613">P1613 跑路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1081">P1081 开车旅行</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5024">P5024 保卫王国</a></li>
+</ul>
+</li>
+<li>Part  4.7 数据结构优化动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4719">P4719 【模板】动态dp</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4751">P4751 动态dp【加强版】</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3287">P3287 [SCOI2014]方伯伯的玉米田</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2605">P2605 [ZJOI2010]基站选址</a></li>
+</ul>
+</li>
+<li>Part  4.8 单调队列优化动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1776">P1776 宝物筛选</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3089">P3089 [USACO13NOV]Pogo-Cow</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3572">P3572 [POI2014]PTA-Little Bird</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3522">P3522 [POI2011]TEM-Temperature</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4544">P4544 [USACO10NOV]Buying Feed</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5665">P5665 划分</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1973">P1973 [NOI2011]Noi嘉年华</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2569">P2569 [SCOI2010]股票交易</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4852">P4852 yyf hates choukapai</a></li>
+</ul>
+</li>
+<li>Part  4.9 斜率优化动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2900">P2900 [USACO08MAR]Land Acquisition</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3195">P3195 [HNOI2008]玩具装箱</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3628">P3628 [APIO2010]特别行动队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3648">P3648 [APIO2014]序列分割</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4027">P4027 [NOI2007]货币兑换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4360">P4360 [CEOI2004]锯木厂选址</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5468">P5468 [NOI2019]回家路线</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2305">P2305 [NOI2014]购票</a></li>
+</ul>
+</li>
+<li>Part  4.10 决策单调性优化动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3515">P3515 [POI2011]Lightning Conductor</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4767">P4767 [IOI2000]邮局</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1912">P1912 [NOI2009]诗人小G</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1973">P1973 [NOI2011]Noi嘉年华</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3724">P3724 [AH2017&#x2F;HNOI2017]大佬</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5574">P5574 [CmdOI2019]任务分配问题</a></li>
+</ul>
+</li>
+<li>Part  4.11 数位统计类动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2602">P2602 [ZJOI2010]数字计数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3281">P3281 [SCOI2013]数数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2518">P2518 [HAOI2010]计数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2657">P2657 [SCOI2009]windy数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3286">P3286 [SCOI2014]方伯伯的商场之旅</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4124">P4124 [CQOI2016]手机号码</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4999">P4999 烦人的数学作业</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2606">P2606 [ZJOI2010]排列计数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4798">P4798 [CEOI2015 Day1]卡尔文球锦标赛</a></li>
+</ul>
+</li>
+<li>Part  4.12 轮廓线动态规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5056">P5056 【模板】插头dp</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2289">P2289 [HNOI2004]邮递员</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2337">P2337 [SCOI2012]喵星人的入侵</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5347">P5347 【XR-1】俄罗斯方块</a></li>
+</ul>
+</li>
+<li>Part  4.13 换根DP<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3478">P3478 [POI2008] STA-Station</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2986">P2986 [USACO10MAR] Great Cow Gathering G</a></li>
+</ul>
+</li>
+<li>Part  4.14 bitset 优化 DP &#x2F; 暴力<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2911">P2911 [USACO08NOV] Cow Hurdles S</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4141">P4141 消失之物</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-5-字符串"><a href="#Part-5-字符串" class="headerlink" title="Part  5 字符串"></a>Part  5 字符串</h2><h3 id="Part-5-1-5-6-字符串"><a href="#Part-5-1-5-6-字符串" class="headerlink" title="Part 5.1-5.6 字符串"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9372">Part 5.1-5.6 字符串</a></h3><ul>
+<li>Part  5.1 字符串哈希<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3370">P3370 【模板】字符串哈希</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5270">P5270 无论怎样神树大人都会删库跑路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5537">P5537 【XR-3】系统设计</a></li>
+</ul>
+</li>
+<li>Part  5.2 KMP<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3375">P3375 【模板】KMP字符串匹配</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4391">P4391 [BOI2009]Radio Transmission</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3435">P3435 [POI2006]OKR-Periods of Words</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4824">P4824 [USACO15FEB]Censoring (Silver)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2375">P2375 [NOI2014]动物园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3426">P3426 [POI2005]SZA-Template</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3193">P3193 [HNOI2008]GT考试</a></li>
+</ul>
+</li>
+<li>Part  5.3 Manacher<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3805">P3805 【模板】manacher算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4555">P4555 [国家集训队]最长双回文串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1659">P1659 [国家集训队]拉拉队排练</a></li>
+</ul>
+</li>
+<li>Part  5.4 Trie树<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3879">P3879 [TJOI2010]阅读理解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2292">P2292 [HNOI2004]L语言</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2922">P2922 [USACO08DEC]Secret Message</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3065">P3065 [USACO12DEC]First!</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3294">P3294 [SCOI2016]背单词</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4407">P4407 [JSOI2009]电子字典</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4551">P4551 最长异或路径</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4683">P4683 [IOI2008]Type Printer</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3783">P3783 [SDOI2017]天才黑客</a></li>
+</ul>
+</li>
+<li>Part  5.5 AC自动机<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3808">P3808 【模板】AC自动机（简单版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3796">P3796 【模板】AC自动机（加强版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5357">P5357 【模板】AC自动机（二次加强版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3121">P3121 [USACO15FEB]Censoring (Gold)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2414">P2414 [NOI2011]阿狸的打字机</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3966">P3966 [TJOI2013]单词</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2444">P2444 [POI2000]病毒</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3311">P3311 [SDOI2014]数数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4052">P4052 [JSOI2007]文本生成器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5599">P5599 【XR-4】文本编辑器</a></li>
+</ul>
+</li>
+<li>Part  5.6 回文自动机<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5496">P5496 【模板】回文自动机（PAM）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3649">P3649 [APIO2014]回文串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4287">P4287 [SHOI2011]双倍回文</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4762">P4762 [CERC2014]Virus synthesis</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-5-7-5-8-字符串"><a href="#Part-5-7-5-8-字符串" class="headerlink" title="Part 5.7-5.8 字符串"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9373">Part 5.7-5.8 字符串</a></h3><ul>
+<li>Part  5.7 后缀数组<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3809">P3809 【模板】后缀排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5353">P5353 【模板】树上后缀排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2336">P2336 [SCOI2012]喵星球上的点名</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2463">P2463 [SDOI2008]Sandy的卡片</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2852">P2852 [USACO06DEC]Milk Patterns</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4051">P4051 [JSOI2007]字符加密</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1117">P1117 [NOI2016]优秀的拆分</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2178">P2178 [NOI2015]品酒大会</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5346">P5346 【XR-1】柯南家族</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5576">P5576 [CmdOI2019]口头禅</a></li>
+</ul>
+</li>
+<li>Part  5.8 后缀自动机<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3804">P3804 【模板】后缀自动机</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3649">P3649 [APIO2014]回文串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3975">P3975 [TJOI2015]弦论</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4248">P4248 [AHOI2013]差异</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5341">P5341 [TJOI2019]甲苯先生和大中锋的字符串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4770">P4770 [NOI2018]你的名字</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5284">P5284 [十二省联考2019]字符串问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5319">P5319 [BJOI2019]奥术神杖</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-6-数学"><a href="#Part-6-数学" class="headerlink" title="Part  6 数学"></a>Part  6 数学</h2><h3 id="Part-6-1-6-4-数学"><a href="#Part-6-1-6-4-数学" class="headerlink" title="Part 6.1-6.4 数学"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9377">Part 6.1-6.4 数学</a></h3><ul>
+<li>Part  6.1 位运算<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5657">P5657 格雷码</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5514">P5514 [MtOI2019]永夜的报应</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5538">P5538 【XR-3】Namid[A]me</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5539">P5539 【XR-3】Unknown Mother-Goose</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5523">P5523 [yLOI2019]珍珠</a></li>
+<li>Part  6.1.1 快速幂 &amp; 矩阵快速幂<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1226">P1226 快速幂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3390">P3390 矩阵快速幂</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  6.2 整除相关<ul>
+<li>Part  6.2.1 素数<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4718">P4718 【模板】Pollard-Rho算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1075">P1075 质因数分解</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2441">P2441 角色属性树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5535">P5535 【XR-3】小道消息</a></li>
+</ul>
+</li>
+<li>Part  6.2.2 最大公约数<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5435">P5435 【模板】快速 GCD</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5436">P5436 【XR-2】缘分</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1029">P1029 最大公约数和最小公倍数问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1414">P1414 又是毕业季II</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2152">P2152 [SDOI2009]SuperGCD</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1072">P1072 Hankson 的趣味题</a></li>
+</ul>
+</li>
+<li>Part  6.2.3 欧拉函数<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2158">P2158 [SDOI2008]仪仗队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2568">P2568 GCD</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2398">P2398 GCD SUM</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4139">P4139 上帝与集合的正确用法</a></li>
+</ul>
+</li>
+<li>Part  6.2.4 整除分块（数论分块）<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2424">P2424 约数求和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3935">P3935 Calculating</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  6.3 同余方程<ul>
+<li>Part  6.3.1 线性同余方程&amp;乘法逆元<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4549">P4549 【模板】裴蜀定理</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2613">P2613 【模板】有理数取余</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3811">P3811 【模板】乘法逆元</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5431">P5431 【模板】乘法逆元2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1082">P1082 同余方程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3951">P3951 小凯的疑惑</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1516">P1516 青蛙的约会</a></li>
+</ul>
+</li>
+<li>Part  6.3.2 中国剩余定理<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4777">P4777 【模板】扩展中国剩余定理（EXCRT）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3868">P3868 [TJOI2009]猜数字</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2480">P2480 [SDOI2010]古代猪文</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4774">P4774 [NOI2018]屠龙勇士</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5345">P5345 【XR-1】快乐肥宅</a></li>
+</ul>
+</li>
+<li>Part  6.3.3 高次同余方程<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4195">P4195 【模板】exBSGS</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5491">P5491 【模板】二次剩余</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3306">P3306 [SDOI2013]随机数生成器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2485">P2485 [SDOI2011]计算器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  6.4 博弈论<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2197">P2197 【模板】nim游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1288">P1288 取数游戏II</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1290">P1290 欧几里德的游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1247">P1247 取火柴游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2252">P2252 取石子游戏</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-6-5-6-6-数学"><a href="#Part-6-5-6-6-数学" class="headerlink" title="Part 6.5-6.6 数学"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9378">Part 6.5-6.6 数学</a></h3><ul>
+<li>Part  6.5 概率与期望<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5104">P5104 红包发红包</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1850">P1850 换教室</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3830">P3830 [SHOI2012]随机树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4564">P4564 [CTSC2018]假面</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2473">P2473 [SCOI2008]奖励关</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2221">P2221 [HAOI2012]高速公路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3239">P3239 [HNOI2015]亚瑟王</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3750">P3750 [六省联考2017]分手是祝愿</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4284">P4284 [SHOI2014]概率充电器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5249">P5249 [LnOI2019]加特林轮盘赌</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2081">P2081 [NOI2012]迷失游乐园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3343">P3343 [ZJOI2015]地震后的幻想乡</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3600">P3600 随机数生成器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5326">P5326 [ZJOI2019]开关</a></li>
+</ul>
+</li>
+<li>Part  6.6 组合数学<ul>
+<li>Part  6.6.1 排列组合<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3807">P3807 【模板】卢卡斯定理</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2822">P2822 组合数问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5520">P5520 [yLOI2019]青原樱</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3197">P3197 [HNOI2008]越狱</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2290">P2290 [HNOI2004]树的计数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4981">P4981 父子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4769">P4769 [NOI2018]冒泡排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4931">P4931 情侣？给我烧了！（加强版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5596">P5596 【XR-4】题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5598">P5598 【XR-4】混乱度</a></li>
+</ul>
+</li>
+<li>Part  6.6.2 卡特兰数&amp;斯特林数<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5395">P5395 【模板】第二类斯特林数·行</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5396">P5396 【模板】第二类斯特林数·列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5408">P5408 【模板】第一类斯特林数·行</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5409">P5409 【模板】第一类斯特林数·列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1655">P1655 小朋友的球</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2532">P2532 [AHOI2012]树屋阶梯</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3200">P3200 [HNOI2009]有趣的数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3978">P3978 [TJOI2015]概率论</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4091">P4091 [HEOI2016&#x2F;TJOI2016]求和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4827">P4827 [国家集训队]Crash 的文明世界</a></li>
+</ul>
+</li>
+<li>Part  6.6.3 容斥原理<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5664">P5664 Emiya 家今天的饭</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1450">P1450 [HAOI2008]硬币购物</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3214">P3214 [HNOI2011]卡农</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3270">P3270 [JLOI2016]成绩比较</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4336">P4336 [SHOI2016]黑暗前的幻想乡</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4448">P4448 [AHOI2018初中组]球球的排列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4491">P4491 [HAOI2018]染色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5339">P5339 [TJOI2019]唱、跳、rap和篮球</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5400">P5400 [CTS2019]随机立方体</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-6-7-6-8-数学"><a href="#Part-6-7-6-8-数学" class="headerlink" title="Part 6.7-6.8 数学"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9379">Part 6.7-6.8 数学</a></h3><ul>
+<li>Part  6.7 线性代数<ul>
+<li>Part  6.7.1 矩阵<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3390">P3390 【模板】矩阵快速幂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1939">P1939 【模板】矩阵加速（数列）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4783">P4783 【模板】矩阵求逆</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1962">P1962 斐波那契数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1349">P1349 广义斐波那契数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4000">P4000 斐波那契数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3758">P3758 [TJOI2017]可乐</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4967">P4967 黑暗打击</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5343">P5343 【XR-1】分块</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5337">P5337 [TJOI2019]甲苯先生的字符串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5303">P5303 [GXOI&#x2F;GZOI2019]逼死强迫症</a></li>
+</ul>
+</li>
+<li>Part  6.7.2 高斯消元<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3389">P3389 【模板】高斯消元法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2447">P2447 [SDOI2010]外星千足虫</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4035">P4035 [JSOI2008]球形空间产生器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5516">P5516 [MtOI2019]小铃的烦恼</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4111">P4111 [HEOI2015]小Z的房间</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4457">P4457 [BJOI2018]治疗之雨</a></li>
+</ul>
+</li>
+<li>Part  6.7.3 线性基<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3812">P3812 【模板】线性基</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3857">P3857 [TJOI2008]彩灯</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4570">P4570 [BJWC2011]元素</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4301">P4301 [CQOI2013]新Nim游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3292">P3292 [SCOI2016]幸运数字</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4151">P4151 [WC2011]最大XOR和路径</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  6.8 多项式<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3803">P3803 【模板】多项式乘法（FFT）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4238">P4238 【模板】多项式求逆</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4245">P4245 【模板】任意模数NTT</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4512">P4512 【模板】多项式除法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4717">P4717 【模板】快速沃尔什变换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4721">P4721 【模板】分治 FFT</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4725">P4725 【模板】多项式对数函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4726">P4726 【模板】多项式指数函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4781">P4781 【模板】拉格朗日插值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5050">P5050 【模板】多项式多点求值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5158">P5158 【模板】多项式快速插值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5205">P5205 【模板】多项式开根</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5245">P5245 【模板】多项式快速幂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5273">P5273 【模板】多项式幂函数 (加强版)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5282">P5282 【模板】快速阶乘算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5373">P5373 【模板】多项式复合函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5394">P5394 【模板】下降幂多项式乘法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3338">P3338 [ZJOI2014]力</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3723">P3723 [AH2017&#x2F;HNOI2017]礼物</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5437">P5437 【XR-2】约定</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5293">P5293 [HNOI2019]白兔之舞</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5432">P5432 A&#x2F;B Problem (加强版)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5472">P5472 [NOI2019]斗主地</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5577">P5577 [CmdOI2019]算力训练</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-6-9-6-13-数学"><a href="#Part-6-9-6-13-数学" class="headerlink" title="Part 6.9-6.13 数学"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9380">Part 6.9-6.13 数学</a></h3><ul>
+<li>Part  6.9 莫比乌斯反演<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3172">P3172 [CQOI2015]选数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2522">P2522 [HAOI2011]Problem b</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3455">P3455 [POI2007]ZAP-Queries</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3327">P3327 [SDOI2015]约数个数和</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1829">P1829 [国家集训队]Crash的数字表格 &#x2F; JZPTAB</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4619">P4619 [SDOI2018]旧试题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3704">P3704 [SDOI2017]数字表格</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5518">P5518 [MtOI2019]幽灵乐团</a></li>
+</ul>
+</li>
+<li>Part  6.10 筛法<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3383">P3383 【模板】线性筛素数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4213">P4213 【模板】杜教筛（Sum）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5325">P5325 【模板】Min_25筛</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1865">P1865 A % B Problem</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1621">P1621 集合</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3768">P3768 简单的数学题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5438">P5438 【XR-2】记忆</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4718">P4718 Miller-Rabin 模板</a></li>
+</ul>
+</li>
+<li>Part  6.11 线性规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3980">P3980 [NOI2008]志愿者招募</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4232">P4232 无意识之外的捉迷藏</a></li>
+</ul>
+</li>
+<li>Part  6.12 数值方法<ul>
+<li>Part  6.12.1 三分法<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3382">P3382 【模板】三分法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1883">P1883 函数</a></li>
+</ul>
+</li>
+<li>Part  6.12.2 自适应辛普森法<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4525">P4525 【模板】自适应辛普森法1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4526">P4526 【模板】自适应辛普森法2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3779">P3779 [SDOI2017]龙与地下城</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  6.13 置换群<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4980">P4980 【模板】Polya定理</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1446">P1446 [HNOI2008]Cards</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2561">P2561 [AHOI2002]黑白瓷砖</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4128">P4128 [SHOI2006]有色图</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4727">P4727 [HNOI2009]图的同构记数</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-7-数据结构"><a href="#Part-7-数据结构" class="headerlink" title="Part  7 数据结构"></a>Part  7 数据结构</h2><h3 id="Part-7-1-7-7-数据结构"><a href="#Part-7-1-7-7-数据结构" class="headerlink" title="Part 7.1-7.7 数据结构"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9381">Part 7.1-7.7 数据结构</a></h3><ul>
+<li>Part  7.1 链表<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1996">P1996 约瑟夫问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1160">P1160 队列安排</a></li>
+</ul>
+</li>
+<li>Part  7.2 栈<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1449">P1449 后缀表达式</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1739">P1739 表达式括号匹配</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1981">P1981 表达式求值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1175">P1175 表达式的转换</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1823">P1823 音乐会的等待</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2659">P2659 美丽序列</a></li>
+</ul>
+</li>
+<li>Part  7.3 队列<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1886">P1886 滑动窗口 &#x2F;【模板】单调队列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2698">P2698 [USACO12MAR] Flowerpot S</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1540">P1540 机器翻译</a></li>
+</ul>
+</li>
+<li>Part  7.4 并查集<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1111">P1111 修复公路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3958">P3958 奶酪</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1525">P1525 关押罪犯</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4185">P4185 [USACO18JAN]MooTube G</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2024">P2024 [NOI2001]食物链</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1197">P1197 [JSOI2008]星球大战</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1196">P1196 [NOI2002]银河英雄传说</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1955">P1955 [NOI2015]程序自动分析</a></li>
+</ul>
+</li>
+<li>Part  7.5 二叉堆（优先队列）<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3378">P3378 【模板】堆</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1090">P1090 合并果子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1168">P1168 中位数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2085">P2085 最小函数值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2827">P2827 蚯蚓</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3045">P3045 [USACO12FEB]Cow Coupons</a></li>
+</ul>
+</li>
+<li>Part  7.6 ST表<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3865">P3865 【模板】ST表</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2251">P2251 质量检测</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1816">P1816 忠诚</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1198">P1198 [JSOI2008]最大数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2880">P2880 [USACO07JAN]Balanced Lineup</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5012">P5012 水の数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5344">P5344 【XR-1】逛森林</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2048">P2048 [NOI2010]超级钢琴</a></li>
+</ul>
+</li>
+<li>Part  7.7 树状数组<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">P3374 【模板】树状数组 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3368">P3368 【模板】树状数组 2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1908">P1908 逆序对</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1966">P1966 火柴排队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3605">P3605 [USACO17JAN]Promotion Counting</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1972">P1972 [SDOI2009]HH的项链</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3586">P3586 [POI2015]LOG</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4054">P4054 [JSOI2009]计数问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4113">P4113 [HEOI2012]采花</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3960">P3960 列队</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-7-8-7-12-数据结构"><a href="#Part-7-8-7-12-数据结构" class="headerlink" title="Part 7.8-7.12 数据结构"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9382">Part 7.8-7.12 数据结构</a></h3><ul>
+<li><p>Part  7.8 线段树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3373">P3373 【模板】线段树 2</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5490">P5490 【模板】扫描线</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4588">P4588 [TJOI2018]数学计算</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1502">P1502 窗口的星星</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2471">P2471 [SCOI2007]降雨量</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2824">P2824 [HEOI2016&#x2F;TJOI2016]排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3722">P3722 [AH2017&#x2F;HNOI2017]影魔</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4097">P4097 [HEOI2013]Segment</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4198">P4198 楼房重建</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4513">P4513 小白逛公园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4556">P4556 [Vani有约会]雨天的尾巴</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5324">P5324 [BJOI2019]删数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5327">P5327 [ZJOI2019]语言</a></li>
+</ul>
+</li>
+<li><p>Part  7.9 分块</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3870">P3870 [TJOI2009]开关</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3396">P3396 哈希冲突</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3863">P3863 序列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1975">P1975 [国家集训队]排队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3710">P3710 方方方的数据结构</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3992">P3992 [BJOI2017]开车</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4168">P4168 [Violet]蒲公英</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4119">P4119 [Ynoi2018]未来日记</a></li>
+</ul>
+</li>
+<li><p>Part  7.10 可并堆</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3377">P3377 【模板】左偏树（可并堆）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2713">P2713 罗马游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1456">P1456 Monkey King</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1552">P1552 [APIO2012]派遣</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3261">P3261 [JLOI2015]城池攻占</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3273">P3273 [SCOI2011]棘手的操作</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4331">P4331 [BOI2004]Sequence</a></li>
+</ul>
+</li>
+<li><p>Part  7.11 主席树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2468">P2468 [SDOI2010]粟粟的书架</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3302">P3302 [SDOI2013]森林</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3168">P3168 [CQOI2015]任务查询系统</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4559">P4559 [JSOI2018]列队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2633">P2633 Count on a tree</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3293">P3293 [SCOI2016]美味</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4618">P4618 [SDOI2018]原题识别</a></li>
+</ul>
+</li>
+<li><p>Part  7.12 平衡树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3369">P3369 【模板】普通平衡树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3391">P3391 【模板】文艺平衡树（Splay）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3850">P3850 [TJOI2007]书架</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4008">P4008 [NOI2003]文本编辑器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5338">P5338 [TJOI2019]甲苯先生的滚榜</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2042">P2042 [NOI2005]维护数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1110">P1110 [ZJOI2007]报表统计</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3644">P3644 [APIO2015]八邻旁之桥</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1486">P1486 [NOI2004]郁闷的出纳员</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2710">P2710 数列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3224">P3224 [HNOI2012]永无乡</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3285">P3285 [SCOI2014]方伯伯的OJ</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5321">P5321 [BJOI2019]送别</a></li>
+</ul>
+<h3 id="Part-7-13-7-18-数据结构"><a href="#Part-7-13-7-18-数据结构" class="headerlink" title="Part 7.13-7.18 数据结构"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9383">Part 7.13-7.18 数据结构</a></h3></li>
+<li><p>Part  7.13 树链剖分</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3384">P3384 【模板】树链剖分</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3313">P3313 [SDOI2014]旅行</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2590">P2590 [ZJOI2008]树的统计</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1505">P1505 [国家集训队]旅游</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2486">P2486 [SDOI2011]染色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3258">P3258 [JLOI2014]松鼠的新家</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4069">P4069 [SDOI2016]游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4211">P4211 [LNOI2014]LCA</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4592">P4592 [TJOI2018]异或</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5305">P5305 [GXOI&#x2F;GZOI2019]旧词</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5354">P5354 [Ynoi2017]由乃的OJ</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5499">P5499 [LnOI2019]Abbi并不想研学</a></li>
+</ul>
+</li>
+<li><p>Part  7.14 树套树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3380">P3380 【模板】二逼平衡树（树套树）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1975">P1975 [国家集训队]排队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3332">P3332 [ZJOI2013]K大数查询</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4278">P4278 带插入区间K小值</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1903">P1903 [国家集训队]数颜色 &#x2F; 维护队列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3759">P3759 [TJOI2017]不勤劳的图书管理员</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3242">P3242 [HNOI2015]接水果</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3248">P3248 [HNOI2016]树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5445">P5445 [APIO2019]路灯</a></li>
+</ul>
+</li>
+<li><p>Part  7.15 动态树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3690">P3690 【模板】Link Cut Tree （动态树）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3203">P3203 [HNOI2010]弹飞绵羊</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4338">P4338 [ZJOI2018]历史</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4312">P4312 [COCI2009]OTOCI</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1501">P1501 [国家集训队]Tree II</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2387">P2387 [NOI2014]魔法森林</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3348">P3348 [ZJOI2016]大森林</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3703">P3703 [SDOI2017]树点涂色</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4172">P4172 [WC2006]水管局长</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4219">P4219 [BJOI2014]大融合</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5489">P5489 EntropyIncreaser 与 动态图</a></li>
+</ul>
+</li>
+<li><p>Part  7.16 可持久化数据结构</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3919">P3919 【模板】可持久化数组（可持久化线段树&#x2F;平衡树）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3834">P3834 【模板】可持久化线段树 1（主席树）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3402">P3402 【模板】可持久化并查集</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3835">P3835 【模板】可持久化平衡树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5055">P5055 【模板】可持久化文艺平衡树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5283">P5283 [十二省联考2019]异或粽子</a></li>
+</ul>
+</li>
+<li><p>Part  7.17 K-D Tree</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4357">P4357 [CQOI2016]K远点对</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4148">P4148 简单题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2479">P2479 [SDOI2010]捉迷藏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3769">P3769 [CH弱省胡策R2]TATT</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4169">P4169 [Violet]天使玩偶&#x2F;SJY摆棋子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4390">P4390 [BOI2007]Mokia</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4475">P4475 巧克力王国</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2093">P2093 [国家集训队]JZPFAR</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5471">P5471 [NOI2019]弹跳</a></li>
+</ul>
+</li>
+<li><p>Part  7.18 珂朵莉树</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5251">P5251 [LnOI2019]第二代图灵机</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5350">P5350 序列</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-8-图论"><a href="#Part-8-图论" class="headerlink" title="Part  8 图论"></a>Part  8 图论</h2><h3 id="Part-8-1-8-6-图论"><a href="#Part-8-1-8-6-图论" class="headerlink" title="Part 8.1-8.6 图论"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9384">Part 8.1-8.6 图论</a></h3><ul>
+<li>Part  8.1 图的存储与遍历<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2661">P2661 信息传递</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2921">P2921 [USACO08DEC]Trick or Treat on the Farm</a></li>
+</ul>
+</li>
+<li>Part  8.2 最短路问题<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3371">P3371 【模板】单源最短路径（弱化版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4779">P4779 【模板】单源最短路径（标准版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5905">P5905 【模板】Johnson 全源最短路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1144">P1144 最短路计数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1462">P1462 通往奥格瑞玛的道路</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1522">P1522 Cow Tours</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1266">P1266 速度限制</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4001">P4001 [ICPC-Beijing 2006]狼抓兔子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4568">P4568 [JLOI2011]飞行路线</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5304">P5304 [GXOI&#x2F;GZOI2019]旅行者</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1163F">CF1163F	Indecisive Taxi Fee</a></li>
+</ul>
+</li>
+<li>Part  8.3 树上问题<ul>
+<li>Part  8.3.1 二叉树<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1087">P1087 FBI树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1030">P1030 求先序排列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1305">P1305 新二叉树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1229">P1229 遍历问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5018">P5018 对称二叉树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5597">P5597 【XR-4】复读</a></li>
+</ul>
+</li>
+<li>Part  8.3.2 树的直径<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2195">P2195 HXY造公园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3629">P3629 [APIO2010]巡逻</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5536">P5536 【XR-3】核心城市</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1099">P1099 树网的核</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4408">P4408 [NOI2003]逃学的小孩</a></li>
+</ul>
+</li>
+<li>Part  8.3.3 最近公共祖先<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3379">P3379 【模板】最近公共祖先（LCA）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3938">P3938 斐波那契</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4281">P4281 [AHOI2008]紧急集合 &#x2F; 聚会</a></li>
+</ul>
+</li>
+<li>Part  8.3.4 基环树 &#x2F; 内向基环树<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6037">P6037 环找起点</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7541">P7541 [USACO21FEB] Counting Graphs P</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  8.4 生成树<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3366">P3366 【模板】最小生成树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4180">P4180 【模板】严格次小生成树[BJWC2010]</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2872">P2872 [USACO07DEC]Building Roads</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1991">P1991 无线通讯网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1967">P1967 货车运输</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4047">P4047 [JSOI2010]部落划分</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4180">P4180 [USACO18JAN] Minimum Spanning Tree</a></li>
+</ul>
+</li>
+<li>Part  8.5 拓扑排序<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1113">P1113 杂务</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1983">P1983 车站分级</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1038">P1038 神经网络</a></li>
+</ul>
+</li>
+<li>Part  8.6 差分约束<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5960">P5960 【模板】差分约束算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3275">P3275 [SCOI2011]糖果</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2294">P2294 [HNOI2005]狡猾的商人</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4926">P4926 [1007]倍杀测量者</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5590">P5590 赛车游戏</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-8-7-8-9-2-图论"><a href="#Part-8-7-8-9-2-图论" class="headerlink" title="Part 8.7-8.9.2 图论"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9385">Part 8.7-8.9.2 图论</a></h3><ul>
+<li>Part  8.7 图的连通性相关<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3387">P3387 【模板】缩点</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3388">P3388 【模板】割点（割顶）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2341">P2341 [HAOI2006]受欢迎的牛</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2863">P2863 [USACO06JAN]The Cow Prom</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2746">P2746 [USACO5.3]Network of Schools</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1407">P1407 [国家集训队]稳定婚姻</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2272">P2272 [ZJOI2007]最大半连通子图</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3225">P3225 [HNOI2012]矿场搭建</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5058">P5058 [ZJOI2004]嗅探器</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2515">P2515 [HAOI2010]软件安装</a></li>
+</ul>
+</li>
+<li>Part  8.8 二分图<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3386">P3386 【模板】二分图匹配</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2756">P2756 飞行员配对方案问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1129">P1129 [ZJOI2007]矩阵游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1559">P1559 运动员最佳匹配问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2423">P2423 [HEOI2012]朋友圈</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2764">P2764 最小路径覆盖问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2825">P2825 [HEOI2016&#x2F;TJOI2016]游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3033">P3033 [USACO11NOV]Cow Steeplechase</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3731">P3731 [HAOI2017]新型城市化</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4014">P4014 分配问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4617">P4617 [COCI2017-2018#5] Planinarenje</a></li>
+</ul>
+</li>
+<li>Part  8.9 网络流<ul>
+<li>Part  8.9.1 最大流<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3376">P3376 【模板】网络最大流</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4722">P4722 【模板】最大流 加强版 &#x2F; 预流推进</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2065">P2065 [TJOI2011]卡片</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2763">P2763 试题库问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2472">P2472 [SCOI2007]蜥蜴</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2754">P2754 [CTSC1999]家园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2765">P2765 魔术球问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2766">P2766 最长不下降子序列问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2805">P2805 [NOI2009]植物大战僵尸</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3749">P3749 [六省联考2017]寿司餐厅</a></li>
+</ul>
+</li>
+<li>Part  8.9.2 最小割<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1344">P1344 [USACO4.4]Pollutant Control</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1345">P1345 [USACO5.4]Telecowmunication</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2057">P2057 [SHOI2007]善意的投票</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2598">P2598 [ZJOI2009]狼和羊的故事</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2774">P2774 方格取数问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4126">P4126 [AHOI2009]最小割</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5039">P5039 [SHOI2010]最小生成树</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Part-8-9-3-8-13-图论"><a href="#Part-8-9-3-8-13-图论" class="headerlink" title="Part 8.9.3-8.13 图论"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9386">Part 8.9.3-8.13 图论</a></h3><ul>
+<li>Part  8.9.3 费用流<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3381">P3381 【模板】最小费用最大流</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4016">P4016 负载平衡问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4452">P4452 [国家集训队]航班安排</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2045">P2045 方格取数加强版</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2050">P2050 [NOI2012]美食节</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2053">P2053 [SCOI2007]修车</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2604">P2604 [ZJOI2010]网络扩容</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2770">P2770 航空路线问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3159">P3159 [CQOI2012]交换棋子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3356">P3356 火星探险问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3358">P3358 最长k可重区间集问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4013">P4013 数字梯形问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4015">P4015 运输问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5331">P5331 [SNOI2019]通信</a></li>
+</ul>
+</li>
+<li>Part  8.9.4 上下界网络流<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3980">P3980 [NOI2008]志愿者招募</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4043">P4043 [AHOI2014&#x2F;JSOI2014]支线剧情</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4553">P4553 80人环游世界</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4843">P4843 清理雪道</a></li>
+</ul>
+</li>
+<li>Part  8.10 2-SAT<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4782">P4782 【模板】2-SAT 问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4171">P4171 [JSOI2010]满汉全席</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3825">P3825 [NOI2017]游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5332">P5332 [JSOI2019]精准预测</a></li>
+</ul>
+</li>
+<li>Part  8.11 点分治<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3806">P3806 【模板】点分治1</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2634">P2634 [国家集训队]聪聪可可</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2664">P2664 树上游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3714">P3714 [BJOI2017]树的难题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4149">P4149 [IOI2011]Race</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3241">P3241 [HNOI2015]开店</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4075">P4075 [SDOI2016]模式字符串</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4183">P4183 [USACO18JAN]Cow at Large P</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4292">P4292 [WC2010]重建计划</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5306">P5306 [COCI2019]Transport</a></li>
+</ul>
+</li>
+<li>Part  8.12 虚树<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2495">P2495 [SDOI2011]消耗战</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3233">P3233 [HNOI2014]世界树</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5360">P5360 [SDOI2019]世界地图</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5439">P5439 【XR-2】永恒</a></li>
+</ul>
+</li>
+<li>Part  8.13 矩阵树定理<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4111">P4111 [HEOI2015]小Z的房间</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2144">P2144 [FJOI2007]轮状病毒</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3317">P3317 [SDOI2014]重建</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4208">P4208 [JSOI2008]最小生成树计数</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-9-计算几何"><a href="#Part-9-计算几何" class="headerlink" title="Part 9 计算几何"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9387">Part 9 计算几何</a></h2><ul>
+<li>Part  9.1 凸包<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2742">P2742 【模板】二维凸包</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2287">P2287 [HNOI2004]最佳包裹</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3829">P3829 [SHOI2012]信用卡凸包</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4118">P4118 [Ynoi2018]末日时在做什么?有没有空?可以来拯救吗?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4557">P4557 [JSOI2018]战争</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5403">P5403 [CTS2019]田野</a></li>
+</ul>
+</li>
+<li>Part  9.2 旋转卡壳<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1452">P1452 Beauty Contest</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3187">P3187 [HNOI2007]最小矩形覆盖</a></li>
+</ul>
+</li>
+<li>Part  9.3 半平面交<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3256">P3256 [JLOI2013]赛车</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2600">P2600 [ZJOI2008]瞭望塔</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4196">P4196 [CQOI2006]凸多边形</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3297">P3297 [SDOI2013]逃考</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4250">P4250 [SCOI2015]小凸想跑步</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5328">P5328 [ZJOI2019]浙江省选</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Part-10-杂项"><a href="#Part-10-杂项" class="headerlink" title="Part 10 杂项"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/training/9388">Part 10 杂项</a></h2><ul>
+<li>Part  10.1 模拟退火<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1337">P1337 [JSOI2004]平衡点 &#x2F; 吊打XXX</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2503">P2503 [HAOI2006]均分数据</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3878">P3878 [TJOI2010]分金币</a></li>
+</ul>
+</li>
+<li>Part  10.2 0&#x2F;1 分数规划<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4377">P4377 [USACO18OPEN]Talent Show</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3199">P3199 [HNOI2009]最小圈</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3288">P3288 [SCOI2014]方伯伯运椰子</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3705">P3705 [SDOI2017]新生舞会</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4322">P4322 [JSOI2016]最佳团体</a></li>
+</ul>
+</li>
+<li>Part  10.3 离线算法<ul>
+<li>Part  10.3.1 CDQ 分治<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3810">P3810 【模板】三维偏序（陌上花开）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3157">P3157 [CQOI2011]动态逆序对</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2487">P2487 [SDOI2011]拦截导弹</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4690">P4690 [Ynoi2016]镜中的昆虫</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3206">P3206 [HNOI2010]城市建设</a></li>
+</ul>
+</li>
+<li>Part  10.3.2 整体二分<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1527">P1527 [国家集训队]矩阵乘法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2617">P2617 Dynamic Rankings</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3527">P3527 [POI2011]MET-Meteors</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4602">P4602 [CTSC2018]混合果汁</a></li>
+</ul>
+</li>
+<li>Part  10.3.3 莫队<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1494">P1494 [国家集训队]小Z的袜子 &#x2F;【模板】莫队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1903">P1903 [国家集训队]数颜色 &#x2F; 维护队列 &#x2F;【模板】带修莫队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5906">P5906 【模板】回滚莫队</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4887">P4887 【模板】莫队二次离线（第十四分块(前体)）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2709">P2709 小B的询问</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3674">P3674 小清新人渣的本愿</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3709">P3709 大爷的字符串题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4074">P4074 [WC2013]糖果公园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5501">P5501 [LnOI2019]来者不拒，去者不追</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Part  10.4 奇怪的题目<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4920">P4920 [WC2015]未来程序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5042">P5042 [国家集训队]丢失的题面（ydc的题面）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5285">P5285 [十二省联考2019]骗分过样例</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5246">P5246 [集训队互测2016]消失的源代码</a></li>
+</ul>
+</li>
+<li>Part  10.5 非传统题<ul>
+<li>Part  10.5.1 提交答案题<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1335">P1335 [NOI2013]小Q的修炼</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1737">P1737 [NOI2016]旷野大计算</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3614">P3614 yyy棋 II</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3640">P3640 [APIO2013]出题人</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3782">P3782 [WC2017]排序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3836">P3836 Nowruz</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4920">P4920 [WC2015]未来程序</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5402">P5402 [CTS2019]无处安放</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5418">P5418 [CTSC2016]NOIP十合一</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5600">P5600 【XR-4】尺规作图</a></li>
+</ul>
+</li>
+<li>Part  10.5.1 提交答案题<ul>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1733">P1733 猜数（IO交互版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1947">P1947 猜数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5208">P5208 [WC2019]I 君的商店</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5473">P5473 [NOI2019]I 君的探险</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P6541">P6541 [WC2018]即时战略</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3777">P3777 [APIO2017]考拉的游戏</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="修订记录"><a href="#修订记录" class="headerlink" title="修订记录"></a>修订记录</h3><p>2020.07.01：更新题单说明。</p>
+<p>2020.08.29：感谢 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/187543"><em>jwj</em></a>提供了新的排版。</p>
+<p>2024.09.26：更新了说明</p>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">5</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/26/hello-world/" title="Hello World">Hello World</a><time datetime="2026-04-26T16:40:45.310Z" title="发表于 2026-04-27 00:40:45">2026-04-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/25/%E5%8A%9B%E6%89%A3%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-3464/" title="力扣每日一题 3464">力扣每日一题 3464</a><time datetime="2026-04-25T14:19:36.000Z" title="发表于 2026-04-25 22:19:36">2026-04-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/19/4%E6%9C%8819%E5%A4%9C%E6%84%9F/" title="4月19夜感">4月19夜感</a><time datetime="2026-04-19T14:54:09.000Z" title="发表于 2026-04-19 22:54:09">2026-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/15/%E9%AD%94%E6%B3%95%E5%A4%A9%E5%B9%B3/" title="MC0366 魔法天平">MC0366 魔法天平</a><time datetime="2026-04-15T08:37:46.000Z" title="发表于 2026-04-15 16:37:46">2026-04-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/04/14/hi/" title="hi">hi</a><time datetime="2026-04-14T13:11:00.000Z" title="发表于 2026-04-14 21:11:00">2026-04-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/hexo-blog/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"><span class="card-category-list-name">算法刷题</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/hexo-blog/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/hexo-blog/tags/%E9%92%BB%E7%9F%B3%E9%A2%98/" style="font-size: 1.1em; color: #999">钻石题</a> <a href="/hexo-blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/hexo-blog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">5</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-04-26T16:41:33.336Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
