@@ -247,20 +247,20 @@ date: 2026-04-21 19:54:25
 - Part  1.4 函数，递归及递推
   - a[P1028 数的计算](https://www.luogu.com.cn/problem/P1028)4.25
   - a[P1036 选数](https://www.luogu.com.cn/problem/P1036)4.25
-  - a[P1464 Function](https://www.luogu.com.cn/problem/P1464)
-  - a[P5534 【XR-3】等差数列](https://www.luogu.com.cn/problem/P5534)
-  - a[P1192 台阶问题](https://www.luogu.com.cn/problem/P1192)
-  - a[P1025 数的划分](https://www.luogu.com.cn/problem/P1025)
-  - a[P4994 终于结束的起点](https://www.luogu.com.cn/problem/P4994)
+  - a[P1464 Function](https://www.luogu.com.cn/problem/P1464)5.7
+  - a[P5534 【XR-3】等差数列](https://www.luogu.com.cn/problem/P5534)5.7
+  - a[P1192 台阶问题](https://www.luogu.com.cn/problem/P1192)5.7
+  - a[P1025 数的划分](https://www.luogu.com.cn/problem/P1025)5.7
+  - a[P4994 终于结束的起点](https://www.luogu.com.cn/problem/P4994)5.7
 
 ## [Part 2 基础算法](https://www.luogu.com.cn/training/9374)
 - Part  2.1 模拟
-  - a[P1003 铺地毯](https://www.luogu.com.cn/problem/P1003)
-  - a[P1067 多项式输出](https://www.luogu.com.cn/problem/P1067)
-  - a[P1328 生活大爆炸版石头剪刀布](https://www.luogu.com.cn/problem/P1328)
-  - a[P1563 玩具谜题](https://www.luogu.com.cn/problem/P1563)
-  - a[P1042 乒乓球](https://www.luogu.com.cn/problem/P1042)
-  - a[P1179 数字统计](https://www.luogu.com.cn/problem/P1179)
+  - a[P1003 铺地毯](https://www.luogu.com.cn/problem/P1003)5.7
+  - a[P1067 多项式输出](https://www.luogu.com.cn/problem/P1067)5.7
+  - a[P1328 生活大爆炸版石头剪刀布](https://www.luogu.com.cn/problem/P1328)5.7
+  - a[P1563 玩具谜题](https://www.luogu.com.cn/problem/P1563)5.7
+  - a[P1042 乒乓球](https://www.luogu.com.cn/problem/P1042)5.7
+  - a[P1179 数字统计](https://www.luogu.com.cn/problem/P1179)5.7
   - a[P2615 神奇的幻方](https://www.luogu.com.cn/problem/P2615)
   - b[P3952 时间复杂度](https://www.luogu.com.cn/problem/P3952)
   - c[P2482 [SDOI2010]猪国杀](https://www.luogu.com.cn/problem/P2482)
@@ -355,10 +355,10 @@ date: 2026-04-21 19:54:25
 ## Part  4 动态规划
 ### [Part 4.1-4.4 动态规划](https://www.luogu.com.cn/training/9350)
 - Part  4.1 线性动态规划
-  - [P1216 数字三角形](https://www.luogu.com.cn/problem/P1216)
-  - [P1020 导弹拦截](https://www.luogu.com.cn/problem/P1020)
-  - [P1091 合唱队形](https://www.luogu.com.cn/problem/P1091)
-  - [P1095 守望者的逃离](https://www.luogu.com.cn/problem/P1095)
+  - a[P1216 数字三角形](https://www.luogu.com.cn/problem/P1216)5.8
+  - b[P1020 导弹拦截](https://www.luogu.com.cn/problem/P1020)5.8
+  - a[P1091 合唱队形](https://www.luogu.com.cn/problem/P1091)5.8
+  - a[P1095 守望者的逃离](https://www.luogu.com.cn/problem/P1095)5.8
   - [P1541 乌龟棋](https://www.luogu.com.cn/problem/P1541)
   - [P1868 饥饿的奶牛](https://www.luogu.com.cn/problem/P1868)
   - [P2679 子串](https://www.luogu.com.cn/problem/P2679)
