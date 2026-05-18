@@ -196,7 +196,8 @@ date: 2026-04-21 19:54:25
 # 能力全面提升综合题单
 ## [我的洛谷主页](https://www.luogu.com.cn/user/1570933)
 ## [我的Gitee主页](https://gitee.com/a-awakened-dream/my-code)
-
+## [洛谷模板题](https://www.luogu.com.cn/problem/list?type=luogu&page=1&tag=523)
+## [单词网页界面](https://mengxingdemeng.github.io/typewords/)
 
 
 这份题单包含了竞赛中，从入门，到 NOI、ICPC 等竞赛的常用算法和技巧，配以典型的例题用以练手，大部分是模版题和经典题，可以帮助了解算法竞赛中有哪些知识点，构建起知识框架。
@@ -266,56 +267,56 @@ date: 2026-04-21 19:54:25
   - c[P2482 [SDOI2010]猪国杀](https://www.luogu.com.cn/problem/P2482)
   - c[P5380 [THUPC2019]鸭棋](https://www.luogu.com.cn/problem/P5380)
 - Part  2.2 排序算法
-  - [P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)
-  - [P1059 明明的随机数](https://www.luogu.com.cn/problem/P1059)
-  - [P1068 分数线划定](https://www.luogu.com.cn/problem/P1068)
-  - [P1051 谁拿了最多奖学金](https://www.luogu.com.cn/problem/P1051)
-  - [P1309 瑞士轮](https://www.luogu.com.cn/problem/P1309)
-  - [P1908 逆序对](https://www.luogu.com.cn/problem/P1908)
+  - a[P1177 【模板】快速排序](https://www.luogu.com.cn/problem/P1177)5.9
+  - a[P1059 明明的随机数](https://www.luogu.com.cn/problem/P1059)5.9
+  - a[P1068 分数线划定](https://www.luogu.com.cn/problem/P1068)5.9
+  - a[P1051 谁拿了最多奖学金](https://www.luogu.com.cn/problem/P1051)5.9
+  - a[P1309 瑞士轮](https://www.luogu.com.cn/problem/P1309)
+  - a[P1908 逆序对](https://www.luogu.com.cn/problem/P1908)
 - Part  2.3 二分答案
-  - [P1024 一元三次方程求解](https://www.luogu.com.cn/problem/P1024)
-  - [P2678 跳石头](https://www.luogu.com.cn/problem/P2678)
-  - [P1902 刺杀大使](https://www.luogu.com.cn/problem/P1902)
-  - [P1314 聪明的质监员](https://www.luogu.com.cn/problem/P1314)
-  - [P1083 借教室](https://www.luogu.com.cn/problem/P1083)
-  - [P4343 [SHOI2015]自动刷题机](https://www.luogu.com.cn/problem/P4343)
+  - a[P1024 一元三次方程求解](https://www.luogu.com.cn/problem/P1024)5.12
+  - a[P2678 跳石头](https://www.luogu.com.cn/problem/P2678)5.12
+  - a[P1902 刺杀大使](https://www.luogu.com.cn/problem/P1902)
+  - b[P1314 聪明的质监员](https://www.luogu.com.cn/problem/P1314)
+  - a[P1083 借教室](https://www.luogu.com.cn/problem/P1083)
+  - b[P4343 [SHOI2015]自动刷题机](https://www.luogu.com.cn/problem/P4343)
 - Part  2.4 分治
-  - [P1226 【模板】快速幂||取余运算](https://www.luogu.com.cn/problem/P1226)
-  - [P1010 幂次方](https://www.luogu.com.cn/problem/P1010)
-  - [P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)
-  - [P3612 [USACO17JAN]Secret Cow Code](https://www.luogu.com.cn/problem/P3612)
+  - a[P1226 【模板】快速幂||取余运算](https://www.luogu.com.cn/problem/P1226)
+  - a[P1010 幂次方](https://www.luogu.com.cn/problem/P1010)
+  - b[P1429 平面最近点对（加强版）](https://www.luogu.com.cn/problem/P1429)
+  - a[P3612 [USACO17JAN]Secret Cow Code](https://www.luogu.com.cn/problem/P3612)
 - Part  2.5 贪心
-  - [P1208 [USACO1.3]Mixing Milk](https://www.luogu.com.cn/problem/P1208)
-  - [P4995 跳跳！](https://www.luogu.com.cn/problem/P4995)
-  - [P1094 纪念品分组](https://www.luogu.com.cn/problem/P1094)
-  - [P1199 三国游戏](https://www.luogu.com.cn/problem/P1199)
-  - [P2672 推销员](https://www.luogu.com.cn/problem/P2672)
-  - [P1080 国王游戏](https://www.luogu.com.cn/problem/P1080)
-  - [P2123 皇后游戏](https://www.luogu.com.cn/problem/P2123)
-  - [P5521 [yLOI2019]梅深不见冬](https://www.luogu.com.cn/problem/P5521)
+  - a[P1208 [USACO1.3]Mixing Milk](https://www.luogu.com.cn/problem/P1208)
+  - a[P4995 跳跳！](https://www.luogu.com.cn/problem/P4995)
+  - a[P1094 纪念品分组](https://www.luogu.com.cn/problem/P1094)
+  - a[P1199 三国游戏](https://www.luogu.com.cn/problem/P1199)
+  - b[P2672 推销员](https://www.luogu.com.cn/problem/P2672)
+  - b[P1080 国王游戏](https://www.luogu.com.cn/problem/P1080)
+  - c[P2123 皇后游戏](https://www.luogu.com.cn/problem/P2123)
+  - b[P5521 [yLOI2019]梅深不见冬](https://www.luogu.com.cn/problem/P5521)
 - Part  2.6 构造
-  - [P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)
-  - [P5441 【XR-2】伤痕](https://www.luogu.com.cn/problem/P5441)
-  - [P5595 【XR-4】歌唱比赛](https://www.luogu.com.cn/problem/P5595)
+  - c[P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)
+  - c[P5441 【XR-2】伤痕](https://www.luogu.com.cn/problem/P5441)
+  - a[P5595 【XR-4】歌唱比赛](https://www.luogu.com.cn/problem/P5595)
 - Part  2.7 高精度
-  - [P1601 A+B Problem（高精）](https://www.luogu.com.cn/problem/P1601)
-  - [P2142 高精度减法](https://www.luogu.com.cn/problem/P2142)
-  - [P1303 A\*B Problem](https://www.luogu.com.cn/problem/P1303)
-  - [P1480 A/B Problem](https://www.luogu.com.cn/problem/P1480)
-  - [P1009 阶乘之和](https://www.luogu.com.cn/problem/P1009)
+  - a[P1601 A+B Problem（高精）](https://www.luogu.com.cn/problem/P1601)
+  - a[P2142 高精度减法](https://www.luogu.com.cn/problem/P2142)
+  - a[P1303 A\*B Problem](https://www.luogu.com.cn/problem/P1303)
+  - a[P1480 A/B Problem](https://www.luogu.com.cn/problem/P1480)
+  - a[P1009 阶乘之和](https://www.luogu.com.cn/problem/P1009)
 - Part  2.8 前缀和 & 差分
-  - [P3131 [USACO16JAN]Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
-  - [P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
-  - [P3397 地毯](https://www.luogu.com.cn/problem/P3397)
-  - [P2280 [HNOI2003]激光炸弹](https://www.luogu.com.cn/problem/P2280)
-  - [P4552 [Poetize6] IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
+  - a[P3131 [USACO16JAN]Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
+  - a[P1387 最大正方形](https://www.luogu.com.cn/problem/P1387)
+  - a[P3397 地毯](https://www.luogu.com.cn/problem/P3397)
+  - a[P2280 [HNOI2003]激光炸弹](https://www.luogu.com.cn/problem/P2280)
+  - b[P4552 [Poetize6] IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
 - Part  2.9 双指针 & 滑动窗口
-  - [P1147 连续自然数和](https://www.luogu.com.cn/problem/P3397)
-  - [P1638 逛画展](https://www.luogu.com.cn/problem/P3397)
-  - [P2698 [USACO12MAR] Flowerpot S](https://www.luogu.com.cn/problem/P3397)
+  - a[P1147 连续自然数和](https://www.luogu.com.cn/problem/P1147)
+  - a[P1638 逛画展](https://www.luogu.com.cn/problem/P1638)
+  - a[P2698 [USACO12MAR] Flowerpot S](https://www.luogu.com.cn/problem/P2698)
 - Part  2.10 离散化
-  - [P1496 数列分段](https://www.luogu.com.cn/problem/P1496)
-  - [P1908 逆序对](https://www.luogu.com.cn/problem/1908)
+  - a[P1496 数列分段](https://www.luogu.com.cn/problem/P1496)
+  - a[P1908 逆序对](https://www.luogu.com.cn/problem/P1908)
 
 ## [Part 3 搜索](https://www.luogu.com.cn/training/9376)
 - Part  3.1 深度优先搜索
