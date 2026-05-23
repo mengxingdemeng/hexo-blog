@@ -262,8 +262,8 @@ date: 2026-04-21 19:54:25
   - a[P1563 玩具谜题](https://www.luogu.com.cn/problem/P1563)5.7
   - a[P1042 乒乓球](https://www.luogu.com.cn/problem/P1042)5.7
   - a[P1179 数字统计](https://www.luogu.com.cn/problem/P1179)5.7
-  - a[P2615 神奇的幻方](https://www.luogu.com.cn/problem/P2615)
-  - b[P3952 时间复杂度](https://www.luogu.com.cn/problem/P3952)
+  - a[P2615 神奇的幻方](https://www.luogu.com.cn/problem/P2615)5.8
+  - b[P3952 时间复杂度](https://www.luogu.com.cn/problem/P3952)5.8
   - c[P2482 [SDOI2010]猪国杀](https://www.luogu.com.cn/problem/P2482)
   - c[P5380 [THUPC2019]鸭棋](https://www.luogu.com.cn/problem/P5380)
 - Part  2.2 排序算法
