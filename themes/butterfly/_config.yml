@@ -1145,3 +1145,22 @@ CDN:
     # valine:
     # waline_css:
     # waline_js:
+
+highlight_theme: mac
+highlight_copy: true
+highlight_shrink: false
+highlight_lang: true
+
+inject:
+  head:
+    - <style>
+figure.highlight{border-radius:8px;overflow:hidden;margin:1rem 0}
+figure.highlight::before{
+    content:"● ● ●";
+    display:block;height:32px;line-height:32px;
+    background:#21252b;padding-left:14px;letter-spacing:4px;
+}
+figure.highlight::before span:nth-child(1){color:#ff5f56;}
+figure.highlight::before span:nth-child(2){color:#ffbd2e;}
+figure.highlight::before span:nth-child(3){color:#27c93f;}
+    </style>
