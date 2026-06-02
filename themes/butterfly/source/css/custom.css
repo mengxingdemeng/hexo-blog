@@ -1,6 +1,6 @@
 /* ==================== 全局背景（全屏固定） ==================== */
 body {
-  background: url('/img/index.jpg') no-repeat center center fixed !important;
+  background: url('/imgg/index.jpg') no-repeat center center fixed !important;
   background-size: cover !important;
   background-attachment: fixed !important;
 }
