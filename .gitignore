@@ -3,6 +3,7 @@
 node_modules/
 public/
 .npm-cache/
+db.json
 
 
 # 系统文件
