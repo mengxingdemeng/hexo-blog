@@ -111,3 +111,15 @@ deploy:
 #   include:
 #     - "**/*"  # 加密所有页面（首页、文章、归档等）
 #   exclude: []
+
+# markdown:
+#   plugins:
+#     - plugin:
+#         name: '@renbaoshuo/markdown-it-katex'
+#         options:
+#           strict: false
+
+marked:
+  gfm: true
+  breaks: true
+  gfm_underscores: false
