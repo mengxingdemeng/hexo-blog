@@ -123,3 +123,22 @@ marked:
   gfm: true
   breaks: true
   gfm_underscores: false
+
+# # 数学公式 KaTeX 配置
+# katex:
+#   enable: true
+#   css: https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css
+#   options:
+#     throwOnError: false
+#     errorColor: '#cc0000'
+
+# markdown-it 渲染器配置
+markdown_it:
+  html: true
+  xhtmlOut: false
+  breaks: true
+  linkify: true
+  typographer: true
+  quotes: "“”‘’"
+  plugins:
+    - name: markdown-it-katex
