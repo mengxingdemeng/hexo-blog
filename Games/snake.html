@@ -1,0 +1,1073 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>my blog | my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="贪吃蛇游戏              * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          body {             font-family: &#39;Segoe UI&#39;, Arial, sans-se">
+<meta property="og:type" content="website">
+<meta property="og:title" content="my blog">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/Games/snake.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="贪吃蛇游戏              * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          body {             font-family: &#39;Segoe UI&#39;, Arial, sans-se">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-06-13T17:21:08.378Z">
+<meta property="article:modified_time" content="2026-06-13T17:21:08.378Z">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/Games/snake.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'my blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/hexo-blog/css/custom.css"><style>
+figure.highlight{border-radius:8px;overflow:hidden;margin:1rem 0}
+figure.highlight::before{
+    content:"● ● ●";
+    display:block;height:32px;line-height:32px;
+    background:#21252b;padding-left:14px;letter-spacing:4px;
+}
+figure.highlight::before span:nth-child(1){color:#ff5f56;}
+figure.highlight::before span:nth-child(2){color:#ffbd2e;}
+figure.highlight::before span:nth-child(3){color:#27c93f;}
+</style><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .score-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .score-box .label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-box .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #00ff88, #00cc6a);
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .game-area {
+            position: relative;
+            display: inline-block;
+        }
+
+        canvas {
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 60px rgba(0, 255, 136, 0.1);
+            border: 3px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .game-over.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .game-over h2 {
+            font-size: 42px;
+            color: #ff4757;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(255, 71, 87, 0.6);
+        }
+
+        .game-over p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 25px;
+        }
+
+        .game-over p span {
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .instructions {
+            margin-top: 20px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .instructions p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 5px 0;
+        }
+
+        .instructions span {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.2);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #00ff88;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .boost-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 71, 87, 0.8);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .boost-indicator.show {
+            opacity: 1;
+        }
+
+        .history-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .history-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .history-panel {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 16px;
+            padding: 30px;
+            min-width: 350px;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .history-modal.show .history-panel {
+            transform: scale(1);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .history-header h2 {
+            font-size: 28px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: white;
+        }
+
+        .history-list {
+            list-style: none;
+            padding: 0;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .history-item .rank {
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.5);
+            width: 35px;
+            font-size: 14px;
+        }
+
+        .history-item .rank.top3 {
+            color: #ffd700;
+            font-size: 18px;
+        }
+
+        .history-item .score {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ff88;
+            flex: 1;
+            text-align: left;
+            padding-left: 15px;
+        }
+
+        .history-item .date {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .history-empty {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 50px 0;
+            font-size: 16px;
+        }
+
+        .clear-history-btn {
+            width: 100%;
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+
+        .clear-history-btn:hover {
+            background: rgba(255, 71, 87, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🐍 贪吃蛇</h1>
+        <div class="header">
+            <div class="score-box">
+                <div class="label">当前分数</div>
+                <div class="value" id="score">0</div>
+            </div>
+            <div class="score-box">
+                <div class="label">最高分</div>
+                <div class="value" id="best">0</div>
+            </div>
+            <button class="btn" id="newGameBtn">新游戏</button>
+            <button class="btn btn-secondary" id="historyBtn">🏆 排行榜</button>
+        </div>
+
+        <div class="game-area">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div class="boost-indicator" id="boostIndicator">⚡ 加速中</div>
+            <div class="game-over" id="gameOver">
+                <h2>游戏结束!</h2>
+                <p>最终分数: <span id="finalScore">0</span></p>
+                <button class="btn" id="retryBtn">再来一局</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <p><span>↑</span> <span>↓</span> <span>←</span> <span>→</span> 或 <span>W</span><span>A</span><span>S</span><span>D</span> 控制方向</p>
+            <p><span>长按</span> 方向键或 <span>空格键</span> 加速 | 吃到食物得分，撞到墙壁或自己游戏结束</p>
+        </div>
+    </div>
+
+    <div class="history-modal" id="historyModal">
+        <div class="history-panel">
+            <div class="history-header">
+                <h2>🏆 排行榜</h2>
+                <button class="close-btn" id="closeHistoryBtn">&times;</button>
+            </div>
+            <ul class="history-list" id="historyList">
+                <li class="history-empty">暂无记录</li>
+            </ul>
+            <button class="clear-history-btn" id="clearHistoryBtn">清空记录</button>
+        </div>
+    </div>
+
+    <script>
+        class SnakeGame {
+            constructor() {
+                this.canvas = document.getElementById('gameCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.gridSize = 20;
+                this.tileCount = this.canvas.width / this.gridSize;
+                
+                this.snake = [];
+                this.direction = { x: 1, y: 0 };
+                this.nextDirection = { x: 1, y: 0 };
+                this.food = { x: 0, y: 0 };
+                this.score = 0;
+                this.best = parseInt(localStorage.getItem('snakeBestScore')) || 0;
+                this.gameOver = false;
+                this.canTurn = true;
+                this.gameLoop = null;
+                this.isBoosting = false;
+                this.boostSpeed = 40;
+                this.normalSpeed = 120;
+                
+                this.init();
+            }
+
+            init() {
+                this.snake = [
+                    { x: 10, y: 10 },
+                    { x: 9, y: 10 },
+                    { x: 8, y: 10 }
+                ];
+                this.direction = { x: 1, y: 0 };
+                this.nextDirection = { x: 1, y: 0 };
+                this.score = 0;
+                this.gameOver = false;
+                this.canTurn = true;
+                this.isBoosting = false;
+                
+                this.spawnFood();
+                this.updateScore();
+                this.startGameLoop();
+            }
+
+            startGameLoop() {
+                if (this.gameLoop) {
+                    clearInterval(this.gameLoop);
+                }
+                const speed = this.isBoosting ? this.boostSpeed : this.normalSpeed;
+                this.gameLoop = setInterval(() => {
+                    this.update();
+                    this.draw();
+                }, speed);
+            }
+
+            setNormalSpeed() {
+                this.normalSpeed = 120;
+                if (!this.isBoosting && !this.gameOver) {
+                    this.startGameLoop();
+                }
+            }
+
+            setBoosting(boosting) {
+                if (this.isBoosting === boosting) return;
+                this.isBoosting = boosting;
+                const indicator = document.getElementById('boostIndicator');
+                if (boosting) {
+                    indicator.classList.add('show');
+                } else {
+                    indicator.classList.remove('show');
+                }
+                if (!this.gameOver) {
+                    this.startGameLoop();
+                }
+            }
+
+            spawnFood() {
+                let validPosition = false;
+                while (!validPosition) {
+                    this.food = {
+                        x: Math.floor(Math.random() * this.tileCount),
+                        y: Math.floor(Math.random() * this.tileCount)
+                    };
+                    validPosition = !this.snake.some(segment => 
+                        segment.x === this.food.x && segment.y === this.food.y
+                    );
+                }
+            }
+
+            update() {
+                if (this.gameOver) return;
+                
+                this.direction = { ...this.nextDirection };
+                this.canTurn = true;
+                
+                const head = {
+                    x: this.snake[0].x + this.direction.x,
+                    y: this.snake[0].y + this.direction.y
+                };
+
+                if (this.checkCollision(head)) {
+                    this.endGame();
+                    return;
+                }
+
+                this.snake.unshift(head);
+
+                if (head.x === this.food.x && head.y === this.food.y) {
+                    this.score += 10;
+                    this.updateScore();
+                    this.spawnFood();
+                } else {
+                    this.snake.pop();
+                }
+            }
+
+            checkCollision(head) {
+                if (head.x < 0 || head.x >= this.tileCount ||
+                    head.y < 0 || head.y >= this.tileCount) {
+                    return true;
+                }
+                return this.snake.some(segment => 
+                    segment.x === head.x && segment.y === head.y
+                );
+            }
+
+            endGame() {
+                this.gameOver = true;
+                clearInterval(this.gameLoop);
+                document.getElementById('boostIndicator').classList.remove('show');
+                
+                if (this.score > this.best) {
+                    this.best = this.score;
+                    localStorage.setItem('snakeBestScore', this.best);
+                    document.getElementById('best').textContent = this.best;
+                }
+                
+                this.saveScoreToHistory();
+                
+                document.getElementById('finalScore').textContent = this.score;
+                document.getElementById('gameOver').classList.add('show');
+            }
+
+            saveScoreToHistory() {
+                const history = SnakeGame.getHistory();
+                const record = {
+                    score: this.score,
+                    date: new Date().toISOString()
+                };
+                history.push(record);
+                history.sort((a, b) => b.score - a.score);
+                const top10 = history.slice(0, 10);
+                localStorage.setItem('snakeHistory', JSON.stringify(top10));
+            }
+
+            static getHistory() {
+                const stored = localStorage.getItem('snakeHistory');
+                return stored ? JSON.parse(stored) : [];
+            }
+
+            static clearHistory() {
+                localStorage.removeItem('snakeHistory');
+            }
+
+            updateScore() {
+                document.getElementById('score').textContent = this.score;
+            }
+
+            draw() {
+                this.ctx.fillStyle = '#1e1e1e';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.drawGrid();
+                this.drawSnake();
+                this.drawFood();
+            }
+
+            drawGrid() {
+                this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+                this.ctx.lineWidth = 1;
+                
+                for (let i = 0; i <= this.tileCount; i++) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(i * this.gridSize, 0);
+                    this.ctx.lineTo(i * this.gridSize, this.canvas.height);
+                    this.ctx.stroke();
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, i * this.gridSize);
+                    this.ctx.lineTo(this.canvas.width, i * this.gridSize);
+                    this.ctx.stroke();
+                }
+            }
+
+            drawSnake() {
+                this.snake.forEach((segment, index) => {
+                    const gradient = this.ctx.createLinearGradient(
+                        segment.x * this.gridSize,
+                        segment.y * this.gridSize,
+                        (segment.x + 1) * this.gridSize,
+                        (segment.y + 1) * this.gridSize
+                    );
+                    
+                    if (index === 0) {
+                        gradient.addColorStop(0, '#00ff88');
+                        gradient.addColorStop(1, '#00cc6a');
+                    } else {
+                        const alpha = 1 - (index / this.snake.length) * 0.5;
+                        gradient.addColorStop(0, `rgba(0, 255, 136, ${alpha})`);
+                        gradient.addColorStop(1, `rgba(0, 204, 106, ${alpha})`);
+                    }
+                    
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.shadowColor = '#00ff88';
+                    this.ctx.shadowBlur = index === 0 ? 15 : 5;
+                    
+                    this.drawRoundedRect(
+                        segment.x * this.gridSize + 2,
+                        segment.y * this.gridSize + 2,
+                        this.gridSize - 4,
+                        this.gridSize - 4,
+                        6
+                    );
+                    
+                    this.ctx.shadowBlur = 0;
+                });
+
+                const head = this.snake[0];
+                this.ctx.fillStyle = '#1a1a2e';
+                this.ctx.shadowBlur = 0;
+                
+                const eyeOffset = 4;
+                const eyeSize = 3;
+                
+                if (this.direction.x === 1) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + this.gridSize - eyeOffset,
+                        head.y * this.gridSize + eyeOffset + 3,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + this.gridSize - eyeOffset,
+                        head.y * this.gridSize + this.gridSize - eyeOffset - 3,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                } else if (this.direction.x === -1) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + eyeOffset,
+                        head.y * this.gridSize + eyeOffset + 3,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + eyeOffset,
+                        head.y * this.gridSize + this.gridSize - eyeOffset - 3,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                } else if (this.direction.y === 1) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + eyeOffset + 3,
+                        head.y * this.gridSize + this.gridSize - eyeOffset,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + this.gridSize - eyeOffset - 3,
+                        head.y * this.gridSize + this.gridSize - eyeOffset,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                } else {
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + eyeOffset + 3,
+                        head.y * this.gridSize + eyeOffset,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                    this.ctx.beginPath();
+                    this.ctx.arc(
+                        head.x * this.gridSize + this.gridSize - eyeOffset - 3,
+                        head.y * this.gridSize + eyeOffset,
+                        eyeSize, 0, Math.PI * 2
+                    );
+                    this.ctx.fill();
+                }
+            }
+
+            drawFood() {
+                const centerX = this.food.x * this.gridSize + this.gridSize / 2;
+                const centerY = this.food.y * this.gridSize + this.gridSize / 2;
+                const radius = this.gridSize / 2 - 4;
+                
+                const gradient = this.ctx.createRadialGradient(
+                    centerX, centerY, 0,
+                    centerX, centerY, radius
+                );
+                gradient.addColorStop(0, '#ff6b6b');
+                gradient.addColorStop(1, '#ff4757');
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.shadowColor = '#ff4757';
+                this.ctx.shadowBlur = 15;
+                
+                this.ctx.beginPath();
+                this.ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+                this.ctx.fill();
+                
+                this.ctx.shadowBlur = 0;
+                
+                this.ctx.fillStyle = '#ffffff';
+                this.ctx.font = 'bold 14px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillText('★', centerX, centerY);
+            }
+
+            drawRoundedRect(x, y, width, height, radius) {
+                this.ctx.beginPath();
+                this.ctx.moveTo(x + radius, y);
+                this.ctx.lineTo(x + width - radius, y);
+                this.ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.ctx.lineTo(x + width, y + height - radius);
+                this.ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.ctx.lineTo(x + radius, y + height);
+                this.ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.ctx.lineTo(x, y + radius);
+                this.ctx.quadraticCurveTo(x, y, x + radius, y);
+                this.ctx.closePath();
+                this.ctx.fill();
+            }
+
+            handleKeyDown(key) {
+                if (!this.canTurn) return;
+                
+                const keyMap = {
+                    'ArrowUp': { x: 0, y: -1 },
+                    'ArrowDown': { x: 0, y: 1 },
+                    'ArrowLeft': { x: -1, y: 0 },
+                    'ArrowRight': { x: 1, y: 0 },
+                    'w': { x: 0, y: -1 },
+                    'W': { x: 0, y: -1 },
+                    's': { x: 0, y: 1 },
+                    'S': { x: 0, y: 1 },
+                    'a': { x: -1, y: 0 },
+                    'A': { x: -1, y: 0 },
+                    'd': { x: 1, y: 0 },
+                    'D': { x: 1, y: 0 }
+                };
+                
+                const newDirection = keyMap[key];
+                if (!newDirection) return;
+                
+                if (newDirection.x !== -this.direction.x && 
+                    newDirection.y !== -this.direction.y) {
+                    this.nextDirection = newDirection;
+                    this.canTurn = false;
+                }
+            }
+        }
+
+        const game = new SnakeGame();
+
+        document.getElementById('newGameBtn').addEventListener('click', () => {
+            document.getElementById('gameOver').classList.remove('show');
+            game.init();
+        });
+
+        document.getElementById('retryBtn').addEventListener('click', () => {
+            document.getElementById('gameOver').classList.remove('show');
+            game.init();
+        });
+
+        let boostKeysPressed = new Map();
+        let boostTimeout = null;
+        const BOOST_DELAY = 1500;
+
+        function updateBoostState() {
+            let shouldBoost = false;
+            const now = Date.now();
+            
+            for (const [key, pressTime] of boostKeysPressed) {
+                if (key === 'space' || boostKeysPressed.has('ArrowUp') || boostKeysPressed.has('ArrowDown') || 
+                    boostKeysPressed.has('ArrowLeft') || boostKeysPressed.has('ArrowRight') ||
+                    boostKeysPressed.has('w') || boostKeysPressed.has('W') || boostKeysPressed.has('a') || 
+                    boostKeysPressed.has('A') || boostKeysPressed.has('s') || boostKeysPressed.has('S') || 
+                    boostKeysPressed.has('d') || boostKeysPressed.has('D')) {
+                    if (now - pressTime >= BOOST_DELAY) {
+                        shouldBoost = true;
+                        break;
+                    }
+                }
+            }
+            
+            game.setBoosting(shouldBoost);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const directionKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'];
+            
+            if (directionKeys.includes(e.key) || e.key === ' ') {
+                if (!boostKeysPressed.has(e.key)) {
+                    boostKeysPressed.set(e.key, Date.now());
+                }
+                
+                if (boostTimeout) clearInterval(boostTimeout);
+                boostTimeout = setInterval(updateBoostState, 100);
+            }
+            
+            if (e.key === ' ') {
+                e.preventDefault();
+            }
+            
+            game.handleKeyDown(e.key);
+        });
+
+        document.addEventListener('keyup', (e) => {
+            const directionKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'w', 'W', 'a', 'A', 's', 'S', 'd', 'D'];
+            
+            if (directionKeys.includes(e.key) || e.key === ' ') {
+                boostKeysPressed.delete(e.key);
+                
+                if (boostKeysPressed.size === 0 && boostTimeout) {
+                    clearInterval(boostTimeout);
+                    boostTimeout = null;
+                    game.setBoosting(false);
+                }
+            }
+        });
+
+        window.addEventListener('blur', () => {
+            boostKeysPressed.clear();
+            if (boostTimeout) {
+                clearInterval(boostTimeout);
+                boostTimeout = null;
+            }
+            game.setBoosting(false);
+        });
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
+
+        function renderHistory() {
+            const history = SnakeGame.getHistory();
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<li class="history-empty">暂无记录</li>';
+                return;
+            }
+
+            history.forEach((record, index) => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                li.innerHTML = `
+                    <span class="rank ${index < 3 ? 'top3' : ''}">${index + 1}</span>
+                    <span class="score">${record.score}</span>
+                    <span class="date">${formatDate(record.date)}</span>
+                `;
+                historyList.appendChild(li);
+            });
+        }
+
+        const historyModal = document.getElementById('historyModal');
+
+        document.getElementById('historyBtn').addEventListener('click', () => {
+            renderHistory();
+            historyModal.classList.add('show');
+        });
+
+        document.getElementById('closeHistoryBtn').addEventListener('click', () => {
+            historyModal.classList.remove('show');
+        });
+
+        document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+            if (confirm('确定要清空所有记录吗？')) {
+                SnakeGame.clearHistory();
+                renderHistory();
+            }
+        });
+
+        historyModal.addEventListener('click', (e) => {
+            if (e.target === historyModal) {
+                historyModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/13/hello-world/" title="Hello World">Hello World</a><time datetime="2026-06-13T17:21:08.379Z" title="发表于 2026-06-14 01:21:08">2026-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/13/qexo%E6%90%AD%E5%BB%BA/" title="qexo搭建">qexo搭建</a><time datetime="2026-06-13T17:21:08.379Z" title="发表于 2026-06-14 01:21:08">2026-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-2/" title="English 1.2">English 1.2</a><time datetime="2026-06-07T15:51:01.000Z" title="发表于 2026-06-07 23:51:01">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-1/" title="English 1.1">English 1.1</a><time datetime="2026-06-07T15:15:40.000Z" title="发表于 2026-06-07 23:15:40">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1/" title="English 1">English 1</a><time datetime="2026-06-07T15:11:59.000Z" title="发表于 2026-06-07 23:11:59">2026-06-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/hexo-blog/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"><span class="card-category-list-name">算法刷题</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/hexo-blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/hexo-blog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/hexo-blog/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/hexo-blog/tags/%E9%92%BB%E7%9F%B3%E9%A2%98/" style="font-size: 1.1em; color: #999">钻石题</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">16</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-06-13T17:21:36.296Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
