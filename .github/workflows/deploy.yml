@@ -30,6 +30,17 @@ jobs:
           node scripts/leetcode.js
           node scripts/nowcoder.js
 
+      # ========== 新增：Python环境 + Vjudge爬虫（原有代码丝毫不改）==========
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Python requests
+        run: pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
+      - name: Run Vjudge Crawl Script
+        run: python scripts/crawl_vjudge.py
+      # ==================================================================
+
       - name: Build Hexo
         run: |
           hexo clean
@@ -44,3 +55,30 @@ jobs:
           publish_dir: ./public
           publish_branch: gh-pages
           force_orphan: true
+
+      # ========== 修正：只同步 vjudge-record.json，不覆盖整仓 ==========
+      - name: Sync vjudge-record.json to Gitee
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_REPO: 梦醒的梦/hugo-blog
+        run: |
+          git config --global user.name "Auto Sync Bot"
+          git config --global user.email "bot@gitee.com"
+
+          # 克隆Gitee仓库到临时文件夹
+          git clone https://${GITEE_TOKEN}@gitee.com/${GITEE_REPO}.git gitee-temp
+          cd gitee-temp
+
+          # 复制新生成的vjudge记录json覆盖Gitee内文件
+          cp ../static/data/vjudge-record.json ./static/data/
+
+          # 只追踪目标json，无改动直接退出不提交
+          git add static/data/vjudge-record.json
+          if git diff-index --quiet HEAD; then
+            echo "vjudge刷题数据无更新，跳过推送"
+            exit 0
+          fi
+
+          # 提交并推送到Gitee main分支
+          git commit -m "auto: 更新Vjudge刷题记录 $(date +%Y-%m-%d)"
+          git push origin main
