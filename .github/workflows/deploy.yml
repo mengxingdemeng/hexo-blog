@@ -3,7 +3,7 @@ name: Deploy Hexo Blog
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1 16 * * *'
+    - cron: '1 16 * * *'  # 每天 UTC 16:01 = 北京时间 00:01 自动触发
 
 jobs:
   build-and-deploy:
@@ -14,7 +14,6 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
-          ref: master
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,35 +30,12 @@ jobs:
           node scripts/leetcode.js
           node scripts/nowcoder.js
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install Python dependencies
-        run: |
-          pip install requests -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-      - name: Run Vjudge Crawl Script
-        run: python scripts/crawl_vjudge_github.py
-
-      - name: Debug - 检查数据文件
-        run: |
-          echo "=== 检查文件 ==="
-          ls -la static/data/ 2>/dev/null || echo "目录不存在"
-          if [ -f static/data/vjudge-record.json ]; then
-            echo "✅ 文件存在"
-            echo "文件内容预览："
-            head -c 200 static/data/vjudge-record.json
-          else
-            echo "❌ 文件不存在"
-            exit 1
-          fi
-
       - name: Build Hexo
         run: |
           hexo clean
           hexo generate
+          ls -lh
+          ls -lh public/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -68,27 +44,3 @@ jobs:
           publish_dir: ./public
           publish_branch: gh-pages
           force_orphan: true
-
-      - name: Sync vjudge-record.json to Gitee
-        env:
-          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-          WORK_ROOT: ${{ github.workspace }}
-        run: |
-          git config --global user.name "Auto Sync Bot"
-          git config --global user.email "bot@gitee.com"
-
-          rm -rf gitee-temp || true
-
-          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/a-awakened-dream/hugo-blog.git" gitee-temp
-          cd gitee-temp
-
-          mkdir -p static/data
-          cp -f "${WORK_ROOT}/static/data/vjudge-record.json" static/data/
-
-          git add static/data/vjudge-record.json
-          if git diff-index --quiet HEAD; then
-            echo "数据无更新，跳过推送"
-            exit 0
-          fi
-          git commit -m "auto: 更新Vjudge刷题记录 $(date +%Y-%m-%d)"
-          git push origin main
