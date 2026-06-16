@@ -58,22 +58,21 @@ jobs:
       - name: Sync vjudge-record.json to Gitee
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-          GITEE_REPO: 梦醒的梦/hugo-blog
         run: |
           git config --global user.name "Auto Sync Bot"
           git config --global user.email "bot@gitee.com"
           
-          # 清理上次残留目录，避免冲突
+          # 清理上次残留目录
           rm -rf gitee-temp || true
           
-          # 标准oauth2鉴权格式，引号包裹防特殊字符截断
-          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/${GITEE_REPO}.git" gitee-temp
+          # 使用正确的 Gitee 仓库地址
+          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/a-awakened-dream/hugo-blog.git" gitee-temp
           cd gitee-temp
           
-          # 确保目标目录存在（关键修复）
+          # 确保目录存在
           mkdir -p static/data
           
-          # -f 强制覆盖目标json
+          # 强制覆盖
           cp -f ../static/data/vjudge-record.json static/data/
           
           # 提交推送
