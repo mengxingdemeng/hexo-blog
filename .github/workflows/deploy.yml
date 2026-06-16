@@ -14,6 +14,7 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+          ref: master # 仅新增这一行，指定拉取master分支，匹配你放py脚本的分支
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -65,8 +66,8 @@ jobs:
           git config --global user.name "Auto Sync Bot"
           git config --global user.email "bot@gitee.com"
 
-          # 克隆Gitee仓库到临时文件夹
-          git clone https://${GITEE_TOKEN}@gitee.com/${GITEE_REPO}.git gitee-temp
+          # 浅克隆加速，只拉最新提交
+          git clone --depth 1 https://${GITEE_TOKEN}@gitee.com/${GITEE_REPO}.git gitee-temp
           cd gitee-temp
 
           # 复制新生成的vjudge记录json覆盖Gitee内文件
