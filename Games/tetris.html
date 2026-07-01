@@ -1,0 +1,1086 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>my blog | my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="俄罗斯方块              * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          body {             font-family: &#39;Segoe UI&#39;, Arial, sans-se">
+<meta property="og:type" content="website">
+<meta property="og:title" content="my blog">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/Games/tetris.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="俄罗斯方块              * {             margin: 0;             padding: 0;             box-sizing: border-box;         }          body {             font-family: &#39;Segoe UI&#39;, Arial, sans-se">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-07-01T17:52:56.906Z">
+<meta property="article:modified_time" content="2026-07-01T17:52:56.906Z">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/Games/tetris.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'my blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="stylesheet" href="/hexo-blog/css/custom.css"><style>
+figure.highlight{border-radius:8px;overflow:hidden;margin:1rem 0}
+figure.highlight::before{
+    content:"● ● ●";
+    display:block;height:32px;line-height:32px;
+    background:#21252b;padding-left:14px;letter-spacing:4px;
+}
+figure.highlight::before span:nth-child(1){color:#ff5f56;}
+figure.highlight::before span:nth-child(2){color:#ffbd2e;}
+figure.highlight::before span:nth-child(3){color:#27c93f;}
+</style><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0c0c1e 0%, #1a1a3e 50%, #2d1b4e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+            background: linear-gradient(135deg, #ff6b6b, #ffa500, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .game-wrapper {
+            display: flex;
+            gap: 25px;
+        }
+
+        .game-board {
+            position: relative;
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            border-radius: 8px;
+            padding: 3px;
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.3);
+        }
+
+        canvas {
+            display: block;
+            background: #0a0a15;
+            border-radius: 5px;
+        }
+
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 140px;
+        }
+
+        .panel-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .panel-box h3 {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .panel-box .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffa500;
+        }
+
+        #nextCanvas {
+            display: block;
+            margin: 0 auto;
+            background: #0a0a15;
+            border-radius: 5px;
+        }
+
+        .controls {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .controls p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 5px 0;
+        }
+
+        .controls span {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #da70d6;
+            font-family: monospace;
+            font-size: 11px;
+            margin: 0 2px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #8a2be2, #9932cc);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .game-over.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .game-over h2 {
+            font-size: 36px;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .game-over p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        .game-over p span {
+            color: #ffa500;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .history-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .history-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .history-panel {
+            background: linear-gradient(135deg, #1a1a3e, #2d1b4e);
+            border-radius: 16px;
+            padding: 30px;
+            min-width: 350px;
+            max-width: 420px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+
+        .history-modal.show .history-panel {
+            transform: scale(1);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .history-header h2 {
+            font-size: 26px;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 0 10px;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: white;
+        }
+
+        .history-list {
+            list-style: none;
+            padding: 0;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .history-item .rank {
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.5);
+            width: 30px;
+            font-size: 14px;
+        }
+
+        .history-item .rank.top3 {
+            color: #ffd700;
+            font-size: 18px;
+        }
+
+        .history-item .score {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffa500;
+            flex: 1;
+            text-align: left;
+            padding-left: 15px;
+        }
+
+        .history-item .date {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .history-empty {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            padding: 50px 0;
+            font-size: 16px;
+        }
+
+        .clear-history-btn {
+            width: 100%;
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s;
+        }
+
+        .clear-history-btn:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+
+        .level-indicator {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .level-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .level-dot.active {
+            background: #8a2be2;
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>🎮 俄罗斯方块</h1>
+            <div class="game-wrapper">
+                <div class="game-board">
+                    <canvas id="gameCanvas" width="250" height="500"></canvas>
+                    <div class="game-over" id="gameOver">
+                        <h2>游戏结束!</h2>
+                        <p>最终分数: <span id="finalScore">0</span></p>
+                        <button class="btn" id="retryBtn">再来一局</button>
+                    </div>
+                </div>
+                <div class="side-panel">
+                    <div class="panel-box">
+                        <h3>分数</h3>
+                        <div class="value" id="score">0</div>
+                    </div>
+                    <div class="panel-box">
+                        <h3>最高分</h3>
+                        <div class="value" id="best">0</div>
+                    </div>
+                    <div class="panel-box">
+                        <h3>下一个</h3>
+                        <canvas id="nextCanvas" width="100" height="100"></canvas>
+                    </div>
+                    <div class="panel-box">
+                        <h3>等级</h3>
+                        <div class="value" id="level">1</div>
+                        <div class="level-indicator" id="levelIndicator">
+                            <div class="level-dot active"></div>
+                            <div class="level-dot"></div>
+                            <div class="level-dot"></div>
+                            <div class="level-dot"></div>
+                            <div class="level-dot"></div>
+                        </div>
+                    </div>
+                    <button class="btn" id="newGameBtn">新游戏</button>
+                    <button class="btn btn-secondary" id="historyBtn">🏆 排行榜</button>
+                </div>
+            </div>
+            <div class="controls">
+                <p><span>←</span><span>→</span> 左右移动 | <span>↑</span> 旋转 | <span>↓</span> 加速下落</p>
+                <p><span>空格</span> 快速落地 | <span>P</span> 暂停</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="history-modal" id="historyModal">
+        <div class="history-panel">
+            <div class="history-header">
+                <h2>🏆 排行榜</h2>
+                <button class="close-btn" id="closeHistoryBtn">&times;</button>
+            </div>
+            <ul class="history-list" id="historyList">
+                <li class="history-empty">暂无记录</li>
+            </ul>
+            <button class="clear-history-btn" id="clearHistoryBtn">清空记录</button>
+        </div>
+    </div>
+
+    <script>
+        class TetrisGame {
+            constructor() {
+                this.canvas = document.getElementById('gameCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.nextCanvas = document.getElementById('nextCanvas');
+                this.nextCtx = this.nextCanvas.getContext('2d');
+                
+                this.cols = 10;
+                this.rows = 20;
+                this.blockSize = 25;
+                
+                this.board = [];
+                this.currentPiece = null;
+                this.nextPiece = null;
+                this.score = 0;
+                this.level = 1;
+                this.lines = 0;
+                this.best = parseInt(localStorage.getItem('tetrisBestScore')) || 0;
+                this.gameOver = false;
+                this.paused = false;
+                this.dropInterval = null;
+                this.isDropping = false;
+                
+                this.shapes = [
+                    { name: 'I', color: '#00f5ff', shape: [[1,1,1,1]] },
+                    { name: 'O', color: '#ffff00', shape: [[1,1],[1,1]] },
+                    { name: 'T', color: '#da70d6', shape: [[0,1,0],[1,1,1]] },
+                    { name: 'S', color: '#00ff00', shape: [[0,1,1],[1,1,0]] },
+                    { name: 'Z', color: '#ff0000', shape: [[1,1,0],[0,1,1]] },
+                    { name: 'J', color: '#0000ff', shape: [[1,0,0],[1,1,1]] },
+                    { name: 'L', color: '#ff8c00', shape: [[0,0,1],[1,1,1]] }
+                ];
+                
+                this.init();
+            }
+
+            init() {
+                this.board = Array(this.rows).fill(null).map(() => Array(this.cols).fill(0));
+                this.score = 0;
+                this.level = 1;
+                this.lines = 0;
+                this.gameOver = false;
+                this.paused = false;
+                this.isDropping = false;
+                
+                if (this.dropInterval) {
+                    clearInterval(this.dropInterval);
+                }
+                
+                this.nextPiece = this.createPiece();
+                this.spawnPiece();
+                this.updateScore();
+                this.updateLevel();
+                this.startDropping();
+                this.draw();
+            }
+
+            createPiece() {
+                const shape = this.shapes[Math.floor(Math.random() * this.shapes.length)];
+                return {
+                    shape: shape.shape.map(row => [...row]),
+                    color: shape.color,
+                    name: shape.name,
+                    x: Math.floor((this.cols - shape.shape[0].length) / 2),
+                    y: 0
+                };
+            }
+
+            spawnPiece() {
+                this.currentPiece = this.nextPiece;
+                this.currentPiece.x = Math.floor((this.cols - this.currentPiece.shape[0].length) / 2);
+                this.currentPiece.y = 0;
+                this.nextPiece = this.createPiece();
+                this.drawNextPiece();
+                
+                if (this.checkCollision(0, 0)) {
+                    this.endGame();
+                }
+            }
+
+            startDropping() {
+                const speed = this.getDropSpeed();
+                this.dropInterval = setInterval(() => {
+                    if (!this.paused && !this.gameOver) {
+                        this.drop();
+                    }
+                }, speed);
+            }
+
+            getDropSpeed() {
+                return Math.max(50, 500 - (this.level - 1) * 50);
+            }
+
+            checkCollision(offsetX, offsetY, shape = null) {
+                const piece = shape || this.currentPiece.shape;
+                for (let r = 0; r < piece.length; r++) {
+                    for (let c = 0; c < piece[r].length; c++) {
+                        if (piece[r][c]) {
+                            const newX = this.currentPiece.x + c + offsetX;
+                            const newY = this.currentPiece.y + r + offsetY;
+                            
+                            if (newX < 0 || newX >= this.cols || newY >= this.rows) {
+                                return true;
+                            }
+                            if (newY >= 0 && this.board[newY][newX]) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+
+            move(dx) {
+                if (!this.checkCollision(dx, 0) && !this.gameOver && !this.paused) {
+                    this.currentPiece.x += dx;
+                    this.draw();
+                }
+            }
+
+            rotate() {
+                if (this.gameOver || this.paused) return;
+                
+                const rotated = this.currentPiece.shape[0].map((_, i) =>
+                    this.currentPiece.shape.map(row => row[i]).reverse()
+                );
+                
+                if (!this.checkCollision(0, 0, rotated)) {
+                    this.currentPiece.shape = rotated;
+                    this.draw();
+                }
+            }
+
+            drop() {
+                if (this.gameOver || this.paused) return;
+                
+                if (!this.checkCollision(0, 1)) {
+                    this.currentPiece.y++;
+                    this.draw();
+                } else {
+                    this.lockPiece();
+                }
+            }
+
+            hardDrop() {
+                if (this.gameOver || this.paused) return;
+                
+                this.isDropping = true;
+                while (!this.checkCollision(0, 1)) {
+                    this.currentPiece.y++;
+                }
+                this.lockPiece();
+                this.isDropping = false;
+            }
+
+            lockPiece() {
+                for (let r = 0; r < this.currentPiece.shape.length; r++) {
+                    for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
+                        if (this.currentPiece.shape[r][c]) {
+                            const boardY = this.currentPiece.y + r;
+                            const boardX = this.currentPiece.x + c;
+                            if (boardY >= 0) {
+                                this.board[boardY][boardX] = this.currentPiece.color;
+                            }
+                        }
+                    }
+                }
+                
+                this.clearLines();
+                this.spawnPiece();
+                this.draw();
+            }
+
+            clearLines() {
+                let linesCleared = 0;
+                
+                for (let r = this.rows - 1; r >= 0; r--) {
+                    if (this.board[r].every(cell => cell !== 0)) {
+                        this.board.splice(r, 1);
+                        this.board.unshift(Array(this.cols).fill(0));
+                        linesCleared++;
+                        r++;
+                    }
+                }
+                
+                if (linesCleared > 0) {
+                    const points = [0, 100, 300, 500, 800];
+                    this.score += points[linesCleared] * this.level;
+                    this.lines += linesCleared;
+                    
+                    const newLevel = Math.floor(this.lines / 10) + 1;
+                    if (newLevel > this.level) {
+                        this.level = newLevel;
+                        this.updateLevel();
+                        this.restartDropInterval();
+                    }
+                    
+                    this.updateScore();
+                }
+            }
+
+            restartDropInterval() {
+                if (this.dropInterval) {
+                    clearInterval(this.dropInterval);
+                }
+                this.startDropping();
+            }
+
+            updateScore() {
+                document.getElementById('score').textContent = this.score;
+                if (this.score > this.best) {
+                    this.best = this.score;
+                    localStorage.setItem('tetrisBestScore', this.best);
+                }
+                document.getElementById('best').textContent = this.best;
+            }
+
+            updateLevel() {
+                document.getElementById('level').textContent = this.level;
+                
+                const dots = document.querySelectorAll('.level-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i < this.level && i < 5);
+                });
+            }
+
+            endGame() {
+                this.gameOver = true;
+                clearInterval(this.dropInterval);
+                
+                this.saveScoreToHistory();
+                
+                document.getElementById('finalScore').textContent = this.score;
+                document.getElementById('gameOver').classList.add('show');
+            }
+
+            saveScoreToHistory() {
+                const history = TetrisGame.getHistory();
+                const record = {
+                    score: this.score,
+                    date: new Date().toISOString()
+                };
+                history.push(record);
+                history.sort((a, b) => b.score - a.score);
+                const top10 = history.slice(0, 10);
+                localStorage.setItem('tetrisHistory', JSON.stringify(top10));
+            }
+
+            static getHistory() {
+                const stored = localStorage.getItem('tetrisHistory');
+                return stored ? JSON.parse(stored) : [];
+            }
+
+            static clearHistory() {
+                localStorage.removeItem('tetrisHistory');
+            }
+
+            togglePause() {
+                if (this.gameOver) return;
+                this.paused = !this.paused;
+            }
+
+            draw() {
+                this.ctx.fillStyle = '#0a0a15';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.drawGrid();
+                this.drawBoard();
+                this.drawPiece();
+            }
+
+            drawGrid() {
+                this.ctx.strokeStyle = 'rgba(138, 43, 226, 0.1)';
+                this.ctx.lineWidth = 1;
+                
+                for (let i = 0; i <= this.cols; i++) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(i * this.blockSize, 0);
+                    this.ctx.lineTo(i * this.blockSize, this.canvas.height);
+                    this.ctx.stroke();
+                }
+                
+                for (let i = 0; i <= this.rows; i++) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, i * this.blockSize);
+                    this.ctx.lineTo(this.canvas.width, i * this.blockSize);
+                    this.ctx.stroke();
+                }
+            }
+
+            drawBoard() {
+                for (let r = 0; r < this.rows; r++) {
+                    for (let c = 0; c < this.cols; c++) {
+                        if (this.board[r][c]) {
+                            this.drawBlock(c, r, this.board[r][c]);
+                        }
+                    }
+                }
+            }
+
+            drawPiece() {
+                if (!this.currentPiece) return;
+                
+                for (let r = 0; r < this.currentPiece.shape.length; r++) {
+                    for (let c = 0; c < this.currentPiece.shape[r].length; c++) {
+                        if (this.currentPiece.shape[r][c]) {
+                            const y = this.currentPiece.y + r;
+                            if (y >= 0) {
+                                this.drawBlock(this.currentPiece.x + c, y, this.currentPiece.color);
+                            }
+                        }
+                    }
+                }
+            }
+
+            drawBlock(x, y, color) {
+                const px = x * this.blockSize;
+                const py = y * this.blockSize;
+                const size = this.blockSize - 1;
+                
+                const gradient = this.ctx.createLinearGradient(px, py, px + size, py + size);
+                gradient.addColorStop(0, color);
+                gradient.addColorStop(1, this.darkenColor(color));
+                
+                this.ctx.fillStyle = gradient;
+                this.ctx.fillRect(px + 1, py + 1, size - 1, size - 1);
+                
+                this.ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                this.ctx.fillRect(px + 1, py + 1, size - 1, 3);
+                this.ctx.fillRect(px + 1, py + 1, 3, size - 1);
+                
+                this.ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+                this.ctx.fillRect(px + 1, py + size - 4, size - 1, 3);
+                this.ctx.fillRect(px + size - 4, py + 1, 3, size - 1);
+            }
+
+            darkenColor(color) {
+                const r = parseInt(color.slice(1, 3), 16);
+                const g = parseInt(color.slice(3, 5), 16);
+                const b = parseInt(color.slice(5, 7), 16);
+                return `rgb(${Math.floor(r * 0.6)}, ${Math.floor(g * 0.6)}, ${Math.floor(b * 0.6)})`;
+            }
+
+            drawNextPiece() {
+                this.nextCtx.fillStyle = '#0a0a15';
+                this.nextCtx.fillRect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
+                
+                if (!this.nextPiece) return;
+                
+                const blockSize = 22;
+                const offsetX = (this.nextCanvas.width - this.nextPiece.shape[0].length * blockSize) / 2;
+                const offsetY = (this.nextCanvas.height - this.nextPiece.shape.length * blockSize) / 2;
+                
+                for (let r = 0; r < this.nextPiece.shape.length; r++) {
+                    for (let c = 0; c < this.nextPiece.shape[r].length; c++) {
+                        if (this.nextPiece.shape[r][c]) {
+                            const px = offsetX + c * blockSize;
+                            const py = offsetY + r * blockSize;
+                            const size = blockSize - 1;
+                            
+                            this.nextCtx.fillStyle = this.nextPiece.color;
+                            this.nextCtx.fillRect(px + 1, py + 1, size - 1, size - 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        const game = new TetrisGame();
+
+        document.getElementById('newGameBtn').addEventListener('click', () => {
+            document.getElementById('gameOver').classList.remove('show');
+            game.init();
+        });
+
+        document.getElementById('retryBtn').addEventListener('click', () => {
+            document.getElementById('gameOver').classList.remove('show');
+            game.init();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (game.gameOver) return;
+            
+            switch (e.key) {
+                case 'ArrowLeft':
+                    game.move(-1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowRight':
+                    game.move(1);
+                    e.preventDefault();
+                    break;
+                case 'ArrowDown':
+                    game.drop();
+                    e.preventDefault();
+                    break;
+                case 'ArrowUp':
+                    game.rotate();
+                    e.preventDefault();
+                    break;
+                case ' ':
+                    game.hardDrop();
+                    e.preventDefault();
+                    break;
+                case 'p':
+                case 'P':
+                    game.togglePause();
+                    break;
+            }
+        });
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            return `${year}-${month}-${day} ${hours}:${minutes}`;
+        }
+
+        function renderHistory() {
+            const history = TetrisGame.getHistory();
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+
+            if (history.length === 0) {
+                historyList.innerHTML = '<li class="history-empty">暂无记录</li>';
+                return;
+            }
+
+            history.forEach((record, index) => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                li.innerHTML = `
+                    <span class="rank ${index < 3 ? 'top3' : ''}">${index + 1}</span>
+                    <span class="score">${record.score}</span>
+                    <span class="date">${formatDate(record.date)}</span>
+                `;
+                historyList.appendChild(li);
+            });
+        }
+
+        const historyModal = document.getElementById('historyModal');
+
+        document.getElementById('historyBtn').addEventListener('click', () => {
+            renderHistory();
+            historyModal.classList.add('show');
+        });
+
+        document.getElementById('closeHistoryBtn').addEventListener('click', () => {
+            historyModal.classList.remove('show');
+        });
+
+        document.getElementById('clearHistoryBtn').addEventListener('click', () => {
+            if (confirm('确定要清空所有记录吗？')) {
+                TetrisGame.clearHistory();
+                renderHistory();
+            }
+        });
+
+        historyModal.addEventListener('click', (e) => {
+            if (e.target === historyModal) {
+                historyModal.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/01/hello-world/" title="Hello World">Hello World</a><time datetime="2026-07-01T17:52:56.906Z" title="发表于 2026-07-02 01:52:56">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/01/qexo%E6%90%AD%E5%BB%BA/" title="qexo搭建">qexo搭建</a><time datetime="2026-07-01T17:52:56.906Z" title="发表于 2026-07-02 01:52:56">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-2/" title="English 1.2">English 1.2</a><time datetime="2026-06-07T15:51:01.000Z" title="发表于 2026-06-07 23:51:01">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-1/" title="English 1.1">English 1.1</a><time datetime="2026-06-07T15:15:40.000Z" title="发表于 2026-06-07 23:15:40">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1/" title="English 1">English 1</a><time datetime="2026-06-07T15:11:59.000Z" title="发表于 2026-06-07 23:11:59">2026-06-07</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/hexo-blog/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"><span class="card-category-list-name">算法刷题</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/hexo-blog/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/hexo-blog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/hexo-blog/tags/%E9%92%BB%E7%9F%B3%E9%A2%98/" style="font-size: 1.1em; color: #999">钻石题</a> <a href="/hexo-blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">16</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-01T17:53:23.797Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

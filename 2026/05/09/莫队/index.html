@@ -1,0 +1,1423 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>莫队 | my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="莫队算法——从入门到黑题 - WAMonster - 博客园                             &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;css&#x2F;blog-common.min.css?v&#x3D;9xvyan1yGH1Ggi8nKJ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="莫队">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/2026/05/09/%E8%8E%AB%E9%98%9F/index.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="莫队算法——从入门到黑题 - WAMonster - 博客园                             &lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;&#x2F;css&#x2F;blog-common.min.css?v&#x3D;9xvyan1yGH1Ggi8nKJ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-05-09T17:57:07.000Z">
+<meta property="article:modified_time" content="2026-07-01T17:52:56.912Z">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "莫队",
+  "url": "https://mengxingdemeng.github.io/hexo-blog/2026/05/09/%E8%8E%AB%E9%98%9F/",
+  "image": "https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png",
+  "datePublished": "2026-05-09T17:57:07.000Z",
+  "dateModified": "2026-07-01T17:52:56.912Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "琉璃仙",
+      "url": "https://mengxingdemeng.github.io/hexo-blog"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/2026/05/09/%E8%8E%AB%E9%98%9F/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '莫队',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/hexo-blog/css/custom.css"><style>
+figure.highlight{border-radius:8px;overflow:hidden;margin:1rem 0}
+figure.highlight::before{
+    content:"● ● ●";
+    display:block;height:32px;line-height:32px;
+    background:#21252b;padding-left:14px;letter-spacing:4px;
+}
+figure.highlight::before span:nth-child(1){color:#ff5f56;}
+figure.highlight::before span:nth-child(2){color:#ffbd2e;}
+figure.highlight::before span:nth-child(3){color:#27c93f;}
+</style><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a><a class="nav-page-title" href="/hexo-blog/"><span class="site-name">莫队</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">莫队</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-09T17:57:07.000Z" title="发表于 2026-05-10 01:57:07">2026-05-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-07-01T17:52:56.912Z" title="更新于 2026-07-02 01:52:56">2026-07-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />            
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <title>莫队算法——从入门到黑题 - WAMonster - 博客园</title>
+    <meta name="keywords" content="莫队算法" />
+    <meta name="description" content="~~众所周知~~，莫队是由莫涛大神提出的，一种~~玄学毒瘤暴力骗分~~区间操作算法，它以简短的框架、~~简单易记的板子~~和优秀的复杂度闻名于世。然而由于莫队算法应用的毒瘤，很多可做的莫队模板题都有着较高的难度评级，令很多初学者望而却步。然而，如果你真正理解了莫队的算法原理，那么它用起来还是很简单的" />    
+    <meta property="og:description" content="~~众所周知~~，莫队是由莫涛大神提出的，一种~~玄学毒瘤暴力骗分~~区间操作算法，它以简短的框架、~~简单易记的板子~~和优秀的复杂度闻名于世。然而由于莫队算法应用的毒瘤，很多可做的莫队模板题都有着较高的难度评级，令很多初学者望而却步。然而，如果你真正理解了莫队的算法原理，那么它用起来还是很简单的" />
+    <meta property="og:image" content="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214111957440-289670786.jpg" />    
+<pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/blog-common.min.css?v=9xvyan1yGH1Ggi8nKJ01Xc2nqMWMqJCy_-EYS2m06xA&quot; /&gt;
+
+
+&lt;link id=&quot;MainCss&quot; rel=&quot;stylesheet&quot; href=&quot;/skins/simplememory/bundle-simplememory.min.css?v=X2uwYHAKzGGLEaiB5SRZOPRR3jYJaSqk7tr8ptQin1s&quot; /&gt;
+    &lt;link id=&quot;highlighter-theme-cnblogs&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/css/hljs/cnblogs.css?v=5J1NDtbnnIr2Rc2SdhEMlMxD4l9Eydj88B31E7_NhS4&quot; /&gt;
+&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;https://www.cnblogs.com/WAMonster/custom.css?v=PSjQNR5umttQlh/M1hkB0XyZADk=&quot; /&gt;
+
+&lt;link id=&quot;mobile-style&quot; media=&quot;only screen and (max-width: 767px)&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/skins/SimpleMemory/bundle-simplememory-mobile.min.css?v=efOGRGI0dxQ__xm2NVyuTk32wtXIiSFGaudtlfkc2H8&quot; /&gt;
+
+&lt;link id=&quot;favicon&quot; rel=&quot;icon&quot; type=&quot;image/x-icon&quot; sizes=&quot;32x32&quot; href=&quot;https://assets.cnblogs.com/favicon_v3_3.ico&quot; /&gt;
+&lt;link id=&quot;favicon_svg&quot; rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;https://assets.cnblogs.com/favicon_v3_3.svg&quot; /&gt;
+&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;https://assets.cnblogs.com/apple-touch-icon.png?v=2&quot; /&gt;
+&lt;link rel=&quot;canonical&quot; href=&quot;https://www.cnblogs.com/WAMonster/p/10118934.html&quot; /&gt;
+&lt;link type=&quot;application/rss+xml&quot; rel=&quot;alternate&quot; href=&quot;https://www.cnblogs.com/WAMonster/rss&quot; /&gt;
+&lt;link type=&quot;application/rsd+xml&quot; rel=&quot;EditURI&quot; href=&quot;https://www.cnblogs.com/WAMonster/rsd.xml&quot; /&gt;
+&lt;link type=&quot;application/wlwmanifest+xml&quot; rel=&quot;wlwmanifest&quot; href=&quot;https://www.cnblogs.com/WAMonster/wlwmanifest.xml&quot; /&gt;
+
+&lt;script type=&quot;application/ld&amp;#x2B;json&quot;&gt;
+&#123;
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;BlogPosting&quot;,
+  &quot;@id&quot;: &quot;https://www.cnblogs.com/WAMonster/p/10118934.html&quot;,
+  &quot;headline&quot;: &quot;莫队算法——从入门到黑题&quot;,
+  &quot;description&quot;: &quot;~~众所周知~~，莫队是由莫涛大神提出的，一种~~玄学毒瘤暴力骗分~~区间操作算法，它以简短的框架、~~简单易记的板子~~和优秀的复杂度闻名于世。然而由于莫队算法应用的毒瘤，很多可做的莫队模板题都有着较高的难度评级，令很多初学者望而却步。然而，如果你真正理解了莫队的算法原理，那么它用起来还是很简单的&quot;,
+  &quot;image&quot;: [
+    
+  ],
+  &quot;author&quot;: &#123;
+    &quot;@type&quot;: &quot;Person&quot;,
+    &quot;@id&quot;: &quot;https://www.cnblogs.com/WAMonster/&quot;,
+    &quot;name&quot;: &quot;WAMonster&quot;,
+    &quot;url&quot;: &quot;https://www.cnblogs.com/WAMonster/&quot;
+  &#125;,
+  &quot;publisher&quot;: &#123;
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;@id&quot;: &quot;https://www.cnblogs.com/&quot;,
+    &quot;name&quot;: &quot;博客园&quot;,
+    &quot;url&quot;: &quot;https://www.cnblogs.com/&quot;
+  &#125;,
+  &quot;datePublished&quot;: &quot;2018-12-14T19:32:00.0000000&amp;#x2B;08:00&quot;,
+  &quot;dateModified&quot;: &quot;2022-08-26T10:21:00.0000000&amp;#x2B;08:00&quot;,
+  &quot;wordCount&quot;: &quot;26872&quot;,
+  &quot;isPartOf&quot;: &#123;
+    &quot;@type&quot;: &quot;Blog&quot;,
+    &quot;@id&quot;: &quot;https://www.cnblogs.com/WAMonster/&quot;,
+    &quot;name&quot;: &quot;WAMonster&quot;,
+    &quot;publisher&quot;: &#123;
+      &quot;@type&quot;: &quot;Organization&quot;,
+      &quot;@id&quot;: &quot;https://www.cnblogs.com/&quot;,
+      &quot;name&quot;: &quot;博客园&quot;
+    &#125;
+  &#125;
+&#125;
+&lt;/script&gt;
+
+&lt;script&gt;
+    var currentBlogId = 476306;
+    var currentBlogApp = 'WAMonster';
+    var isLogined = false;
+    var isBlogOwner = false;
+    window.isCorp = false;
+    window.skinName = 'SimpleMemory';
+    var visitorUserId = '';
+    window.hasCustomScript = true;
+    window.cb_enable_mathjax = true;
+    window.mathEngine = 0;
+    window.codeHighlightEngine = 1;
+    window.enableCodeLineNumber = false;
+    window.codeHighlightTheme = 'cnblogs';
+    window.darkModeCodeHighlightTheme = 'vs2015';
+    window.isDarkCodeHighlightTheme = false;
+    window.isDarkModeCodeHighlightThemeDark = true;
+    window.isDisableCodeHighlighter = false;
+    window.enableCodeThemeTypeFollowSystem = false;
+    window.enableMacStyleCodeBlock = false;        
+&lt;/script&gt;
+    &lt;script&gt;
+        window.currentPostId = 10118934;
+        window.currentPostDateAdded = '2018-12-14 19:32';
+    &lt;/script&gt;
+&lt;script src=&quot;https://assets.cnblogs.com/scripts/jquery-3.3.1.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn-www.cnblogs.com/js/blog-common.min.js?v=xxHJ9Vr65Va3mfhds4HybZZMdMeYELwMT6dOtue40Ww&quot;&gt;&lt;/script&gt;
+    &lt;script&gt;updateCustomBlogReferrer();&lt;/script&gt;
+</code></pre>
+</head>
+<body class="skin-simplememory no-navbar mathjax2">
+    <a name="top"></a>
+    <div id="top_nav" class="navbar forpc navbar-custom">
+        <nav id="nav_main" class="navbar-main">
+            <ul id="nav_left" class="navbar-list navbar-left">
+                <li class="navbar-branding">
+                    <a target="_blank" rel="noopener" href="https://www.cnblogs.com/" title="开发者的网上家园" role="banner">
+                        <img src="//assets.cnblogs.com/logo.svg" alt="博客园logo" />
+                    </a>
+                </li>
+                <li><a target="_blank" rel="noopener" href="https://cnblogs.vip/">会员</a></li>
+                <li><a target="_blank" rel="noopener" href="https://cnblogs.vip/store">周边</a></li>
+                <li><a target="_blank" rel="noopener" href="https://news.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-news')">新闻</a></li>
+                <li><a target="_blank" rel="noopener" href="https://q.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-q')">博问</a></li>
+                <li><a target="_blank" rel="noopener" href="https://ing.cnblogs.com/" onclick="countClicks('nav', 'skin-navbar-ing')">闪存</a></li>                
+                <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cmt/p/19316348">赞助商</a></li>
+                <li><a href="https://youclaw.dev/" target="_blank" onclick="countClicks('nav', 'skin-navbar-youclaw')">YouClaw</a></li>
+            </ul>
+            <ul id="nav_right" class="navbar-list navbar-right">
+                <li>
+                    <form id="zzk_search" class="navbar-search dropdown" action="https://zzk.cnblogs.com/s" method="get" role="search">
+                        <input name="w" id="zzk_search_input" placeholder="代码改变世界" type="search" tabindex="3" autocomplete="off" />
+                        <button id="zzk_search_button" onclick="window.navbarSearchManager.triggerActiveOption()">
+                            <img id="search_icon" class="focus-hidden" src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                            <img class="hidden focus-visible" src="//assets.cnblogs.com/icons/enter.svg" alt="搜索" />
+                        </button>
+                        <ul id="navbar_search_options" class="dropdown-menu quick-search-menu">
+                            <li tabindex="0" class="active" onclick="zzkSearch(event, document.getElementById('zzk_search_input').value)">
+                                <div class="keyword-wrapper">
+                                    <img src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                                    <div class="keyword"></div>
+                                </div>
+                                <span class="search-area">所有博客</span>
+                            </li>
+                                    <li tabindex="1" onclick="zzkBlogSearch(event, 'WAMonster', document.getElementById('zzk_search_input').value)">
+                                        <div class="keyword-wrapper">
+                                            <img src="//assets.cnblogs.com/icons/search.svg" alt="搜索" />
+                                            <div class="keyword"></div>
+                                        </div>
+                                        <span class="search-area">当前博客</span>
+                                    </li>
+                        </ul>
+                    </form>
+                </li>
+                <li id="navbar_login_status" class="navbar-list">
+                    <a class="navbar-user-info navbar-blog" target="_blank" rel="noopener" href="https://i.cnblogs.com/EditPosts.aspx?opt=1" alt="写随笔" title="写随笔">
+                        <img id="new_post_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/newpost.svg" alt="写随笔" />
+                    </a>
+                    <a id="navblog-myblog-icon" class="navbar-user-info navbar-blog" target="_blank" rel="noopener" href="https://www.cnblogs.com/my" alt="我的博客" title="我的博客">
+                        <img id="myblog_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/myblog.svg" alt="我的博客" />
+                    </a>
+                    <a class="navbar-user-info navbar-message navbar-icon-wrapper" target="_blank" rel="noopener" href="https://msg.cnblogs.com/" alt="短消息" title="短消息">
+                        <img id="msg_icon" class="navbar-icon" src="//assets.cnblogs.com/icons/message.svg" alt="短消息" />
+                        <span id="msg_count" style="display: none"></span>
+                    </a>
+                    <a id="navbar_lite_mode_indicator" data-current-page="blog" style="display: none" href="javascript:void(0)" alt="简洁模式" title="简洁模式启用，您在访问他人博客时会使用简洁款皮肤展示">
+                        <img class="navbar-icon" src="//assets.cnblogs.com/icons/lite-mode-on.svg" alt="简洁模式" />
+                    </a>
+                    <div id="user_info" class="navbar-user-info dropdown">
+                        <a class="dropdown-button" target="_blank" rel="noopener" href="https://home.cnblogs.com/">
+                            <img id="user_icon" class="navbar-avatar" src="//assets.cnblogs.com/icons/avatar-default.svg" alt="用户头像" />
+                        </a>
+                        <div class="dropdown-menu">
+                            <a id="navblog-myblog-text" target="_blank" rel="noopener" href="https://www.cnblogs.com/my">我的博客</a>
+                            <a target="_blank" rel="noopener" href="https://home.cnblogs.com/">我的园子</a>
+                            <a target="_blank" rel="noopener" href="https://account.cnblogs.com/settings/account">账号设置</a>
+                            <a target="_blank" rel="noopener" href="https://vip.cnblogs.com/my">会员中心</a>
+                            <a href="javascript:void(0)" id="navbar_lite_mode_toggle" title="简洁模式会使用简洁款皮肤显示所有博客">
+    简洁模式 <span id="navbar_lite_mode_spinner" class="hide">...</span>
+</a>
+<pre><code>                        &lt;a href=&quot;javascript:void(0)&quot; onclick=&quot;account.logout();&quot;&gt;退出登录&lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;a class=&quot;navbar-anonymous&quot; href=&quot;https://account.cnblogs.com/signup&quot;&gt;注册&lt;/a&gt;
+                &lt;a class=&quot;navbar-anonymous&quot; href=&quot;javascript:void(0);&quot; onclick=&quot;account.login()&quot;&gt;登录&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;page_begin_html&quot;&gt;
+    &lt;script&gt;  
+</code></pre>
+<p>// 浏览器标题切换<br>
+var OriginTitile = document.title;    // 保存之前页面标题<br>
+var titleTime;<br>
+document.addEventListener(‘visibilitychange’, function(){<br>
+if (document.hidden){<br>
+document.title =‘你不要我了么o(&gt;﹏&lt;)oqwq’;  // 切出文字<br>
+clearTimeout(titleTime);<br>
+}else{<br>
+document.title = ‘欢迎回来\(≧▽≦)/qwq’;  // 切入文字<br>
+titleTime = setTimeout(function() {<br>
+document.title = OriginTitile;<br>
+}, 1000); // 2秒后恢复原标题<br>
+}<br>
+});<br>
+</script><br>
+</div></p>
+<pre><code>&lt;div id=&quot;home&quot;&gt;
+</code></pre>
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" target="_blank" rel="noopener" href="https://www.cnblogs.com/WAMonster/"><img id="blogLogo" src="/skins/custom/images/logo.gif" alt="返回主页" /></a>		
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" target="_blank" rel="noopener" href="https://www.cnblogs.com/WAMonster">WAMonster</a>
+</h1>
+<h2>終末なにしてますか？忙しいですか？救ってもらっていいですか？</h2>
+<pre><code>&lt;/div&gt;
+&lt;div id=&quot;navigator&quot;&gt;
+</code></pre>
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" target="_blank" rel="noopener" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" target="_blank" rel="noopener" href="https://www.cnblogs.com/WAMonster/">
+首页</a>
+</li>
+<li>
+<a id="blog_nav_newpost" class="menu" target="_blank" rel="noopener" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">
+新随笔</a>
+</li>
+<li>
+<a id="blog_nav_contact" class="menu" target="_blank" rel="noopener" href="https://msg.cnblogs.com/send/WAMonster">
+联系</a></li>
+<li>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" target="_blank" rel="noopener" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+<pre><code>	&lt;div class=&quot;blogStats&quot;&gt;
+		&lt;div id=&quot;blog_stats_place_holder&quot;&gt;&lt;script&gt;loadBlogStats();&lt;/script&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+<pre><code>&lt;div id=&quot;topics&quot;&gt;
+    &lt;div class=&quot;post&quot;&gt;
+        &lt;h1 class = &quot;postTitle&quot;&gt;
+            &lt;a id=&quot;cb_post_title_url&quot; class=&quot;postTitle2 vertical-middle&quot; href=&quot;https://www.cnblogs.com/WAMonster/p/10118934.html&quot; title=&quot;发布于 2018-12-14 19:32&quot;&gt;
+&lt;span role=&quot;heading&quot; aria-level=&quot;2&quot;&gt;莫队算法——从入门到黑题&lt;/span&gt;
+</code></pre>
+</a>
+<pre><code>        &lt;/h1&gt;
+        &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;postBody&quot;&gt;
+                &lt;div id=&quot;cnblogs_post_description&quot; style=&quot;display: none&quot;&gt;
+    
+    一篇关于莫队的小随笔。
+&lt;/div&gt;
+</code></pre>
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+<h3 id="众所周知莫队是由莫涛大神提出的一种玄学毒瘤暴力骗分区间操作算法它以简短的框架简单易记的板子和优秀的复杂度闻名于世然而由于莫队算法应用的毒瘤很多可做的莫队模板题都有着较高的难度评级令很多初学者望而却步然而如果你真正理解了莫队的算法原理那么它用起来还是很简单的当然某些套左套右的毒瘤除外"><s>众所周知</s>，莫队是由莫涛大神提出的，一种<s>玄学毒瘤暴力骗分</s>区间操作算法，它以简短的框架、<s>简单易记的板子</s>和优秀的复杂度闻名于世。然而由于莫队算法应用的毒瘤，很多可做的莫队模板题都有着较高的难度评级，令很多初学者望而却步。然而，如果你真正理解了莫队的算法原理，那么它用起来还是很简单的。<s>当然某些套左套右的毒瘤除外</s></h3>
+<hr>
+<h1 id="0前置芝士">0、前置芝士：</h1>
+<h4 id="莫队算法还是比较独立的不过你还是得了解了解以下的一些知识">莫队算法还是比较独立的。不过你还是得了解了解以下的一些知识：</h4>
+<p><span class="math inline">\(1\)</span>、分块的基本思想（开根号等）</p>
+<p><span class="math inline">\(2\)</span>、STL中<code>sort</code>的用法（手写cmp函数或重载运算符实现结构体的多关键字排序）</p>
+<p><span class="math inline">\(3\)</span>、基(du)础(liu)的卡常技巧（包含<code>#pragma GCC optimize</code>系列）</p>
+<p><span class="math inline">\(4*\)</span>、倍增/树剖 求LCA（树上莫队所需）</p>
+<p><span class="math inline">\(5*\)</span>、数值离散化（用于应付很多题目）</p>
+<h4 id="至此全部完毕撒花雾">至此全部完毕。撒花~~（雾</h4>
+<h4 id="诶别走啊qwq我可不是在劝退qwq如果你认为自己不懂这些东西也没关系往下看吧qwq">诶，别走啊qwq，我可不是在劝退qwq，如果你认为自己不懂这些东西也没关系，往下看吧qwq</h4>
+<hr>
+<h1 id="1莫队算法是个啥">1、莫队算法是个啥</h1>
+<h4 id="来历">来历：</h4>
+<p>前面已经介绍过了（逃</p>
+<p>有兴趣的同学可以看一下<a href="https://www.zhihu.com/people/mythly/activities" target="_blank" rel="noopener nofollow">莫涛大神的知乎</a></p>
+<h2 id="然而这个算法到底是用来搞什么操作的呢我们先看个例题">然而这个算法到底是用来搞什么操作的呢？我们先看个例题：</h2>
+<h3 id="luogu-p1972-sdoi2009hh的项链"><a href="https://www.luogu.org/problemnew/show/P1972" target="_blank" rel="noopener nofollow">Luogu P1972 [SDOI2009]HH的项链</a></h3>
+<h4 id="题目描述">题目描述</h4>
+<p>HH 有一串由各种漂亮的贝壳组成的项链。HH 相信不同的贝壳会带来好运，所以每次散步完后，他都会随意取出一段贝壳，思考它们所表达的含义。HH 不断地收集新的贝壳，因此，他的项链变得越来越长。有一天，他突然提出了一个问题：某一段贝壳中，包含了多少种不同的贝壳？这个问题很难回答……因为项链实在是太长了。于是，他只好求助睿智的你，来解决这个问题。</p>
+<h4 id="输入输出格式">输入输出格式</h4>
+<h4 id="输入格式">输入格式：</h4>
+<p>第一行：一个整数N，表示项链的长度。</p>
+<p>第二行：N 个整数，表示依次表示项链中贝壳的编号（编号为0 到1000000 之间的整数）。</p>
+<p>第三行：一个整数M，表示HH 询问的个数。</p>
+<p>接下来M 行：每行两个整数，L 和R（1 ≤ L ≤ R ≤ N），表示询问的区间。</p>
+<h4 id="输出格式">输出格式：</h4>
+<p>M 行，每行一个整数，依次表示询问对应的答案。</p>
+<h4 id="输入输出样例">输入输出样例</h4>
+<h4 id="输入样例1">输入样例#1：</h4>
+<pre><code>6
+1 2 3 4 3 5
+3
+1 2
+3 5
+2 6
+</code></pre>
+<h4 id="输出样例1">输出样例#1：</h4>
+<pre><code>2
+2
+4
+</code></pre>
+<h4 id="说明">说明</h4>
+<h4 id="数据范围">数据范围：</h4>
+<p>对于100%的数据，N &lt;= 500000，M &lt;= 500000。</p>
+<hr>
+<p>题意简明易懂：给你一个长度不大于<span class="math inline">\(n≤5×10^5\)</span>的序列，其中数值都小于等于<span class="math inline">\(10^6\)</span>，有<span class="math inline">\(m≤5×10^5\)</span>次询问，每次询问区间<span class="math inline">\([l,r]\)</span>中数值个数（也就是去重后数字的个数）。</p>
+<h3 id="不过这个例题卡了莫队所以请左转数据弱化版sp3267-dquery---d-query">不过这个例题卡了莫队，所以请左转数据弱化版：<a href="https://www.luogu.org/problemnew/show/SP3267" target="_blank" rel="noopener nofollow">SP3267 DQUERY - D-query</a></h3>
+<p>题目到手，我们开始分析本题的算法。这题最简单做法无非暴力——用一个<span class="math inline">\(cnt\)</span>数组记录每个数值出现的次数，再暴力枚举<span class="math inline">\(l\)</span>到<span class="math inline">\(r\)</span>统计次数，最后再扫一遍cnt数组，统计<span class="math inline">\(cnt\)</span>不为零的数值个数，输出答案即可。设最大数值为<span class="math inline">\(s\)</span>，那么这样做的复杂度为<span class="math inline">\(O(m(n+s))∽O(n^2)\)</span>，对于本题实在跑不起。</p>
+<h3 id="我们可以尝试优化一下">我们可以尝试优化一下：</h3>
+<h4 id="优化1每次枚举到一个数值增加出现次数时判断一下是否为0如果为0则这个数值之前没有出现过现在出现了数值数当然要1反之在从区间中删除后也判断一下是否为0如果为0数值总数-1这样我们优化掉了一个但还是跑不起">优化1：每次枚举到一个数值<span class="math inline">\(num\)</span>，增加出现次数时判断一下<span class="math inline">\(cnt_{num}\)</span>是否为0，如果为0，则这个数值之前没有出现过，现在出现了，数值数当然要+1。反之在从区间中删除<span class="math inline">\(num\)</span>后也判断一下<span class="math inline">\(cnt_{num}\)</span>是否为0，如果为0数值总数-1。这样我们优化掉了一个<span class="math inline">\(O(ms)\)</span>，但还是跑不起。</h4>
+<h4 id="优化2我们弄两个指针---每次询问不直接枚举而是移动---指针到询问的区间直到与询问区间重合在统计答案时我们也只在两个指针处加减然后我们就可以用优化1中的方法快速地统计答案啦">优化2：我们弄两个指针 <span class="math inline">\(l\)</span> 、<span class="math inline">\(r\)</span> ，每次询问不直接枚举，而是移动 <span class="math inline">\(l\)</span> 、<span class="math inline">\(r\)</span> 指针到询问的区间，直到<span class="math inline">\([l,r]\)</span>与询问区间重合。在统计答案时，我们也只在两个指针处加减<span class="math inline">\(cnt\)</span>，然后我们就可以用优化1中的方法快速地统计答案啦<span class="math inline">\(qwq\)</span>！</h4>
+<hr>
+<p>优化2具体步骤如下：</p>
+<p>假设这个序列是这样子的：（其中<span class="math inline">\(Q1\)</span>、<span class="math inline">\(Q2\)</span>是询问区间）</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214111957440-289670786.jpg" alt="" loading="lazy"></p>
+<p>我们初始化<span class="math inline">\(l=1\)</span>、<span class="math inline">\(r=0\)</span>（如果<span class="math inline">\(l=0\)</span>，那么我们还需要删除一个数值<span class="math inline">\(0\)</span>，使其出现次数变成-1，导致一些奇奇怪怪错误），如下图（由于画图软件中<span class="math inline">\(l\)</span>和<span class="math inline">\(1\)</span>看不出区别，我只好在图中使用<span class="math inline">\(L\)</span>和<span class="math inline">\(R\)</span>来表示qwq）：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214112312924-142905583.jpg" alt="" loading="lazy"></p>
+<p>我们发现 <span class="math inline">\(l\)</span> 已经是第一个查询区间的左端点，无需移动。现在我们将 <span class="math inline">\(r\)</span> 右移一位，发现新数值1：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132130120-1554450961.jpg" alt="" loading="lazy"></p>
+<p><span class="math inline">\(r\)</span> 继续右移，发现新数值2：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132211435-482551090.jpg" alt="" loading="lazy"></p>
+<p>继续右移，发现新数值4：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132245702-439750869.jpg" alt="" loading="lazy"></p>
+<p>当 <span class="math inline">\(r\)</span> 再次右移时，发现此时的新位置中的数值2出现过，数值总数不增：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132410275-1972965271.jpg" alt="" loading="lazy"></p>
+<p>接下来是两个7，由于7没出现过，所以总数+1：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132450055-1521044095.jpg" alt="" loading="lazy"></p>
+<p>继续右移发现3：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132530925-1512284326.jpg" alt="" loading="lazy"></p>
+<p>继续右移，但接下来的两个数值都出现过，总数不增。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214132620562-1439006141.jpg" alt="" loading="lazy"></p>
+<h3 id="至此区间所有数值统计完成结果为5">至此，<span class="math inline">\(Q1\)</span>区间所有数值统计完成，结果为5。</h3>
+<h3 id="现在我们又看一下区间的情况">现在我们又看一下<span class="math inline">\(Q2\)</span>区间的情况：</h3>
+<p>首先我们发现， <span class="math inline">\(l\)</span> 指针在<span class="math inline">\(Q2\)</span>区间左端点的左边，我们需要将它右移，同时删除原位置的统计信息。</p>
+<p>将<span class="math inline">\(l\)</span>右移一位到位置2，删除位置1处的数值1。但由于操作后的区间中仍然有数值1存在，所以总数不减。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214134652168-9341337.jpg" alt="" loading="lazy"></p>
+<p>接下来的两位也是如此，直接删掉即可，总数不减。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214134950911-245687742.jpg" alt="" loading="lazy"></p>
+<p>当 <span class="math inline">\(l\)</span> 指针继续右移时，发现一个问题：原位置上的数值是2，但是删除这个2后，此时的区间<span class="math inline">\([l,r]\)</span>中再也没有2了（回顾之前的内容，这种情况就是删除后<span class="math inline">\(cnt_2 = 0\)</span>），那么总数就要-1，因为有一个数值已经不在该区间内出现了，而本题需要统计的就是区间内的数值个数。此步骤如下图：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214141945700-1377126698.jpg" alt="" loading="lazy"></p>
+<p>再右移一位，发现无需减总数，而且<span class="math inline">\(l\)</span>已经移到了<span class="math inline">\(Q2\)</span>区间的左端点，无需继续移下去（如下图）。当然 <span class="math inline">\(r\)</span> 还是要移动的，只不过没图了，我相信大家应该知道做法的<span class="math inline">\(qwq\)</span>。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214142409184-977743178.jpg" alt="" loading="lazy"></p>
+<p><span class="math inline">\(r\)</span>的最后位置：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214142435118-121917103.jpg" alt="" loading="lazy"></p>
+<h4 id="至于删除操作也是一样的做法只不过要先删除当前位置的数值才能移动指针">至于删除操作，也是一样的做法，只不过要先删除当前位置的数值，才能移动指针。</h4>
+<p>有了以上的内容，这段代码就可以很容易写出啦qwq：</p>
+<pre><code class="language-cpp">int aa[maxn], cnt[maxn], l = 1, r = 0, now = 0; //每个位置的数值、每个数值的计数器、左指针、右指针、当前统计结果（总数）
+void add(int pos) &#123;//添加一个数
+    if(!cnt[aa[pos]]) ++now;//在区间中新出现，总数要+1
+    ++cnt[aa[pos]];
+&#125;
+void del(int pos) &#123;//删除一个数
+    --cnt[aa[pos]];
+    if(!cnt[aa[pos]]) --now;//在区间中不再出现，总数要-1
+&#125;
+void work() &#123;//优化2主过程
+    for(int i = 1; i &lt;= q; ++i) &#123;//对于每次询问
+        int ql, qr;
+        scanf("%d%d", &amp;ql, &amp;qr);//输入询问的区间
+        while(l &lt; ql) del(l++);//如左指针在查询区间左方，左指针向右移直到与查询区间左端点重合
+        while(l &gt; ql) add(--l);//如左指针在查询区间左端点右方，左指针左移
+        while(r &lt; qr) add(++r);//右指针在查询区间右端点左方，右指针右移
+        while(r &gt; qr) del(r--);//否则左移
+        printf("%d\n", now);//输出统计结果
+    &#125;
+&#125;
+</code></pre>
+<h3 id="优化2完结撒花ヽノ">优化2完结撒花✿✿ヽ(°▽°)ノ✿<span class="math inline">\(qwq\)</span></h3>
+<hr>
+<p>诶等等，什么叫做“优化2完结撒花”？？！</p>
+<p>难道这不就是莫队吗？？！</p>
+<p>我会很严肃的告诉你：这还不是莫队，但是看到这里，你已经把莫队的基础打好了。还请继续看下去：</p>
+<hr>
+<p>刚刚的优化2，在普通的情况下表现很好，但是如果区间是这样：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181214145508773-749403260.jpg" alt="" loading="lazy"></p>
+<p>优化2基本上就萎了<span class="math inline">\(qwq\)</span>。此时<span class="math inline">\(l\)</span>、<span class="math inline">\(r\)</span>指针在整个序列中移来移去，从头到尾，又从尾到头。我们发现左右指针最坏情况下均移动了<span class="math inline">\(O(nm)\)</span>次，<span class="math inline">\(O(1)\)</span>更新答案，总时间复杂度仍然是<span class="math inline">\(O(nm)\)</span>，在最坏情况下跑得比慢的一批的优化1还慢。尽管如此，我们还是可以继续优化。</p>
+<h4 id="继续优化怎么优化">继续优化？怎么优化？</h4>
+<p>我们可以考虑把所有查询区间按左端点排序，从而使左指针最多移动<span class="math inline">\(O(n)\)</span>次。但这样的话右端点又是无序的，右指针又让整体复杂度打回原形。看上去，这个复杂度已经不能再优化了。在这个时候，<strong>莫队</strong>算法的出现，给无数OIer带来了光明（雾）。</p>
+<h3 id="至此你可以把莫队算法理解为一种暴力优雅而不失复杂度的暴力只不过它的剪枝极为巧妙达到了理想的效果">至此，你可以把莫队算法理解为一种暴力，优雅<s>而不失复杂度</s>的暴力，只不过它的剪枝极为巧妙，达到了理想的效果。</h3>
+<hr>
+<h1 id="2莫队算法的基础实现">2、莫队算法的基础实现</h1>
+<h2 id="1预处理">1、预处理</h2>
+<p>莫队算法优化的核心是分块和排序。我们将大小为<span class="math inline">\(n\)</span>的序列分为<span class="math inline">\(\sqrt{n}\)</span>个块，从<span class="math inline">\(1\)</span>到<span class="math inline">\(\sqrt{n}\)</span>编号，然后根据这个对查询区间进行排序。一种方法是把查询区间按照<strong>左端点所在块的序号</strong>排个序，如果左端点所在块相同，再按<strong>右端点</strong>排序。排完序后我们再进行左右指针跳来跳去的操作，虽然看似没多大用，但带来的优化实际上极大。</p>
+<hr>
+<h3 id="那么这样做的实际复杂度是多少呢下面瞎胡乱搞证明它的复杂度是">那么这样做的实际复杂度是多少呢？下面<s>瞎胡乱搞</s>证明它的复杂度是<span class="math inline">\(O(n\sqrt{n})\)</span>：</h3>
+<h4 id="0区间排序">0.区间排序</h4>
+<p>建个结构体，用<code>sort</code>跑一遍即可。平均复杂度<span class="math inline">\(O(n\log n)\)</span>。</p>
+<h4 id="1左指针的移动">1.左指针的移动</h4>
+<p>设每个块 <span class="math inline">\(i\)</span> 中分布有 <span class="math inline">\(x_i\)</span>个左端点，由于莫队的添加、删除操作复杂度为<span class="math inline">\(O(1)\)</span>，那么处理块<span class="math inline">\(i\)</span>的最坏时间复杂度是<span class="math inline">\(O(x_i\sqrt{n})\)</span>，指针跨越整块的时间复杂度为O(\sqrt{n})，最坏需要跨越<span class="math inline">\(n\)</span>次；总复杂度<span class="math inline">\(O(\sum x_i \sqrt{n}+n\sqrt{n})=O(n\sqrt{n})\)</span>。</p>
+<h4 id="2右指针的移动">2.右指针的移动</h4>
+<p>设每个块 <span class="math inline">\(i\)</span> 中分布有 <span class="math inline">\(x_i\)</span>个左端点，由于左端点同块的区间右端点有序，那么对于这<span class="math inline">\(x_i\)</span>个区间，右端点最坏只需总共<span class="math inline">\(O(n)\)</span>的时间跳（最坏需跳完整个序列），总共<span class="math inline">\(\sqrt{n}\)</span>个块，总复杂度<span class="math inline">\(O(n\sqrt{n})\)</span>；</p>
+<h3 id="至此可得出莫队算法的总时间复杂度为">至此可得出，莫队算法的总时间复杂度为<span class="math inline">\(O(n\sqrt{n}) + O(n\sqrt{n}) + O(n\log n) = O(n\sqrt{n})\)</span>。</h3>
+<hr>
+<p>可见，经过一番看似鸡肋的排序之后，这个算法的复杂度猛降了一个根号之多，对于一些不需要写大常数莫队而数据范围巨大的题目来说（如例题），整整一个根号的提升意味着运行时间质的飞跃。</p>
+<p>不过经过排序打乱原序之后，这个算法就变成了典型的离线算法，而且这种算法不支持修改。如果遇到强制在线的题目，还要另寻他法。</p>
+<hr>
+<h3 id="参考代码">参考代码：</h3>
+<p>查询区间结构体的排序函数：</p>
+<pre><code class="language-cpp">int cmp(query a, query b) &#123;
+    return belong[a.l] == belong[b.l] ? a.r &lt; b.r : belong[a.l] &lt; belong[b.l];
+&#125;
+</code></pre>
+<hr>
+<h2 id="2定策略">2、定策略</h2>
+<p>虽说莫队实质是优化后的暴力，但有时候，有些用暴力枚举很容易处理的数据用莫队并不容易处理（只能在左右指针处更新），这时候就要我们定好一个更新策略。<br>
+一般来说，我们只要找到指针移动一位以后，统计数据与当前数据的差值，找出规律（可以用数学方法或打表），然后每次移动时用这个规律更新就行啦qwq。至于例题……在后面会有哒qwq！</p>
+<h2 id="3码代码与查错">3、码代码与查错</h2>
+<p>莫队代码不长（或者说是<strong>很短</strong>），但很容易写错一些细节。比如自加自减运算符的优先级问题、排序关键字问题、分块大小与sqrt精度问题、还有某些题目中用到的离散化的锅。所以每次码完莫队都别先测样例（甚至可以先不编译），先静态查错一阵，真的可以帮助你大大减少错误的发生。</p>
+<h1 id="后面两点都特别简单但是没有特定的模式其重要性不容小觑">后面两点都特别简单但是没有特定的模式，其重要性不容小觑。</h1>
+<hr>
+<h1 id="3重点莫队的玄学卡常技巧">3、（重点）莫队的<s>玄学</s>卡常技巧</h1>
+<h2 id="warning以下内容可能引出大贤者模式请谨慎思考">WARNING：以下内容可能引出大贤者模式，请谨慎思考。</h2>
+<h2 id="1pragma-gcc-optimize2">1、#pragma GCC optimize(2)</h2>
+<p><s>可以用实践证明，</s>开了O2的莫队简直跑得飞快，连<span class="math inline">\(1e6\)</span>都能无压力跑过，甚至可以比不开O2的版本快上4~5倍乃至更多。然而部分OI比赛中O2是禁止的，如果不禁O2的话，那还是开着吧qwq</p>
+<p><s>实在不行，就optimize(3)（逃</s></p>
+<h2 id="2莫队玄学奇偶性排序">2、莫队玄学奇偶性排序</h2>
+<h4 id="这个是最玄学的无力吐槽">这个是最玄学的……无力吐槽</h4>
+<p>这个和莫队的主算法有异曲同工之妙……看起来卵用都没有，实际上可以帮你每个点平均优化200ms（可怕）</p>
+<p>主要操作：把查询区间的排序函数</p>
+<pre><code class="language-cpp">int cmp(query a, query b) &#123;
+    return belong[a.l] == belong[b.l] ? a.r &lt; b.r : belong[a.l] &lt; belong[b.l];
+&#125;
+</code></pre>
+<p>二话不说，直接删掉，换成</p>
+<pre><code class="language-cpp">int cmp(query a, query b) &#123;
+	return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : ((belong[a.l] &amp; 1) ? a.r &lt; b.r : a.r &gt; b.r);
+&#125;
+</code></pre>
+<p>也就是说，对于左端点在同一奇数块的区间，右端点按升序排列，反之降序。这个东西也是看着没用，但实际效果显著。</p>
+<p>它的主要原理便是右指针跳完奇数块往回跳时在同一个方向能顺路把偶数块跳完，然后跳完这个偶数块又能顺带把下一个奇数块跳完。理论上主算法运行时间减半，实际情况有所偏差。<s>（不过能优化得很爽就对了）</s></p>
+<h3 id="3移动指针的常数压缩">3、移动指针的常数压缩</h3>
+<p>我们可以根据运算优先级的知识，把这个：</p>
+<pre><code class="language-cpp">void add(int pos) &#123;
+    if(!cnt[aa[pos]]) ++now;
+    ++cnt[aa[pos]];
+&#125;
+void del(int pos) &#123;
+    --cnt[aa[pos]];
+    if(!cnt[aa[pos]]) --now;
+&#125;
+</code></pre>
+<p>和这个：</p>
+<pre><code class="language-cpp">while(l &lt; ql) del(l++);
+while(l &gt; ql) add(--l);
+while(r &lt; qr) add(++r);
+while(r &gt; qr) del(r--);
+</code></pre>
+<p>硬生生压缩成这个：</p>
+<pre><code class="language-cpp">while(l &lt; ql) now -= !--cnt[aa[l++]];
+while(l &gt; ql) now += !cnt[aa[--l]]++;
+while(r &lt; qr) now += !cnt[aa[++r]]++;
+while(r &gt; qr) now -= !--cnt[aa[r--]];
+</code></pre>
+<p>能优化将近200ms<s>（怎么又是这个数字）</s></p>
+<p>而且这个优化看上去满满的不好搞，但实际上很有用。不过用它来优化千万要建立在熟练的基础上，不然会大大增强调试难度，不如不用。</p>
+<h3 id="4手写快读快输">4、手写快读、快输</h3>
+<p>大多数莫队题的输入输出量还是很大的……I/O优化与否，运行时间差异也很大。而且值得注意的是莫队经典题中基本没有输入输出负数的情况，不考虑负数又能优化一点小小的常数。</p>
+<h4 id="卡常部分到此结束撒花ヽノ脑补欢呼音效">卡常部分到此结束，撒花✿✿ヽ(°▽°)ノ✿<s>（脑补欢呼音效）</s></h4>
+<hr>
+<h2 id="讲到现在例题的代码已经不难写出下面给出参考代码">讲到现在，例题的代码已经不难写出。下面给出参考代码：</h2>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+<p>#define maxn 1010000<br>
+#define maxb 1010<br>
+int aa[maxn], cnt[maxn], belong[maxn];<br>
+int n, m, size, bnum, now, ans[maxn];<br>
+struct query &#123;<br>
+int l, r, id;<br>
+&#125; q[maxn];</p>
+<p>int cmp(query a, query b) &#123;<br>
+return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : ((belong[a.l] &amp; 1) ? a.r &lt; b.r : a.r &gt; b.r);<br>
+&#125;<br>
+#define isdigit(x) ((x) &gt;= ‘0’ &amp;&amp; (x) &lt;= ‘9’)<br>
+int read() &#123;<br>
+int res = 0;<br>
+char c = getchar();<br>
+while(!isdigit©) c = getchar();<br>
+while(isdigit©) res = (res &lt;&lt; 1) + (res &lt;&lt; 3) + c - 48, c = getchar();<br>
+return res;<br>
+&#125;<br>
+void printi(int x) &#123;<br>
+if(x / 10) printi(x / 10);<br>
+putchar(x % 10 + ‘0’);<br>
+&#125;</p>
+<p>int main() &#123;<br>
+scanf(“%d”, &amp;n);<br>
+size = sqrt(n);<br>
+bnum = ceil((double)n / size);<br>
+for(int i = 1; i &lt;= bnum; ++i)<br>
+for(int j = (i - 1) * size + 1; j &lt;= i * size; ++j) &#123;<br>
+belong[j] = i;<br>
+&#125;<br>
+for(int i = 1; i &lt;= n; ++i) aa[i] = read();<br>
+m = read();<br>
+for(int i = 1; i &lt;= m; ++i) &#123;<br>
+q[i].l = read(), q[i].r = read();<br>
+q[i].id = i;<br>
+&#125;<br>
+sort(q + 1, q + m + 1, cmp);<br>
+int l = 1, r = 0;<br>
+for(int i = 1; i &lt;= m; ++i) &#123;<br>
+int ql = q[i].l, qr = q[i].r;<br>
+while(l &lt; ql) now -= !–cnt[aa[l++]];<br>
+while(l &gt; ql) now += !cnt[aa[–l]]++;<br>
+while(r &lt; qr) now += !cnt[aa[++r]]++;<br>
+while(r &gt; qr) now -= !–cnt[aa[r–]];<br>
+ans[q[i].id] = now;<br>
+&#125;<br>
+for(int i = 1; i &lt;= m; ++i) printi(ans[i]), putchar(‘\n’);<br>
+return 0;<br>
+&#125;<br>
+</code></pre></p>
+<hr>
+<h1 id="4莫队算法的扩展带修改的莫队">4、莫队算法的扩展——带修改的莫队</h1>
+<h3 id="抛出个例题luogu-p1903-国家集训队数颜色--维护队列">抛出个例题：<a href="https://www.luogu.org/problemnew/show/P1903" target="_blank" rel="noopener nofollow">Luogu P1903 [国家集训队]数颜色 / 维护队列</a></h3>
+<h4 id="题目描述-1">题目描述</h4>
+<p>墨墨购买了一套N支彩色画笔（其中有些颜色可能相同），摆成一排，你需要回答墨墨的提问。墨墨会向你发布如下指令：</p>
+<p>1、 <span class="math inline">\(Q\)</span> <span class="math inline">\(L\)</span> <span class="math inline">\(R\)</span>代表询问你从第<span class="math inline">\(L\)</span>支画笔到第<span class="math inline">\(R\)</span>支画笔中共有几种不同颜色的画笔。</p>
+<p>2、 <span class="math inline">\(R\)</span> <span class="math inline">\(P\)</span> <span class="math inline">\(Col\)</span> 把第<span class="math inline">\(P\)</span>支画笔替换为颜色<span class="math inline">\(Col\)</span>。</p>
+<p>为了满足墨墨的要求，你知道你需要干什么了吗？</p>
+<h4 id="输入输出格式-1">输入输出格式</h4>
+<h4 id="输入格式-1">输入格式：</h4>
+<p>第1行两个整数<span class="math inline">\(N\)</span>，<span class="math inline">\(M\)</span>，分别代表初始画笔的数量以及墨墨会做的事情的个数。</p>
+<p>第2行N个整数，分别代表初始画笔排中第i支画笔的颜色。</p>
+<p>第3行到第2+M行，每行分别代表墨墨会做的一件事情，格式见题干部分。</p>
+<h4 id="输出格式-1">输出格式：</h4>
+<p>对于每一个Query的询问，你需要在对应的行中给出一个数字，代表第L支画笔到第R支画笔中共有几种不同颜色的画笔。</p>
+<h4 id="输入输出样例-1">输入输出样例</h4>
+<p>输入样例#1：</p>
+<pre><code>6 5
+1 2 3 4 5 5
+Q 1 4
+Q 2 6
+R 1 2
+Q 1 4
+Q 2 6
+</code></pre>
+<h4 id="输出样例1-1">输出样例#1：</h4>
+<pre><code>4
+4
+3
+4
+</code></pre>
+<hr>
+<h4 id="说明-1">说明</h4>
+<p>对于<span class="math inline">\(100%\)</span>的数据，<span class="math inline">\(N≤50000\)</span>，<span class="math inline">\(M≤50000\)</span>，所有的输入数据中出现的所有整数均大于等于1且不超过<span class="math inline">\(10^6\)</span>。</p>
+<p>前面说过，莫队算法是离线算法，不支持修改，强制在线需要另寻他法。的确，遇到强制在线的题目莫队基本上萎了，但是对于某些允许离线的带修改区间查询来说，莫队还是能大展拳脚的。做法就是把莫队直接加上一维，变为带修莫队。</p>
+<p>那么加上一维什么呢？具体怎么实现？我们的做法是把修改操作编号，称为"时间戳"，<strong>而查询操作的时间戳沿用之前最近的修改操作的时间戳</strong>。跑主算法时定义当前时间戳为 <span class="math inline">\(t\)</span> ，对于每个查询操作，如果当前时间戳相对太大了，说明已进行的修改操作比要求的多，就把之前改的改回来，反之往后改。只有当当前区间和查询区间左右端点、时间戳均重合时，才认定区间完全重合，此时的答案才是本次查询的最终答案。</p>
+<h4 id="通俗地讲就是再弄一指针在修改操作上跳来跳去如果当前修改多了就改回来改少了就改过去直到次数恰当为止">通俗地讲，就是再弄一指针，在修改操作上跳来跳去，如果当前修改多了就改回来，改少了就改过去，直到次数恰当为止。</h4>
+<p>这样，我们当前区间的移动方向从四个（<span class="math inline">\([l-1,r]\)</span>、<span class="math inline">\([l+1,r]\)</span>、<span class="math inline">\([l,r-1]\)</span>、<span class="math inline">\([l,r+1]\)</span>）变成了六个（<span class="math inline">\([l-1,r,t]\)</span>、<span class="math inline">\([l+1,r,t]\)</span>、<span class="math inline">\([l,r-1,t]\)</span>、<span class="math inline">\([l,r+1,t]\)</span>、<span class="math inline">\([l,r,t-1]\)</span>、<span class="math inline">\([l,r,t+1]\)</span>），但是代码并没有增加多少，<s>还是很好背的（雾</s></p>
+<h3 id="带修改莫队的排序">带修改莫队的排序：</h3>
+<p>其实排序的主要方法还是跟普通莫队没两样，只不过是加了个关键字而已。</p>
+<p>排序函数：</p>
+<pre><code class="language-cpp">int cmp(query a, query b) &#123;
+	return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : ((belong[a.r] ^ belong[b.r]) ? belong[a.r] &lt; belong[b.r] : a.time &lt; b.time);
+&#125;
+</code></pre>
+<p>但是实测有时排序写错还会快些。。。也许是评测机的锅吧。</p>
+<h3 id="主算法中的修改操作">主算法中的修改操作</h3>
+<p>修改操作其实也没啥值得注意的，就跟移<span class="math inline">\(l\)</span>、<span class="math inline">\(r\)</span>指针一样，加个对总数的特判就行了。</p>
+<p>不过有个代码长度的小优化——移完 <span class="math inline">\(t\)</span>，做完一处修改后，有可能要改回来，所以我们还要把原值存好备用。但其实我们也可以不存，只要在修改后把修改操作的值和原值<code>swap</code>一下，那么改回来时也只要<code>swap</code>一下，<code>swap</code>两次相当于没搞，就改回来了<span class="math inline">\(qwq\)</span><s>（所以不还是存了嘛）</s></p>
+<h3 id="分块大小和复杂度">分块大小和复杂度</h3>
+<p>有的<span class="math inline">\(dalao\)</span>证明了当块的大小设<span class="math inline">\(\sqrt[4]{n^3t}\)</span>时理论复杂度达到最优，但是小蒟蒻我并不能推出来。不过可以证明，块大小取<span class="math inline">\(n^{\frac{2}{3}}\)</span>优于取<span class="math inline">\(\sqrt{n}\)</span>的情况，总体复杂度<span class="math inline">\(O(n^{\frac{5}{3}})\)</span>。而块大小取<span class="math inline">\(\sqrt{n}\)</span>时会退化成<span class="math inline">\(O(n^2)\)</span>，不建议使用。</p>
+<h3 id="例题参考代码">例题参考代码：</h3>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+#define maxn 50500
+#define maxc 1001000
+int a[maxn], cnt[maxc], ans[maxn], belong[maxn];
+struct query &#123;
+	int l, r, time, id;
+&#125; q[maxn];
+struct modify &#123;
+	int pos, color, last;
+&#125; c[maxn];
+int cntq, cntc, n, m, size, bnum;
+int cmp(query a, query b) &#123;
+	return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : ((belong[a.r] ^ belong[b.r]) ? belong[a.r] &lt; belong[b.r] : a.time &lt; b.time);
+&#125;
+#define isdigit(x) ((x) &gt;= '0' &amp;&amp; (x) &lt;= '9')
+inline int read() &#123;
+	int res = 0;
+	char c = getchar();
+	while(!isdigit(c)) c = getchar();
+	while(isdigit(c)) res = (res &lt;&lt; 1) + (res &lt;&lt; 3) + (c ^ 48), c = getchar();
+	return res;
+&#125;
+int main() &#123;
+	n = read(), m = read();
+	size = pow(n, 2.0 / 3.0);
+	bnum = ceil((double)n / size);
+	for(int i = 1; i &lt;= bnum; ++i) 
+		for(int j = (i - 1) * size + 1; j &lt;= i * size; ++j) belong[j] = i;
+	for(int i = 1; i &lt;= n; ++i) 
+		a[i] = read();
+	for(int i = 1; i &lt;= m; ++i) &#123;
+		char opt[100];
+		scanf("%s", opt);
+		if(opt[0] == 'Q') &#123;
+			q[++cntq].l = read();
+			q[cntq].r = read();
+			q[cntq].time = cntc;
+			q[cntq].id = cntq;
+		&#125;
+		else if(opt[0] == 'R') &#123;
+			c[++cntc].pos = read();
+			c[cntc].color = read();
+		&#125;
+	&#125;
+	sort(q + 1, q + cntq + 1, cmp);
+	int l = 1, r = 0, time = 0, now = 0;
+	for(int i = 1; i &lt;= cntq; ++i) &#123;
+		int ql = q[i].l, qr = q[i].r, qt = q[i].time;
+		while(l &lt; ql) now -= !--cnt[a[l++]];
+		while(l &gt; ql) now += !cnt[a[--l]]++;
+		while(r &lt; qr) now += !cnt[a[++r]]++;
+		while(r &gt; qr) now -= !--cnt[a[r--]];
+		while(time &lt; qt) &#123;
+			++time;
+			if(ql &lt;= c[time].pos &amp;&amp; c[time].pos &lt;= qr) now -= !--cnt[a[c[time].pos]] - !cnt[c[time].color]++;
+			swap(a[c[time].pos], c[time].color);
+		&#125;
+		while(time &gt; qt) &#123;
+			if(ql &lt;= c[time].pos &amp;&amp; c[time].pos &lt;= qr) now -= !--cnt[a[c[time].pos]] - !cnt[c[time].color]++;
+			swap(a[c[time].pos], c[time].color);
+			--time;
+		&#125;
+		ans[q[i].id] = now;
+	&#125;
+	for(int i = 1; i &lt;= cntq; ++i) 
+		printf("%d\n", ans[i]);
+	return 0;
+&#125;
+</code></pre>
+<hr>
+<h1 id="5莫队算法的扩展树上莫队">5、莫队算法的扩展——树上莫队</h1>
+<p>前面我们所使用的莫队都是在一维的序列上进行，即使加了一维的时间轴，但是主题还是一维序列。那么树上统计问题能否用莫队来处理呢？答案是肯定的。</p>
+<p>不要认为这个东西很高级，实际上它还是个序列。</p>
+<h2 id="问题一子树统计">问题一：子树统计</h2>
+<p>子树统计算是这里面最简单的了。在原树上跑一遍dfs序，然后发现一颗子树其实就是里面一段固定区间……</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181215111600163-2041279382.jpg" alt="" loading="lazy"></p>
+<p>边跑dfs边弄子树对应的左右端点即可。</p>
+<p>这里序列的长度=结点的个数。</p>
+<p><s>实际上子树上的统计完全不需要莫队，传个标记就可以<span class="math inline">\(O(nlogn)\)</span>了</s></p>
+<h2 id="问题二路径上的统计">问题二：路径上的统计</h2>
+<h3 id="比如说这个题目sp10707-cot2---count-on-a-tree-ii">比如说这个题目：<a href="https://www.luogu.org/problemnew/show/SP10707" target="_blank" rel="noopener nofollow">SP10707 COT2 - Count on a tree II</a></h3>
+<h4 id="题目描述-2">题目描述</h4>
+<p>给定一个n个节点的树，每个节点表示一个整数，问u到v的路径上有多少个不同的整数。</p>
+<h4 id="输入格式-2">输入格式</h4>
+<p>第一行有两个整数n和m（n＝40000，m＝100000）。</p>
+<p>第二行有n个整数。第i个整数表示第i个节点表示的整数。</p>
+<p>在接下来的n-1行中，每行包含两个整数u v，描述一条边（u，v）。</p>
+<p>在接下来的m行中，每一行包含两个整数u v，询问u到v的路径上有多少个不同的整数。</p>
+<h4 id="输出格式-2">输出格式</h4>
+<p>对于每个询问，输出结果。</p>
+<h4 id="输入输出样例-2">输入输出样例</h4>
+<h4 id="输入样例1-1">输入样例#1：</h4>
+<pre><code>8 2
+105 2 9 3 8 5 7 7
+1 2
+1 3
+1 4
+3 5
+3 6
+3 7
+4 8
+2 5
+7 8
+</code></pre>
+<h4 id="输出样例1-2">输出样例#1：</h4>
+<pre><code>4
+4
+</code></pre>
+<hr>
+<p>这还不简单吗？dfs序一遍找区间……诶？区间呢qwq？</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181215112415809-340311464.jpg" alt="" loading="lazy"></p>
+<p>参照上图，我可以负责地告诉你：普通dfs序是完全不行的（因为区间没有对应关系）。</p>
+<p>但是还好我们有<strong>欧拉序</strong>，这是一种特殊的dfs序，可以解决很多普通dfs序解决不了的问题（就比如我们的树上莫队）。</p>
+<h3 id="那欧拉序有什么特点呢怎么求它">那欧拉序有什么特点呢？怎么求它？</h3>
+<p>还是那张图，我们对它求一遍欧拉序：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181215113053370-1887701954.jpg" alt="" loading="lazy"></p>
+<p>这是个什么东西？！它怎么求得的暂且不谈（不过你也应该已经知道了），先看看它的性质：</p>
+<p>我们看一看每个编号出现的次数——两次，无一例外。再看看它出现的两个位置有什么特点：</p>
+<p>我们以编号<span class="math inline">\(2\)</span>为例，它出现在位置2和9，它中间的编号有<span class="math inline">\(4×2\)</span>、<span class="math inline">\(7×2\)</span>、<span class="math inline">\(5×2\)</span>。</p>
+<p>再观察这棵树，诶，这些编号不都是<span class="math inline">\(2\)</span>的子树上的结点吗？？！</p>
+<p>就这样，我们得出它的一条性质：<strong>树的欧拉序上两个相同编号（设为<span class="math inline">\(x\)</span>）之间的所有编号都出现两次，且都位于<span class="math inline">\(x\)</span>子树上。</strong>（前半句话其实可以由后半句话间接证明）</p>
+<h4 id="它的求法也很简单在刚dfs到一个点时加入序列最后退出时也加入一遍现在知道这个性质的来源了吧qwq">它的求法也很简单，在刚dfs到一个点时加入序列，最后退出时也加入一遍。现在知道这个性质的来源了吧qwq</h4>
+<p>那么为什么用欧拉序可以把路径搬到区间上呢？我们来看一下这张图：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1539583/201812/1539583-20181215141104614-240155201.jpg" alt="" loading="lazy"></p>
+<p>我们在欧拉序中找到路径<span class="math inline">\(1\rightarrow10\)</span>起点（1）终点（10）的位置。我们发现，我们完全可以在找到对应的区间（绿色部分），而由于其中有一些点出现了两次，这些出现了两次的点可以证明不在路径上（路径不会经过一个点两次，而如果只经过一次则不会出现两个相同的编号），所以出现了两次的点我们不予算入。</p>
+<p>那我们尝试找一下<span class="math inline">\(2\rightarrow 6\)</span>对应的区间吧。唔，这还不简单吗，不就是2、4、7……3、6……嗯？1哪去了？1呢？^1可是他们的<span class="math inline">\(lca\)</span>啊！！看来这样单纯的找区间还是不行的，还有其他特殊方法。</p>
+<p>具体做法：设每个点的编号<span class="math inline">\(a\)</span>首次出现的位置<span class="math inline">\(first[a]\)</span>，最后出现的位置为<span class="math inline">\(last[a]\)</span>，那么对于路径<span class="math inline">\(x\rightarrow y\)</span>，设<span class="math inline">\(first[x]&lt;=first[y]\)</span>（不满足则<code>swap</code>，这个操作的意义在于，如果<span class="math inline">\(x\)</span>、<span class="math inline">\(y\)</span>在一条链上，则<span class="math inline">\(x\)</span>一定是<span class="math inline">\(y\)</span>的祖先或等于<span class="math inline">\(y\)</span>），如果<span class="math inline">\(lca(x,y)=x\)</span>，则直接把<span class="math inline">\([first[x],first[y]]\)</span>的区间扯过来用，反之使用<span class="math inline">\([last[x],first[y]]\)</span>区间（为什么不用<span class="math inline">\([first[x],first[y]]\)</span>？因为<span class="math inline">\((first[x],last[x])\)</span>不会在路径上，根据性质，里面的编号都会出现两次，考虑了等于没考虑），但这个区间内不包含<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>的最近公共祖先，查询的时候加上即可。</p>
+<p>注意，这里序列长度为<span class="math inline">\(2×n\)</span>，千万不要在这T了啊……qwq</p>
+<hr>
+<p>做完了这些，树上莫队的其他东西就和普通莫队差不多啦。值得注意的是，我们又可以像上文的带修莫队那样优化代码长度——由于无需考虑的点会出现两次，我们可以弄一个标记数组（标记结点是否被访问），没访问就加，访问过就删，每次操作把标记·异或个1，完美解决所有添加、删除、去双问题。</p>
+<h3 id="例题参考代码-1">例题参考代码：</h3>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+#define maxn 200200
+#define isdigit(x) ((x) &gt;= '0' &amp;&amp; (x) &lt;= '9')
+inline int read() &#123;
+	int res = 0;
+	char c = getchar();
+	while(!isdigit(c)) c = getchar();
+	while(isdigit(c)) res = (res &lt;&lt; 1) + (res &lt;&lt; 3) + (c ^ 48), c = getchar();
+	return res;
+&#125;
+int aa[maxn], cnt[maxn], first[maxn], last[maxn], ans[maxn], belong[maxn], inp[maxn], vis[maxn], ncnt, l = 1, r, now, size, bnum; //莫队相关
+int ord[maxn], val[maxn], head[maxn], depth[maxn], fa[maxn][30], ecnt;
+int n, m;
+struct edge &#123;
+	int to, next;
+&#125; e[maxn];
+void adde(int u, int v) &#123;
+	e[++ecnt] = (edge)&#123;v, head[u]&#125;;
+	head[u] = ecnt;
+	e[++ecnt] = (edge)&#123;u, head[v]&#125;;
+	head[v] = ecnt;
+&#125;
+void dfs(int x) &#123;
+	ord[++ncnt] = x;
+	first[x] = ncnt;
+	for(int k = head[x]; k; k = e[k].next) &#123;
+		int to = e[k].to;
+		if(to == fa[x][0]) continue;
+		depth[to] = depth[x] + 1;
+		fa[to][0] = x;
+		for(int i = 1; (1 &lt;&lt; i) &lt;= depth[to]; ++i) fa[to][i] = fa[fa[to][i - 1]][i - 1];
+		dfs(to);
+	&#125;
+	ord[++ncnt] = x;
+	last[x] = ncnt;
+&#125;
+int getlca(int u, int v) &#123;
+	if(depth[u] &lt; depth[v]) swap(u, v);
+	for(int i = 20; i + 1; --i) 
+		if(depth[u] - (1 &lt;&lt; i) &gt;= depth[v]) u = fa[u][i];
+	if(u == v) return u;
+	for(int i = 20; i + 1; --i)
+		if(fa[u][i] != fa[v][i]) u = fa[u][i], v = fa[v][i];
+	return fa[u][0];
+&#125;
+struct query &#123;
+	int l, r, lca, id;
+&#125; q[maxn];
+int cmp(query a, query b) &#123;
+	return (belong[a.l] ^ belong[b.l]) ? (belong[a.l] &lt; belong[b.l]) : ((belong[a.l] &amp; 1) ? a.r &lt; b.r : a.r &gt; b.r);
+&#125;
+void work(int pos) &#123;
+	vis[pos] ? now -= !--cnt[val[pos]] : now += !cnt[val[pos]]++;
+	vis[pos] ^= 1;
+&#125;
+int main() &#123;
+	n = read(); m = read();
+	for(int i = 1; i &lt;= n; ++i) 
+		val[i] = inp[i] = read();
+	sort(inp + 1, inp + n + 1);
+	int tot = unique(inp + 1, inp + n + 1) - inp - 1;
+	for(int i = 1; i &lt;= n; ++i)
+		val[i] = lower_bound(inp + 1, inp + tot + 1, val[i]) - inp;
+	for(int i = 1; i &lt; n; ++i) adde(read(), read());
+	depth[1] = 1;
+	dfs(1);
+	size = sqrt(ncnt), bnum = ceil((double) ncnt / size);
+	for(int i = 1; i &lt;= bnum; ++i)
+		for(int j = size * (i - 1) + 1; j &lt;= i * size; ++j) belong[j] = i;
+	for(int i = 1; i &lt;= m; ++i) &#123;
+		int L = read(), R = read(), lca = getlca(L, R);
+		if(first[L] &gt; first[R]) swap(L, R);
+		if(L == lca) &#123;
+			q[i].l = first[L];
+			q[i].r = first[R];
+		&#125;
+		else &#123;
+			q[i].l = last[L];
+			q[i].r = first[R];
+			q[i].lca = lca;
+		&#125;
+		q[i].id = i;
+	&#125;
+	sort(q + 1, q + m + 1, cmp);
+	for(int i = 1; i &lt;= m; ++i) &#123;
+		int ql = q[i].l, qr = q[i].r, lca = q[i].lca;
+		while(l &lt; ql) work(ord[l++]);
+		while(l &gt; ql) work(ord[--l]);
+		while(r &lt; qr) work(ord[++r]);
+		while(r &gt; qr) work(ord[r--]);
+		if(lca) work(lca);
+		ans[q[i].id] = now;
+		if(lca) work(lca);
+	&#125;
+	for(int i = 1; i &lt;= m; ++i) printf("%d\n", ans[i]);
+	return 0;
+&#125;
+</code></pre>
+<hr>
+<h1 id="6莫队算法的扩展回滚莫队">6、莫队算法的扩展——回滚莫队</h1>
+<p>莫队维护区间统计信息虽然方便，但在某些场合下却非常鸡肋。比如如下这题：</p>
+<h3 id="at1219-joi2013歴史の研究"><a href="https://www.luogu.org/problemnew/show/AT1219" target="_blank" rel="noopener nofollow">AT1219 [JOI2013]歴史の研究</a></h3>
+<h4 id="题目描述-3">题目描述</h4>
+<p>IOI国历史研究的第一人——JOI教授，最近获得了一份被认为是古代IOI国的住民写下的日记。JOI教授为了通过这份日记来研究古代IOI国的生活，开始着手调查日记中记载的事件。</p>
+<p>日记中记录了连续N天发生的时间，大约每天发生一件。</p>
+<p>事件有种类之分。第i天<span class="math inline">\((1&lt;=i&lt;=N)\)</span>发生的事件的种类用一个整数<span class="math inline">\(X_i\)</span>表示，<span class="math inline">\(X_i\)</span>越大，事件的规模就越大。</p>
+<p>JOI教授决定用如下的方法分析这些日记：</p>
+<p><span class="math inline">\(1\)</span>.选择日记中连续的一些天作为分析的时间段</p>
+<p><span class="math inline">\(2\)</span>.事件种类t的重要度为t×(这段时间内重要度为t的事件数)</p>
+<p><span class="math inline">\(3\)</span>.计算出所有事件种类的重要度，输出其中的最大值</p>
+<p>现在你被要求制作一个帮助教授分析的程序，每次给出分析的区间，你需要输出重要度的最大值。</p>
+<h4 id="输入格式-3">输入格式</h4>
+<p>第一行两个空格分隔的整数<span class="math inline">\(N\)</span>和<span class="math inline">\(Q\)</span>，表示日记一共记录了<span class="math inline">\(N\)</span>天，询问有<span class="math inline">\(Q\)</span>次。</p>
+<p>接下来一行N个空格分隔的整数<span class="math inline">\(X_1\)</span>...<span class="math inline">\(X_N\)</span>，<span class="math inline">\(X_i\)</span>表示第<span class="math inline">\(i\)</span>天发生的事件的种类</p>
+<p>接下来Q行，第i行<span class="math inline">\((1&lt;=i&lt;=Q)\)</span>有两个空格分隔整数<span class="math inline">\(A_i\)</span>和<span class="math inline">\(B_i\)</span>，表示第i次询问的区间为<span class="math inline">\([A_i,B_i]\)</span>。</p>
+<h4 id="输入输出样例-3">输入输出样例</h4>
+<h4 id="输入样例1-2">输入样例#1：</h4>
+<pre><code>5 5
+9 8 7 8 9
+1 2
+3 4
+4 4
+1 4
+2 4
+</code></pre>
+<h4 id="输出样例1-3">输出样例#1：</h4>
+<pre><code>9
+8
+8
+16
+16
+</code></pre>
+<p>题目到手很快就能想到用莫队维护这个最大值，添加值很好做，直接加个计数器，然后乘一下取个max就完事了。然后删除……不会。想到的唯一办法就是在当前计数器清零后往前枚举，找到一个可行的最大值再替换。这样的复杂度会多一维，达到<span class="math inline">\(O(n^2\sqrt{n})\)</span>，还不如直接n方暴力，<s>说不定就能过百万了呢</s></p>
+<p>此时，由于莫队的无敌（雾），有神犇发明了一个<s>玄学</s>高效的算法，复杂度最坏<span class="math inline">\(O(n\sqrt{n})\)</span>，而且常数碾压同为<span class="math inline">\(O(n\sqrt{n})\)</span>的块状数组做法。</p>
+<p>我们观察莫队的性质：<strong>左端点在同一块中的所有查询区间右端点单调递增</strong>。这样，对于左端点在同一块中的每个区间，我们都可以<span class="math inline">\(O(n)\)</span>解决所有的右端点，且不用回头删除值（单调递增）。考虑枚举每个块，总共需要枚举<span class="math inline">\(\sqrt{n}\)</span>个块，这部分的总复杂度<span class="math inline">\(O(n\sqrt{n})\)</span>。</p>
+<p>又对于每个块内的左端点：假设每个块内的每个左端点都从块右端开始统计，每次都重新开始暴力统计一次，做完每个左端点复杂度<span class="math inline">\(O(\sqrt{n})\)</span>，共<span class="math inline">\(n\)</span>个左端点，总复杂度<span class="math inline">\(O(n\sqrt{n})\)</span>。</p>
+<p>我们发现这两部分是很容易结合起来的。做法就是枚举每个块，每次把<span class="math inline">\(l\)</span>、<span class="math inline">\(r\)</span>指针置于块尾+1的位置和块尾（至于为什么+1还请看前面），先暴力处理掉左右端点在一块的特殊情况（<span class="math inline">\(O(\sqrt{n})\)</span>），然后右端点暴力向右推，左端点一个个解决，在移动左指针前纪录一下当前状态，移动保存值后复原即可，也无需删除。以上的问题完美解决。（岂不美滋滋？？#滑稽#）</p>
+<p>注意暴力和正常推指针时的<span class="math inline">\(cnt\)</span>不要共用，而且每做一个新块都要把<span class="math inline">\(cnt\)</span>清零。这样回滚莫队代码不难写出啦（难调啊）：</p>
+<h3 id="例题参考代码-2">例题参考代码：</h3>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+using namespace std;
+#define maxn 100100
+#define maxb 5050
+#define ll long long
+int aa[maxn], typ[maxn], cnt[maxn], cnt2[maxn], belong[maxn], lb[maxn], rb[maxn], inp[maxn];
+ll ans[maxn];
+struct query &#123;
+	int l, r, id;
+&#125; q[maxn];
+int n, m, size, bnum;
+#define isdigit(x) ((x) &gt;= '0' &amp;&amp; (x) &lt;= '9')
+inline int read() &#123;
+	int res = 0;
+	char c = getchar();
+	while(!isdigit(c)) c = getchar();
+	while(isdigit(c)) res = (res &lt;&lt; 1) + (res &lt;&lt; 3) + (c ^ 48), c = getchar();
+	return res;
+&#125;
+int cmp(query a, query b) &#123;
+	return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : a.r &lt; b.r; 
+&#125;
+int main() &#123;
+	n = read(), m = read();
+	size = sqrt(n);
+	bnum = ceil((double) n / size);
+	for(int i = 1; i &lt;= bnum; ++i) &#123;
+		lb[i] = size * (i - 1) + 1;
+		rb[i] = size * i;
+		for(int j = lb[i]; j &lt;= rb[i]; ++j) belong[j] = i;
+	&#125;
+	rb[bnum] = n;
+	for(int i = 1; i &lt;= n; ++i) inp[i] = aa[i] = read();
+	sort(inp + 1, inp + n + 1);
+	int tot = unique(inp + 1, inp + n + 1) - inp - 1;
+	for(int i = 1; i &lt;= n; ++i) typ[i] = lower_bound(inp + 1, inp + tot + 1, aa[i]) - inp;
+	for(int i = 1; i &lt;= m; ++i) &#123;
+		q[i].l = read(), q[i].r = read();
+		q[i].id = i;
+	&#125;
+	sort(q + 1, q + m + 1, cmp);
+	int i = 1;
+	for(int k = 0; k &lt;= bnum; ++k) &#123;
+		int l = rb[k] + 1, r = rb[k];
+		ll now = 0;
+		memset(cnt, 0, sizeof(cnt));
+		for( ; belong[q[i].l] == k; ++i) &#123;
+			int ql = q[i].l, qr = q[i].r;
+			ll tmp;
+			if(belong[ql] == belong[qr]) &#123;
+				tmp = 0;
+				for(int j = ql; j &lt;= qr; ++j) cnt2[typ[j]] = 0;
+				for(int j = ql; j &lt;= qr; ++j) &#123;
+					++cnt2[typ[j]]; tmp = max(tmp, 1ll * cnt2[typ[j]] * aa[j]);
+				&#125;
+				ans[q[i].id] = tmp;
+				continue;
+			&#125;
+			while(r &lt; qr) &#123;
+				++r; ++cnt[typ[r]]; now = max(now, 1ll * cnt[typ[r]] * aa[r]);
+			&#125;
+			tmp = now;
+			while(l &gt; ql)&#123;
+				--l; ++cnt[typ[l]]; now = max(now, 1ll * cnt[typ[l]] * aa[l]);
+			&#125; 
+			ans[q[i].id] = now;
+			while(l &lt; rb[k] + 1) &#123;
+				--cnt[typ[l]];
+				l++;
+			&#125;
+			now = tmp;
+		&#125;
+	&#125;
+	for(int i = 1; i &lt;= m; ++i) printf("%lld\n", ans[i]);
+	return 0;
+&#125;
+</code></pre>
+<p>注意这里分块时有个坑点：向上取整的<code>ceil</code>不要写成<code>floor</code>，这样在普通莫队中会多出一个块0，完全不影响AC，但在回滚莫队中就是WA，WA到我浑身不得劲qwq</p>
+<h3 id="回滚莫队完结撒花ヽノqwq">回滚莫队完结撒花✿✿ヽ(°▽°)ノ✿qwq</h3>
+<hr>
+<h1 id="7练习题">7、练习题</h1>
+<p>这里放的主要是莫队裸题，没有与其他算法的综合应用，但部分有思维难度。如需要综合应用题请左转<a href="https://www.luogu.org/problemnew/lists?name=&amp;orderitem=pid&amp;tag=41&amp;content=0&amp;type=" target="_blank" rel="noopener nofollow">【Luogu OJ】</a> 右转<a href="https://www.lydsy.com/JudgeOnline/problemset.php" target="_blank" rel="noopener nofollow">【BZOJ】</a></p>
+<p>虽然莫队算法思想很简单，但与它有关的应用还是很经(du)典(liu)的。下面是一些经(du)典(liu)的例题：</p>
+<h3 id="1基础题luogu-p2709-小b的询问">1、<a href="https://www.luogu.org/problemnew/show/P2709" target="_blank" rel="noopener nofollow">【基础题】Luogu P2709 小B的询问</a></h3>
+<p>这题的话，手推公式很容易就能做出来，而且题目无坑点，甚至无需卡常</p>
+<p>代码不给了qwq，和例题差不了两句话qwq</p>
+<h3 id="2进阶题luogu-p1494-国家集训队小z的袜子">2、<a href="https://www.luogu.org/problemnew/show/P1494" target="_blank" rel="noopener nofollow">【进阶题】Luogu P1494 [国家集训队]小Z的袜子</a></h3>
+<p>这题需要一些基础但较为复杂的数学演算，打表基本不靠谱（另外还要注意约分）</p>
+<p>留给大家自行推理（代码还是很简单哒qwq）</p>
+<h3 id="3进阶题luogu-p3709-大爷的字符串题">3、<a href="https://www.luogu.org/problemnew/show/P3709" target="_blank" rel="noopener nofollow">【进阶题】Luogu P3709 大爷的字符串题</a></h3>
+<p>内个，题意别看了，题目要求的是区间众数的出现次数（出题人语文不好）（当然你也可以直接把题意推出来qwq）</p>
+<p>即便题意明了了，这题还是有点综合性的（区间众数这东西并不好求）</p>
+<p>真是一道好(du)题(liu)（逃</p>
+<h3 id="4最终挑战luogu-p4074-wc2013糖果公园">4、<a href="https://www.luogu.org/problemnew/show/P4074" target="_blank" rel="noopener nofollow">【最终挑战】Luogu P4074 [WC2013]糖果公园</a></h3>
+<p>承诺的黑题终于来啦，撒花✿✿ヽ(°▽°)ノ✿</p>
+<p>然而这题并不难，树上带修莫队模板题，相信你很快就能切掉它qwq</p>
+<h4 id="参考代码-1">参考代码：</h4>
+<pre><code class="language-cpp">#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+#define maxn 200200
+#define ll long long
+int cnt[maxn], aa[maxn], belong[maxn], inp[maxn], n, m, Q, ncnt, size, bnum, w[maxn], v[maxn], ccnt, qcnt;
+int val[maxn], fa[maxn][30], depth[maxn], head[maxn], ecnt;
+int fir[maxn], la[maxn], vis[maxn];
+int l = 1, r = 0, t = 0;
+ll now, ans[maxn];
+struct edge &#123;
+    int to, next;
+&#125; e[maxn];
+void adde(int u, int v) &#123;
+    e[++ecnt] = (edge)&#123;v, head[u]&#125;;
+    head[u] = ecnt;
+    e[++ecnt] = (edge)&#123;u, head[v]&#125;;
+    head[v] = ecnt;
+&#125;
+void dfs(int x) &#123;
+    aa[++ncnt] = x;
+    fir[x] = ncnt;
+    for(int k = head[x]; k; k = e[k].next) &#123;
+        int to = e[k].to;
+        if(depth[to]) continue;
+        depth[to] = depth[x] + 1;
+        fa[to][0] = x;
+        for(int i = 1; (1 &lt;&lt; i) &lt;= depth[to]; ++i) fa[to][i] = fa[fa[to][i - 1]][i - 1];
+        dfs(to);
+    &#125;
+    aa[++ncnt] = x;
+    la[x] = ncnt;
+&#125;
+int getlca(int u, int v) &#123;
+    if(depth[u] &lt; depth[v]) swap(u, v);
+    for(int i = 20; i + 1; --i) if(depth[fa[u][i]] &gt;= depth[v]) u = fa[u][i];
+    if(u == v) return u;
+    for(int i = 20; i + 1; --i) if(fa[u][i] != fa[v][i]) u = fa[u][i], v = fa[v][i];
+    return fa[u][0];
+&#125;
+struct query &#123;
+    int l, r, id, lca, t;
+&#125; q[maxn];
+int cmp(query a, query b) &#123;
+    return (belong[a.l] ^ belong[b.l]) ? belong[a.l] &lt; belong[b.l] : ((belong[a.r] ^ belong[b.r]) ? belong[a.r] &lt; belong[b.r] : a.t &lt; b.t );
+&#125;
+inline void add(int pos) &#123;
+    now += 1ll * v[val[pos]] * w[++cnt[val[pos]]];
+&#125;
+inline void del(int pos) &#123;
+    now -= 1ll * v[val[pos]] * w[cnt[val[pos]]--];
+&#125;
+inline void work(int pos) &#123;
+    vis[pos] ? del(pos) : add(pos);
+    vis[pos] ^= 1;
+&#125;
+struct change &#123;
+    int pos, val;
+&#125; ch[maxn];
+void modify(int x) &#123;
+	if(vis[ch[x].pos]) &#123;
+		work(ch[x].pos);
+		swap(val[ch[x].pos], ch[x].val);
+		work(ch[x].pos);
+	&#125;
+	else swap(val[ch[x].pos], ch[x].val);
+&#125;
+#define isdigit(x) ((x) &gt;= '0' &amp;&amp; (x) &lt;= '9')
+inline int read() &#123;
+    int res = 0;
+    char c = getchar();
+    while(!isdigit(c)) c = getchar();
+    while(isdigit(c)) res = (res &lt;&lt; 1) + (res &lt;&lt; 3) + (c ^ 48), c = getchar();
+    return res;
+&#125;
+int main() &#123;
+    n = read(), m = read(), Q = read();
+    for(int i = 1; i &lt;= m; ++i) v[i] = read();
+    for(int i = 1; i &lt;= n; ++i) w[i] = read();
+    for(int i = 1; i &lt; n; ++i) &#123;
+        int u = read(), v = read();
+        adde(u, v);
+    &#125;
+    for(int i = 1; i &lt;= n; ++i) val[i] = read();
+    depth[1] = 1;
+    dfs(1);
+    size = pow(ncnt, 2.0 / 3.0);
+    bnum = ceil((double)ncnt / size);
+    for(int i = 1; i &lt;= bnum; ++i)
+    	for(int j = size * (i - 1) + 1; j &lt;= i * size; ++j) belong[j] = i;
+    for(int i = 1; i &lt;= Q; ++i) &#123;
+    	int opt = read(), a = read(), b = read();
+    	if(opt) &#123;
+    		int lca = getlca(a, b);
+    		q[++qcnt].t = ccnt;
+    		q[qcnt].id = qcnt;
+    		if(fir[a] &gt; fir[b]) swap(a, b);
+    		if(a == lca) q[qcnt].l = fir[a], q[qcnt].r = fir[b];
+    		else q[qcnt].l = la[a], q[qcnt].r = fir[b], q[qcnt].lca = lca;
+		&#125;
+		else &#123;
+			ch[++ccnt].pos = a;
+			ch[ccnt].val = b;
+		&#125;
+	&#125;
+	sort(q + 1, q + qcnt + 1, cmp);
+	for(int i = 1; i &lt;= qcnt; ++i) &#123;
+		int ql = q[i].l, qr = q[i].r, qt = q[i].t, qlca = q[i].lca;
+		while(l &lt; ql) work(aa[l++]);
+		while(l &gt; ql) work(aa[--l]);
+		while(r &lt; qr) work(aa[++r]);
+		while(r &gt; qr) work(aa[r--]);
+		while(t &lt; qt) modify(++t);
+		while(t &gt; qt) modify(t--);
+		if(qlca) work(qlca);
+		ans[q[i].id] = now;
+		if(qlca) work(qlca);
+	&#125;
+	for(int i = 1; i &lt;= qcnt; ++i) printf("%lld\n", ans[i]);
+	return 0;
+&#125;
+</code></pre>
+<h3 id="5其它">5、其它</h3>
+<p>自己找qwq，百度是个很好的东西qwq</p>
+<hr>
+<h1 id="尾声">尾声</h1>
+<p>耗时将近两天的长篇大论终于要结束啦，再来无耻的求一波赞qwq（逃</p>
+<p>感谢各位坚持着看过来（雾）的dalao，文章如有错误欢迎指出哦qwq</p>
+<h2 id="noip-2019-rp">NOIP 2019 RP++</h2>
+<h2 id="hnoi-2019-rp">HNOI 2019 RP++</h2>
+</div>
+<div class="clear"></div>
+<div id="blog_post_info_block" role="contentinfo" class="post-meta-container">
+    <div id="blog_post_info"></div>
+    <div class="clear"></div>
+    <div id="post_next_prev"></div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date" data-last-update-days="1350.6173611111112" data-date-updated="2022-08-26 10:21">2018-12-14 19:32</span>&nbsp;
+<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WAMonster">WAMonster</a>&nbsp;
+阅读(<span id="post_view_count">78279</span>)&nbsp;
+评论(<span id="post_comment_count">53</span>)&nbsp;
+&nbsp;
+<a href="javascript:void(0)" onclick="AddToWz(10118934);return false;">收藏</a>&nbsp;
+<a href="https://report.cnblogs.com?targetLink=https%3A%2F%2Fwww.cnblogs.com%2FWAMonster%2Fp%2F10118934.html&targetId=10118934&targetType=0" target="_blank">举报</a>
+</div>
+        </div>
+<pre><code>&lt;/div&gt;&lt;!--end: topics 文章、评论容器--&gt;
+</code></pre>
+</div>
+<script>
+    var cb_entryId = 10118934, cb_entryCreatedDate = '2018-12-14 19:32', cb_postType = 1, cb_postTitle = '莫队算法——从入门到黑题';
+    var allowComments = true, cb_blogId = 476306, cb_blogApp = 'WAMonster', cb_blogUserGuid = '12982bf9-8d29-49db-6bb3-08d64ba9f040';
+    mermaidRender.render()
+    markdown_highlight()
+    zoomManager.apply("#cnblogs_post_body img:not(.code_img_closed):not(.code_img_opened)");    
+</script>
+<a id="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav">
+        <div class="comment-nav-right">
+            <span id="span_refresh_tips"></span><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a>
+        </div>
+    </div>
+    <div id="comment_form_container"></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+        <div id="cnblogs_ch"></div>
+    <div id="opt_under_post"></div>
+        <div id="blog_c1" class="under-post-card below-post-card">
+            <a href="https://www.volcengine.com/activity/codingplan?utm_campaign=hw&amp;utm_content=hw&amp;utm_medium=devrel_tool_web&amp;utm_source=OWO&amp;utm_term=cnblogs" rel="nofollow" target="_blank" onclick="countCreativeClicks('C1-volcengine-codingplan')">
+                <img src="https://img2024.cnblogs.com/blog/35695/202604/35695-20260423213336272-1914399152.webp" onload="countCreativeImpressions('C1-volcengine-codingplan')" alt="" style="width:300px!important;height:250px!important;min-width:300px!important;max-width:300px!important;" />
+                <span id="c1_impression" style="display:none"></span>
+            </a>
+        </div>
+    <div id="under_post_card1"></div>
+    <div id="related_posts_card"></div>
+    <div id="under_post_card2"></div>
+    <div id="HistoryToday" class="under-post-card below-post-card"></div>
+    <script type="text/javascript">
+        var commentManager = new blogCommentManager();
+        commentManager.renderComments(0);
+        fixPostBody();
+        window.footnoteTipManager.generateFootnoteTips();
+<pre><code>        window.tocManager.displayDisableTocTips = false;
+        window.tocManager.generateToc();
+        
+        setTimeout(function() &#123; countViews(cb_blogId, cb_entryId); &#125;, 50);
+        
+        deliverT2();
+        deliverC1C2();
+        loadNewsAndKb();
+        
+        LoadPostCategoriesTags(cb_blogId, cb_entryId);
+        
+        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+            &lt;/script&gt;
+</code></pre>
+</div>
+<pre><code>&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;sideBar&quot;&gt;
+	&lt;div id=&quot;sideBarMain&quot;&gt;
+		&lt;div id=&quot;sidebar_news&quot; class=&quot;newsItem&quot;&gt;
+&lt;h3 class=&quot;catListTitle&quot;&gt;公告&lt;/h3&gt;
+</code></pre>
+<div id="blog-news" class="sidebar-news">
+    <div id="sidebar_news_container">
+    </div>
+</div>
+<script>loadBlogNews();</script>
+</div>
+			<div id="blog-calendar" style="display:none"></div><script>loadBlogDefaultCalendar();</script>			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div>
+					<script>loadBlogSideColumn()</script>
+			</div>			
+		</div>
+	</div>
+	<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	<div id="footer">
+		<a target="_blank" rel="noopener" href="https://www.cnblogs.com/" id="footer_site_link" class="footer-brand">博客园</a>
+<span class="footer-copyright"> &nbsp;&copy;&nbsp; 2004-2026</span>
+<br /><span class="footer-icp">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010602011771"><img src="//assets.cnblogs.com/images/ghs.png" />浙公网安备 33010602011771号</a>
+    <a href="https://beian.miit.gov.cn" target="_blank">浙ICP备2021040463号-3</a>
+</span>
+<pre><code>&lt;/div&gt;
+</code></pre>
+</div>
+<pre><code>&lt;div id=&quot;page_end_html&quot;&gt;
+    &lt;script type=&quot;text/javascript&quot; language=&quot;javascript&quot;&gt;
+</code></pre>
+<p>var getRandomColor = function(){<br>
+return  ‘#’ +<br>
+(function(color){<br>
+return (color +=  ‘0123456789abcdef’[Math.floor(Math.random()*16)])<br>
+&amp;&amp; (color.length == 6) ?  color : arguments.callee(color);<br>
+})(‘’);<br>
+}<br>
+//随机生成颜色<br>
+onload = function() {<br>
+var click_cnt = 0;<br>
+var $html = document.getElementsByTagName(“html”)[0];<br>
+var $body = document.getElementsByTagName(“body”)[0];<br>
+$html.onclick = function(e) {<br>
+var $elem = document.createElement(“b”);<br>
+$elem.style.color = getRandomColor();<br>
+$elem.style.zIndex = 9999;<br>
+$elem.style.position = “absolute”;<br>
+$elem.style.select = “none”;<br>
+var x = e.pageX;<br>
+var y = e.pageY;</p>
+<pre><code>    var st= new Array(&quot;\u5BCC\u5F3A&quot;,&quot;\u6C11\u4E3B&quot;,&quot;\u6587\u660E&quot;,&quot;\u548C\u8C10&quot;,&quot;\u81EA\u7531&quot;,&quot;\u5E73\u7B49&quot;,&quot;\u516C\u6B63&quot;,&quot;\u6CD5\u6CBB&quot;,&quot;\u7231\u56FD&quot;, &quot;\u656C\u4E1A&quot;,&quot;\u8BDA\u4FE1&quot;,&quot;\u53CB\u5584&quot;);
+</code></pre>
+<p>//按照如上的例子添加，必须转utf-8<br>
+$elem.style.left = (x - 10) + “px”;<br>
+$elem.style.top = (y - 20) + “px”;<br>
+//      $elem.innerText = “OωO”;<br>
+clearInterval(anim);<br>
+$elem.innerText = st[click_cnt%12];<br>
+//模数是总共的字数<br>
+click_cnt++;<br>
+$elem.style.fontSize = Math.random() * 10 + 15 + “px”;<br>
+var increase = 0;<br>
+var anim;<br>
+setTimeout(function() {<br>
+anim = setInterval(function() {<br>
+if (++increase == 200) {<br>
+　　　　　　　　　　//上升高度<br>
+clearInterval(anim);<br>
+$body.removeChild($elem);<br>
+}<br>
+$elem.style.top = y - 20 - increase<em>2 + “px”; //increas</em>速度，数越大，速度越快.<br>
+$elem.style.opacity = (200 - increase*2) / 120;<br>
+}, 8);<br>
+}, 70);<br>
+$body.appendChild($elem);<br>
+};<br>
+};<br>
+</script></p>
+<script type="text/javascript">
+var enableGoogleAd = false;
+</script>
+<pre><code>&lt;/div&gt;
+
+&lt;input type=&quot;hidden&quot; id=&quot;antiforgery_token&quot; value=&quot;CfDJ8OBZrxGJLy5MvghieKIKXCxpsphNyKqzqMhuGI_J10t5IJWYMb4KpaZyH9GqkXH_f_KGN4a-Kem2aIo8haYD-dmCuHCGTeeRHarvTLvnQk8r5_Crm6woZlBQGdIaIAyZg_ihhvLI16Fm1f5WxN0RsWU&quot; /&gt;
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-M95P3TTWJZ&quot;&gt;&lt;/script&gt;
+</code></pre>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-M95P3TTWJZ');
+</script>
+<script defer src="https://hm.baidu.com/hm.js?866c9be12d4a814454792b1fd0fed295"></script>
+</body>
+</html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://mengxingdemeng.github.io/hexo-blog">琉璃仙</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://mengxingdemeng.github.io/hexo-blog/2026/05/09/%E8%8E%AB%E9%98%9F/">https://mengxingdemeng.github.io/hexo-blog/2026/05/09/%E8%8E%AB%E9%98%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://mengxingdemeng.github.io/hexo-blog" target="_blank">my blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/hexo-blog/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/hexo-blog/2026/05/24/%E7%A0%81%E8%B9%84%E6%9D%AF%E7%AC%AC%E4%B8%89%E5%9C%BA%E6%80%BB%E7%BB%93/" title="码蹄杯第三场总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">码蹄杯第三场总结</div></div><div class="info-2"><div class="info-item-1">码蹄杯第三场总结 MC0567 侠累擅权韩 #青铜 韩国权臣侠累专断朝政，门客成群，朝中许多人依附他行事。他性情强横，言语间常以权势压人，国中风气因而紧张，敢直言者渐少。 侠累府中有个管账的小吏，为了不在账目上留下把柄，把每天收来的“十进制整数”钱串号都按一种规矩记成暗号：把这个整数从右往左倒着写，得到的新数记作$f(x)$。比如原号是123，倒着写就是321，于是$f(123)=321$。 如今已知府里记下的钱串号x一定是个有效的三位数，且个位数字不是0。你要做的事很简                                      单：输出它的 $f(x)$。   输入格式：一个三位数整数$x(101≤x≤999)$，且个位数字不是0。 输出格式：输出一个整数，表示答案。    样例一   输入：123 输出：321    仲子受辱恨 士人严仲子与侠累不合，竟被侠累当众轻慢羞辱。仲子自知若以官场手段难讨公道，只得强压怒气，暗中筹谋：要寻敢死之人，以非常之举雪此大辱。 为免走漏风声，仲子先秘密整理出一份可能敢为他出头的名册，共有 $n$ 人。第 $i$ 人的名字为 $...</div></div></div></a><a class="pagination-related" href="/hexo-blog/2026/04/28/%E4%BB%8ETop-k%E7%9A%84%E5%9B%9B%E7%A7%8D%E8%A7%A3%E6%B3%95%E5%85%A5%E9%97%A8%E7%AE%97%E6%B3%95/" title="从Top k的四种解法入门算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">从Top k的四种解法入门算法</div></div><div class="info-2"><div class="info-item-1">从Top k的四种解法入门算法  单调队列 快速选择 小根堆 块状分治淘汰   算法，学了这么久，归根，几种思想：枚举、贪心、分治、动态规划、回溯、数论等。接下来，我从top k 问题入手，探索算法世界的大门   先看题：  # 力扣215.数组中的第k个最大元素  给定整数数组 nums 和整数 k，请返回数组中第 k 个最大的元素。  请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。 你必须设计并实现时间复杂度为 O(n) 的算法解决此问题。  示例 1: 输入: [3,2,1,5,6,4], k &#x3D; 2 输出: 5 示例 2: 输入: [3,2,3,1,2,4,5,5,6], k &#x3D; 4 输出: 4   提示： 1 &lt;&#x3D; k &lt;&#x3D; nums.length &lt;&#x3D; 10^5 -10^4 &lt;&#x3D; nums[i] &lt;&#x3D; 10^4 # 力扣347.前k个高频元素  给你一个整数数组 nums 和一个整数 k ，请你返回其中出现频率前 k 高的元素。你可以...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#blogTitle"><span class="toc-number">1.</span> <span class="toc-text">WAMonster
+</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#blogTitle"><span class="toc-number">1.1.</span> <span class="toc-text">終末なにしてますか？忙しいですか？救ってもらっていいですか？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%97%E6%89%80%E5%91%A8%E7%9F%A5%E8%8E%AB%E9%98%9F%E6%98%AF%E7%94%B1%E8%8E%AB%E6%B6%9B%E5%A4%A7%E7%A5%9E%E6%8F%90%E5%87%BA%E7%9A%84%E4%B8%80%E7%A7%8D%E7%8E%84%E5%AD%A6%E6%AF%92%E7%98%A4%E6%9A%B4%E5%8A%9B%E9%AA%97%E5%88%86%E5%8C%BA%E9%97%B4%E6%93%8D%E4%BD%9C%E7%AE%97%E6%B3%95%E5%AE%83%E4%BB%A5%E7%AE%80%E7%9F%AD%E7%9A%84%E6%A1%86%E6%9E%B6%E7%AE%80%E5%8D%95%E6%98%93%E8%AE%B0%E7%9A%84%E6%9D%BF%E5%AD%90%E5%92%8C%E4%BC%98%E7%A7%80%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E9%97%BB%E5%90%8D%E4%BA%8E%E4%B8%96%E7%84%B6%E8%80%8C%E7%94%B1%E4%BA%8E%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E5%BA%94%E7%94%A8%E7%9A%84%E6%AF%92%E7%98%A4%E5%BE%88%E5%A4%9A%E5%8F%AF%E5%81%9A%E7%9A%84%E8%8E%AB%E9%98%9F%E6%A8%A1%E6%9D%BF%E9%A2%98%E9%83%BD%E6%9C%89%E7%9D%80%E8%BE%83%E9%AB%98%E7%9A%84%E9%9A%BE%E5%BA%A6%E8%AF%84%E7%BA%A7%E4%BB%A4%E5%BE%88%E5%A4%9A%E5%88%9D%E5%AD%A6%E8%80%85%E6%9C%9B%E8%80%8C%E5%8D%B4%E6%AD%A5%E7%84%B6%E8%80%8C%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%9C%9F%E6%AD%A3%E7%90%86%E8%A7%A3%E4%BA%86%E8%8E%AB%E9%98%9F%E7%9A%84%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86%E9%82%A3%E4%B9%88%E5%AE%83%E7%94%A8%E8%B5%B7%E6%9D%A5%E8%BF%98%E6%98%AF%E5%BE%88%E7%AE%80%E5%8D%95%E7%9A%84%E5%BD%93%E7%84%B6%E6%9F%90%E4%BA%9B%E5%A5%97%E5%B7%A6%E5%A5%97%E5%8F%B3%E7%9A%84%E6%AF%92%E7%98%A4%E9%99%A4%E5%A4%96"><span class="toc-number">1.1.1.</span> <span class="toc-text">众所周知，莫队是由莫涛大神提出的，一种玄学毒瘤暴力骗分区间操作算法，它以简短的框架、简单易记的板子和优秀的复杂度闻名于世。然而由于莫队算法应用的毒瘤，很多可做的莫队模板题都有着较高的难度评级，令很多初学者望而却步。然而，如果你真正理解了莫队的算法原理，那么它用起来还是很简单的。当然某些套左套右的毒瘤除外</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0%E5%89%8D%E7%BD%AE%E8%8A%9D%E5%A3%AB"><span class="toc-number">2.</span> <span class="toc-text">0、前置芝士：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E8%BF%98%E6%98%AF%E6%AF%94%E8%BE%83%E7%8B%AC%E7%AB%8B%E7%9A%84%E4%B8%8D%E8%BF%87%E4%BD%A0%E8%BF%98%E6%98%AF%E5%BE%97%E4%BA%86%E8%A7%A3%E4%BA%86%E8%A7%A3%E4%BB%A5%E4%B8%8B%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">莫队算法还是比较独立的。不过你还是得了解了解以下的一些知识：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E5%85%A8%E9%83%A8%E5%AE%8C%E6%AF%95%E6%92%92%E8%8A%B1%E9%9B%BE"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">至此全部完毕。撒花~~（雾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B6%E5%88%AB%E8%B5%B0%E5%95%8Aqwq%E6%88%91%E5%8F%AF%E4%B8%8D%E6%98%AF%E5%9C%A8%E5%8A%9D%E9%80%80qwq%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%AE%A4%E4%B8%BA%E8%87%AA%E5%B7%B1%E4%B8%8D%E6%87%82%E8%BF%99%E4%BA%9B%E4%B8%9C%E8%A5%BF%E4%B9%9F%E6%B2%A1%E5%85%B3%E7%B3%BB%E5%BE%80%E4%B8%8B%E7%9C%8B%E5%90%A7qwq"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">诶，别走啊qwq，我可不是在劝退qwq，如果你认为自己不懂这些东西也没关系，往下看吧qwq</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E6%98%AF%E4%B8%AA%E5%95%A5"><span class="toc-number">3.</span> <span class="toc-text">1、莫队算法是个啥</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A5%E5%8E%86"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">来历：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%B6%E8%80%8C%E8%BF%99%E4%B8%AA%E7%AE%97%E6%B3%95%E5%88%B0%E5%BA%95%E6%98%AF%E7%94%A8%E6%9D%A5%E6%90%9E%E4%BB%80%E4%B9%88%E6%93%8D%E4%BD%9C%E7%9A%84%E5%91%A2%E6%88%91%E4%BB%AC%E5%85%88%E7%9C%8B%E4%B8%AA%E4%BE%8B%E9%A2%98"><span class="toc-number">3.1.</span> <span class="toc-text">然而这个算法到底是用来搞什么操作的呢？我们先看个例题：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#luogu-p1972-sdoi2009hh%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="toc-number">3.1.1.</span> <span class="toc-text">Luogu P1972 [SDOI2009]HH的项链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">3.1.1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.1.2.</span> <span class="toc-text">输入输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.1.3.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.1.1.4.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-number">3.1.1.5.</span> <span class="toc-text">输入输出样例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1"><span class="toc-number">3.1.1.6.</span> <span class="toc-text">输入样例#1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1"><span class="toc-number">3.1.1.7.</span> <span class="toc-text">输出样例#1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">3.1.1.8.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%8C%83%E5%9B%B4"><span class="toc-number">3.1.1.9.</span> <span class="toc-text">数据范围：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%BF%87%E8%BF%99%E4%B8%AA%E4%BE%8B%E9%A2%98%E5%8D%A1%E4%BA%86%E8%8E%AB%E9%98%9F%E6%89%80%E4%BB%A5%E8%AF%B7%E5%B7%A6%E8%BD%AC%E6%95%B0%E6%8D%AE%E5%BC%B1%E5%8C%96%E7%89%88sp3267-dquery---d-query"><span class="toc-number">3.1.2.</span> <span class="toc-text">不过这个例题卡了莫队，所以请左转数据弱化版：SP3267 DQUERY - D-query</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%B0%9D%E8%AF%95%E4%BC%98%E5%8C%96%E4%B8%80%E4%B8%8B"><span class="toc-number">3.1.3.</span> <span class="toc-text">我们可以尝试优化一下：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%961%E6%AF%8F%E6%AC%A1%E6%9E%9A%E4%B8%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E6%95%B0%E5%80%BC%E5%A2%9E%E5%8A%A0%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E6%97%B6%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%8B%E6%98%AF%E5%90%A6%E4%B8%BA0%E5%A6%82%E6%9E%9C%E4%B8%BA0%E5%88%99%E8%BF%99%E4%B8%AA%E6%95%B0%E5%80%BC%E4%B9%8B%E5%89%8D%E6%B2%A1%E6%9C%89%E5%87%BA%E7%8E%B0%E8%BF%87%E7%8E%B0%E5%9C%A8%E5%87%BA%E7%8E%B0%E4%BA%86%E6%95%B0%E5%80%BC%E6%95%B0%E5%BD%93%E7%84%B6%E8%A6%811%E5%8F%8D%E4%B9%8B%E5%9C%A8%E4%BB%8E%E5%8C%BA%E9%97%B4%E4%B8%AD%E5%88%A0%E9%99%A4%E5%90%8E%E4%B9%9F%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%8B%E6%98%AF%E5%90%A6%E4%B8%BA0%E5%A6%82%E6%9E%9C%E4%B8%BA0%E6%95%B0%E5%80%BC%E6%80%BB%E6%95%B0-1%E8%BF%99%E6%A0%B7%E6%88%91%E4%BB%AC%E4%BC%98%E5%8C%96%E6%8E%89%E4%BA%86%E4%B8%80%E4%B8%AA%E4%BD%86%E8%BF%98%E6%98%AF%E8%B7%91%E4%B8%8D%E8%B5%B7"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">优化1：每次枚举到一个数值\(num\)，增加出现次数时判断一下\(cnt_{num}\)是否为0，如果为0，则这个数值之前没有出现过，现在出现了，数值数当然要+1。反之在从区间中删除\(num\)后也判断一下\(cnt_{num}\)是否为0，如果为0数值总数-1。这样我们优化掉了一个\(O(ms)\)，但还是跑不起。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%8C%962%E6%88%91%E4%BB%AC%E5%BC%84%E4%B8%A4%E4%B8%AA%E6%8C%87%E9%92%88---%E6%AF%8F%E6%AC%A1%E8%AF%A2%E9%97%AE%E4%B8%8D%E7%9B%B4%E6%8E%A5%E6%9E%9A%E4%B8%BE%E8%80%8C%E6%98%AF%E7%A7%BB%E5%8A%A8---%E6%8C%87%E9%92%88%E5%88%B0%E8%AF%A2%E9%97%AE%E7%9A%84%E5%8C%BA%E9%97%B4%E7%9B%B4%E5%88%B0%E4%B8%8E%E8%AF%A2%E9%97%AE%E5%8C%BA%E9%97%B4%E9%87%8D%E5%90%88%E5%9C%A8%E7%BB%9F%E8%AE%A1%E7%AD%94%E6%A1%88%E6%97%B6%E6%88%91%E4%BB%AC%E4%B9%9F%E5%8F%AA%E5%9C%A8%E4%B8%A4%E4%B8%AA%E6%8C%87%E9%92%88%E5%A4%84%E5%8A%A0%E5%87%8F%E7%84%B6%E5%90%8E%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%BC%98%E5%8C%961%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95%E5%BF%AB%E9%80%9F%E5%9C%B0%E7%BB%9F%E8%AE%A1%E7%AD%94%E6%A1%88%E5%95%A6"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">优化2：我们弄两个指针 \(l\) 、\(r\) ，每次询问不直接枚举，而是移动 \(l\) 、\(r\) 指针到询问的区间，直到\([l,r]\)与询问区间重合。在统计答案时，我们也只在两个指针处加减\(cnt\)，然后我们就可以用优化1中的方法快速地统计答案啦\(qwq\)！</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E5%8C%BA%E9%97%B4%E6%89%80%E6%9C%89%E6%95%B0%E5%80%BC%E7%BB%9F%E8%AE%A1%E5%AE%8C%E6%88%90%E7%BB%93%E6%9E%9C%E4%B8%BA5"><span class="toc-number">3.1.4.</span> <span class="toc-text">至此，\(Q1\)区间所有数值统计完成，结果为5。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E5%9C%A8%E6%88%91%E4%BB%AC%E5%8F%88%E7%9C%8B%E4%B8%80%E4%B8%8B%E5%8C%BA%E9%97%B4%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">3.1.5.</span> <span class="toc-text">现在我们又看一下\(Q2\)区间的情况：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%B3%E4%BA%8E%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C%E4%B9%9F%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E5%81%9A%E6%B3%95%E5%8F%AA%E4%B8%8D%E8%BF%87%E8%A6%81%E5%85%88%E5%88%A0%E9%99%A4%E5%BD%93%E5%89%8D%E4%BD%8D%E7%BD%AE%E7%9A%84%E6%95%B0%E5%80%BC%E6%89%8D%E8%83%BD%E7%A7%BB%E5%8A%A8%E6%8C%87%E9%92%88"><span class="toc-number">3.1.5.1.</span> <span class="toc-text">至于删除操作，也是一样的做法，只不过要先删除当前位置的数值，才能移动指针。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%962%E5%AE%8C%E7%BB%93%E6%92%92%E8%8A%B1%E3%83%BD%E3%83%8E"><span class="toc-number">3.1.6.</span> <span class="toc-text">优化2完结撒花✿✿ヽ(°▽°)ノ✿\(qwq\)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%A7%E7%BB%AD%E4%BC%98%E5%8C%96%E6%80%8E%E4%B9%88%E4%BC%98%E5%8C%96"><span class="toc-number">3.1.6.1.</span> <span class="toc-text">继续优化？怎么优化？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8A%8A%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3%E4%B8%BA%E4%B8%80%E7%A7%8D%E6%9A%B4%E5%8A%9B%E4%BC%98%E9%9B%85%E8%80%8C%E4%B8%8D%E5%A4%B1%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%9A%B4%E5%8A%9B%E5%8F%AA%E4%B8%8D%E8%BF%87%E5%AE%83%E7%9A%84%E5%89%AA%E6%9E%9D%E6%9E%81%E4%B8%BA%E5%B7%A7%E5%A6%99%E8%BE%BE%E5%88%B0%E4%BA%86%E7%90%86%E6%83%B3%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">3.1.7.</span> <span class="toc-text">至此，你可以把莫队算法理解为一种暴力，优雅而不失复杂度的暴力，只不过它的剪枝极为巧妙，达到了理想的效果。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%9A%84%E5%9F%BA%E7%A1%80%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">2、莫队算法的基础实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">4.1.</span> <span class="toc-text">1、预处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E4%B9%88%E8%BF%99%E6%A0%B7%E5%81%9A%E7%9A%84%E5%AE%9E%E9%99%85%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%98%AF%E5%A4%9A%E5%B0%91%E5%91%A2%E4%B8%8B%E9%9D%A2%E7%9E%8E%E8%83%A1%E4%B9%B1%E6%90%9E%E8%AF%81%E6%98%8E%E5%AE%83%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%98%AF"><span class="toc-number">4.1.1.</span> <span class="toc-text">那么这样做的实际复杂度是多少呢？下面瞎胡乱搞证明它的复杂度是\(O(n\sqrt{n})\)：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#0%E5%8C%BA%E9%97%B4%E6%8E%92%E5%BA%8F"><span class="toc-number">4.1.1.1.</span> <span class="toc-text">0.区间排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E5%B7%A6%E6%8C%87%E9%92%88%E7%9A%84%E7%A7%BB%E5%8A%A8"><span class="toc-number">4.1.1.2.</span> <span class="toc-text">1.左指针的移动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E5%8F%B3%E6%8C%87%E9%92%88%E7%9A%84%E7%A7%BB%E5%8A%A8"><span class="toc-number">4.1.1.3.</span> <span class="toc-text">2.右指针的移动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B3%E6%AD%A4%E5%8F%AF%E5%BE%97%E5%87%BA%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%9A%84%E6%80%BB%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%BA"><span class="toc-number">4.1.2.</span> <span class="toc-text">至此可得出，莫队算法的总时间复杂度为\(O(n\sqrt{n}) + O(n\sqrt{n}) + O(n\log n) &#x3D; O(n\sqrt{n})\)。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="toc-number">4.1.3.</span> <span class="toc-text">参考代码：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E5%AE%9A%E7%AD%96%E7%95%A5"><span class="toc-number">4.2.</span> <span class="toc-text">2、定策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E7%A0%81%E4%BB%A3%E7%A0%81%E4%B8%8E%E6%9F%A5%E9%94%99"><span class="toc-number">4.3.</span> <span class="toc-text">3、码代码与查错</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E9%9D%A2%E4%B8%A4%E7%82%B9%E9%83%BD%E7%89%B9%E5%88%AB%E7%AE%80%E5%8D%95%E4%BD%86%E6%98%AF%E6%B2%A1%E6%9C%89%E7%89%B9%E5%AE%9A%E7%9A%84%E6%A8%A1%E5%BC%8F%E5%85%B6%E9%87%8D%E8%A6%81%E6%80%A7%E4%B8%8D%E5%AE%B9%E5%B0%8F%E8%A7%91"><span class="toc-number">5.</span> <span class="toc-text">后面两点都特别简单但是没有特定的模式，其重要性不容小觑。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E9%87%8D%E7%82%B9%E8%8E%AB%E9%98%9F%E7%9A%84%E7%8E%84%E5%AD%A6%E5%8D%A1%E5%B8%B8%E6%8A%80%E5%B7%A7"><span class="toc-number">6.</span> <span class="toc-text">3、（重点）莫队的玄学卡常技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#warning%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9%E5%8F%AF%E8%83%BD%E5%BC%95%E5%87%BA%E5%A4%A7%E8%B4%A4%E8%80%85%E6%A8%A1%E5%BC%8F%E8%AF%B7%E8%B0%A8%E6%85%8E%E6%80%9D%E8%80%83"><span class="toc-number">6.1.</span> <span class="toc-text">WARNING：以下内容可能引出大贤者模式，请谨慎思考。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1pragma-gcc-optimize2"><span class="toc-number">6.2.</span> <span class="toc-text">1、#pragma GCC optimize(2)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E8%8E%AB%E9%98%9F%E7%8E%84%E5%AD%A6%E5%A5%87%E5%81%B6%E6%80%A7%E6%8E%92%E5%BA%8F"><span class="toc-number">6.3.</span> <span class="toc-text">2、莫队玄学奇偶性排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%99%E4%B8%AA%E6%98%AF%E6%9C%80%E7%8E%84%E5%AD%A6%E7%9A%84%E6%97%A0%E5%8A%9B%E5%90%90%E6%A7%BD"><span class="toc-number">6.3.0.1.</span> <span class="toc-text">这个是最玄学的……无力吐槽</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E7%A7%BB%E5%8A%A8%E6%8C%87%E9%92%88%E7%9A%84%E5%B8%B8%E6%95%B0%E5%8E%8B%E7%BC%A9"><span class="toc-number">6.3.1.</span> <span class="toc-text">3、移动指针的常数压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E6%89%8B%E5%86%99%E5%BF%AB%E8%AF%BB%E5%BF%AB%E8%BE%93"><span class="toc-number">6.3.2.</span> <span class="toc-text">4、手写快读、快输</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%A1%E5%B8%B8%E9%83%A8%E5%88%86%E5%88%B0%E6%AD%A4%E7%BB%93%E6%9D%9F%E6%92%92%E8%8A%B1%E3%83%BD%E3%83%8E%E8%84%91%E8%A1%A5%E6%AC%A2%E5%91%BC%E9%9F%B3%E6%95%88"><span class="toc-number">6.3.2.1.</span> <span class="toc-text">卡常部分到此结束，撒花✿✿ヽ(°▽°)ノ✿（脑补欢呼音效）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B2%E5%88%B0%E7%8E%B0%E5%9C%A8%E4%BE%8B%E9%A2%98%E7%9A%84%E4%BB%A3%E7%A0%81%E5%B7%B2%E7%BB%8F%E4%B8%8D%E9%9A%BE%E5%86%99%E5%87%BA%E4%B8%8B%E9%9D%A2%E7%BB%99%E5%87%BA%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="toc-number">6.4.</span> <span class="toc-text">讲到现在，例题的代码已经不难写出。下面给出参考代码：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%9A%84%E6%89%A9%E5%B1%95%E5%B8%A6%E4%BF%AE%E6%94%B9%E7%9A%84%E8%8E%AB%E9%98%9F"><span class="toc-number">7.</span> <span class="toc-text">4、莫队算法的扩展——带修改的莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%9B%E5%87%BA%E4%B8%AA%E4%BE%8B%E9%A2%98luogu-p1903-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E6%95%B0%E9%A2%9C%E8%89%B2--%E7%BB%B4%E6%8A%A4%E9%98%9F%E5%88%97"><span class="toc-number">7.0.1.</span> <span class="toc-text">抛出个例题：Luogu P1903 [国家集训队]数颜色 &#x2F; 维护队列</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">7.0.1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">7.0.1.2.</span> <span class="toc-text">输入输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">7.0.1.3.</span> <span class="toc-text">输入格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-1"><span class="toc-number">7.0.1.4.</span> <span class="toc-text">输出格式：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B-1"><span class="toc-number">7.0.1.5.</span> <span class="toc-text">输入输出样例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1-1"><span class="toc-number">7.0.1.6.</span> <span class="toc-text">输出样例#1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E-1"><span class="toc-number">7.0.1.7.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E4%BF%97%E5%9C%B0%E8%AE%B2%E5%B0%B1%E6%98%AF%E5%86%8D%E5%BC%84%E4%B8%80%E6%8C%87%E9%92%88%E5%9C%A8%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C%E4%B8%8A%E8%B7%B3%E6%9D%A5%E8%B7%B3%E5%8E%BB%E5%A6%82%E6%9E%9C%E5%BD%93%E5%89%8D%E4%BF%AE%E6%94%B9%E5%A4%9A%E4%BA%86%E5%B0%B1%E6%94%B9%E5%9B%9E%E6%9D%A5%E6%94%B9%E5%B0%91%E4%BA%86%E5%B0%B1%E6%94%B9%E8%BF%87%E5%8E%BB%E7%9B%B4%E5%88%B0%E6%AC%A1%E6%95%B0%E6%81%B0%E5%BD%93%E4%B8%BA%E6%AD%A2"><span class="toc-number">7.0.1.8.</span> <span class="toc-text">通俗地讲，就是再弄一指针，在修改操作上跳来跳去，如果当前修改多了就改回来，改少了就改过去，直到次数恰当为止。</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E4%BF%AE%E6%94%B9%E8%8E%AB%E9%98%9F%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="toc-number">7.0.2.</span> <span class="toc-text">带修改莫队的排序：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">7.0.3.</span> <span class="toc-text">主算法中的修改操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%9D%97%E5%A4%A7%E5%B0%8F%E5%92%8C%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">7.0.4.</span> <span class="toc-text">分块大小和复杂度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81"><span class="toc-number">7.0.5.</span> <span class="toc-text">例题参考代码：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%9A%84%E6%89%A9%E5%B1%95%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F"><span class="toc-number">8.</span> <span class="toc-text">5、莫队算法的扩展——树上莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80%E5%AD%90%E6%A0%91%E7%BB%9F%E8%AE%A1"><span class="toc-number">8.1.</span> <span class="toc-text">问题一：子树统计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C%E8%B7%AF%E5%BE%84%E4%B8%8A%E7%9A%84%E7%BB%9F%E8%AE%A1"><span class="toc-number">8.2.</span> <span class="toc-text">问题二：路径上的统计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E5%A6%82%E8%AF%B4%E8%BF%99%E4%B8%AA%E9%A2%98%E7%9B%AEsp10707-cot2---count-on-a-tree-ii"><span class="toc-number">8.2.1.</span> <span class="toc-text">比如说这个题目：SP10707 COT2 - Count on a tree II</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">8.2.1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">8.2.1.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F-2"><span class="toc-number">8.2.1.3.</span> <span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B-2"><span class="toc-number">8.2.1.4.</span> <span class="toc-text">输入输出样例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1-1"><span class="toc-number">8.2.1.5.</span> <span class="toc-text">输入样例#1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1-2"><span class="toc-number">8.2.1.6.</span> <span class="toc-text">输出样例#1：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E6%AC%A7%E6%8B%89%E5%BA%8F%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9%E5%91%A2%E6%80%8E%E4%B9%88%E6%B1%82%E5%AE%83"><span class="toc-number">8.2.2.</span> <span class="toc-text">那欧拉序有什么特点呢？怎么求它？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%83%E7%9A%84%E6%B1%82%E6%B3%95%E4%B9%9F%E5%BE%88%E7%AE%80%E5%8D%95%E5%9C%A8%E5%88%9Adfs%E5%88%B0%E4%B8%80%E4%B8%AA%E7%82%B9%E6%97%B6%E5%8A%A0%E5%85%A5%E5%BA%8F%E5%88%97%E6%9C%80%E5%90%8E%E9%80%80%E5%87%BA%E6%97%B6%E4%B9%9F%E5%8A%A0%E5%85%A5%E4%B8%80%E9%81%8D%E7%8E%B0%E5%9C%A8%E7%9F%A5%E9%81%93%E8%BF%99%E4%B8%AA%E6%80%A7%E8%B4%A8%E7%9A%84%E6%9D%A5%E6%BA%90%E4%BA%86%E5%90%A7qwq"><span class="toc-number">8.2.2.1.</span> <span class="toc-text">它的求法也很简单，在刚dfs到一个点时加入序列，最后退出时也加入一遍。现在知道这个性质的来源了吧qwq</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81-1"><span class="toc-number">8.2.3.</span> <span class="toc-text">例题参考代码：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%E8%8E%AB%E9%98%9F%E7%AE%97%E6%B3%95%E7%9A%84%E6%89%A9%E5%B1%95%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F"><span class="toc-number">9.</span> <span class="toc-text">6、莫队算法的扩展——回滚莫队</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#at1219-joi2013%E6%AD%B4%E5%8F%B2%E3%81%AE%E7%A0%94%E7%A9%B6"><span class="toc-number">9.0.1.</span> <span class="toc-text">AT1219 [JOI2013]歴史の研究</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">9.0.1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F-3"><span class="toc-number">9.0.1.2.</span> <span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B-3"><span class="toc-number">9.0.1.3.</span> <span class="toc-text">输入输出样例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1-2"><span class="toc-number">9.0.1.4.</span> <span class="toc-text">输入样例#1：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1-3"><span class="toc-number">9.0.1.5.</span> <span class="toc-text">输出样例#1：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81-2"><span class="toc-number">9.0.2.</span> <span class="toc-text">例题参考代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F%E5%AE%8C%E7%BB%93%E6%92%92%E8%8A%B1%E3%83%BD%E3%83%8Eqwq"><span class="toc-number">9.0.3.</span> <span class="toc-text">回滚莫队完结撒花✿✿ヽ(°▽°)ノ✿qwq</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%E7%BB%83%E4%B9%A0%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text">7、练习题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%9F%BA%E7%A1%80%E9%A2%98luogu-p2709-%E5%B0%8Fb%E7%9A%84%E8%AF%A2%E9%97%AE"><span class="toc-number">10.0.1.</span> <span class="toc-text">1、【基础题】Luogu P2709 小B的询问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%BF%9B%E9%98%B6%E9%A2%98luogu-p1494-%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E5%B0%8Fz%E7%9A%84%E8%A2%9C%E5%AD%90"><span class="toc-number">10.0.2.</span> <span class="toc-text">2、【进阶题】Luogu P1494 [国家集训队]小Z的袜子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%BF%9B%E9%98%B6%E9%A2%98luogu-p3709-%E5%A4%A7%E7%88%B7%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A2%98"><span class="toc-number">10.0.3.</span> <span class="toc-text">3、【进阶题】Luogu P3709 大爷的字符串题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E6%9C%80%E7%BB%88%E6%8C%91%E6%88%98luogu-p4074-wc2013%E7%B3%96%E6%9E%9C%E5%85%AC%E5%9B%AD"><span class="toc-number">10.0.4.</span> <span class="toc-text">4、【最终挑战】Luogu P4074 [WC2013]糖果公园</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E4%BB%A3%E7%A0%81-1"><span class="toc-number">10.0.4.1.</span> <span class="toc-text">参考代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E5%85%B6%E5%AE%83"><span class="toc-number">10.0.5.</span> <span class="toc-text">5、其它</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%BE%E5%A3%B0"><span class="toc-number">11.</span> <span class="toc-text">尾声</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#noip-2019-rp"><span class="toc-number">11.1.</span> <span class="toc-text">NOIP 2019 RP++</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hnoi-2019-rp"><span class="toc-number">11.2.</span> <span class="toc-text">HNOI 2019 RP++</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/01/hello-world/" title="Hello World">Hello World</a><time datetime="2026-07-01T17:52:56.906Z" title="发表于 2026-07-02 01:52:56">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/01/qexo%E6%90%AD%E5%BB%BA/" title="qexo搭建">qexo搭建</a><time datetime="2026-07-01T17:52:56.906Z" title="发表于 2026-07-02 01:52:56">2026-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-2/" title="English 1.2">English 1.2</a><time datetime="2026-06-07T15:51:01.000Z" title="发表于 2026-06-07 23:51:01">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1-1/" title="English 1.1">English 1.1</a><time datetime="2026-06-07T15:15:40.000Z" title="发表于 2026-06-07 23:15:40">2026-06-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/06/07/English-1/" title="English 1">English 1</a><time datetime="2026-06-07T15:11:59.000Z" title="发表于 2026-06-07 23:11:59">2026-06-07</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
