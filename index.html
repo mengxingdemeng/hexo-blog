@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>my blog</title><meta name="author" content="琉璃仙"><meta name="copyright" content="琉璃仙"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="用Hexo + Butterfly搭建的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="my blog">
+<meta property="og:url" content="https://mengxingdemeng.github.io/hexo-blog/index.html">
+<meta property="og:site_name" content="my blog">
+<meta property="og:description" content="用Hexo + Butterfly搭建的个人博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png">
+<meta property="article:author" content="琉璃仙">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mengxingdemeng.github.io/hexo-blog/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/hexo-blog/img/favicon.png"><link rel="canonical" href="https://mengxingdemeng.github.io/hexo-blog/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/hexo-blog/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/hexo-blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'my blog',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/hexo-blog/css/custom.css"><style>
+figure.highlight{border-radius:8px;overflow:hidden;margin:1rem 0}
+figure.highlight::before{
+    content:"● ● ●";
+    display:block;height:32px;line-height:32px;
+    background:#21252b;padding-left:14px;letter-spacing:4px;
+}
+figure.highlight::before span:nth-child(1){color:#ff5f56;}
+figure.highlight::before span:nth-child(2){color:#ffbd2e;}
+figure.highlight::before span:nth-child(3){color:#27c93f;}
+</style><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background: transparent;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/hexo-blog/imgg/index.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/hexo-blog/"><span class="site-name">my blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/hexo-blog/"><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/archives/"><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/shuati/"><span> 刷题统计</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/leetcode-history/"><span> 力扣刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu-history/"><span> 洛谷刷题历史</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/hoster/"><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/luogu/"><span> 洛谷</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%9A%91%E6%9C%9Fplan/"><span> 暑期PLAN</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/Games/"><span> Games</span></a></div><div class="menus_item"><a class="site-page" href="/hexo-blog/%E6%AF%8F%E5%91%A8%E8%B5%9B%E4%BA%8B/"><span> 每周赛事</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">my blog</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/23/hello-world/" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-23T17:20:16.286Z" title="发表于 2026-07-24 01:20:16">2026-07-24</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick Start Create a new post $ hexo new "My New Post" More info: Writing Run server $ hexo server More info: Server Generate static files $ hexo generate More info: Generating Deploy to remote sites $ hexo deploy More info: Deployment </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/23/qexo%E6%90%AD%E5%BB%BA/" title="qexo搭建">qexo搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-23T17:20:16.286Z" title="发表于 2026-07-24 01:20:16">2026-07-24</time></span></div><div class="content">hi，此时此刻，庆祝我们成功搭建qexo，并链接阿里云服务器，（好叭，~~~~需要小小付费） </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/15/%E4%B8%8D%E5%87%86%E8%B7%9F%E6%88%91%E8%AF%B4%E8%AF%9D/" title="不准跟我说话">不准跟我说话</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-15T05:27:10.000Z" title="发表于 2026-07-15 13:27:10">2026-07-15</time></span></div><div class="content">《不准跟我说话！》作者：三千大梦叙平生 文案：于笙天生乌鸦嘴，好的不灵坏的灵。 　　高二暑假前最后一场考试，威震三中的“问题少年”于笙凭实力把自己毒奶进了精英云集的省级高校联盟夏令营。 　　又凭脸被隔壁省示范高中的第一名挑成了搭档。 　　高考前一天的下午，打遍学校从没怂过的于小爷气势汹汹，把最多的狠话都撂在强行怼上门的第一名家教身上—— 　　你考试差点迟到！ 　　答题卡差点没涂！ 　　作文差点跑题！ 　　监考老师就围着你转！ 　　最多只能比全市第二高五十分！ 　　…… 　　后来，作为比第二高出足足五十分的全省理科状元，靳林琨面对着蜂拥而至的媒体，回应取得这样优异成绩秘诀的时候，回答得异常干净简洁。 　　“努力学习，科学复习，摆正心态。” 　　靳林琨：“然后再找个小乌鸦嘴谈恋爱。” 　　【斯文败类优等生攻x外刚内怂问题少年受】 　　校园轻松小甜饼！ 　　内容标签： 花季雨季 异能 甜文 　　搜索关键字：主角：于笙；靳林昆 ┃ 配角： ┃ 其它： 　　作者简评：本文讲述了一个小乌鸦嘴因为和隔壁学校第一名多说了一句话，活生生把自己“咒”进了优等生云集的精英夏令营，被一群学霸坚持当成学神...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/15/%E5%88%AB%E5%92%8C%E6%88%91%E8%A3%85%E7%A9%B7/" title="别和我装穷">别和我装穷</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-15T05:18:10.000Z" title="发表于 2026-07-15 13:18:10">2026-07-15</time></span></div><div class="content">别和我装穷 作者: 林七年 简介: 【8月开《别管我闲事》，补档内容见@林七年年年】宋厌转学第一天就撞见自己的新室友被一群混混堵在巷子里要债。新室友手起棍落，小混混落荒而逃，边跑还边不忘骂骂咧咧：“你说你长了这么一张小白脸，去找个富婆早就发家致富了，还怕还不上这点钱吗！”新室友面露赞同并恍然大悟：“有道理啊。”宋厌：“……”有个屁道理。于是为了阻止新室友就此走上歧途，宋厌开始了定点扶贫清纯美貌男高中生的不归路。没钱吃晚饭，他买，没钱交书本费，他交，没钱买围巾，他趁着买一送一再捎上一条。本来就被家里限制了经济支出的宋大少爷不得不学会勤俭节约吃苦耐劳。然后他爸就带他参加了一个晚宴：“来，小厌，给你介绍一下，这是你夏爷爷的孙子，夏枝野。”宋厌看着面前一身定制西服，脖子上却围着他从学校门口买一送一淘来的破围巾的夏枝野，面无表情地举起了刀。·当晚，某高中男生宿舍传来家暴声：“滚你妈的，别和我装穷！”被家暴对象却只是耐心哄道：“没和你装穷，是真穷。但我以后会很有钱，还会把钱都交给男朋友管，所以你要不要考虑一下？”臭不要脸脾气很好骚话攻X嘴硬心软脾气很差酷哥受=====【系列文《别管我闲事》专...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/14/%E5%88%AB%E6%83%B3%E6%8E%B0%E5%BC%AF%E6%88%91/" title="别想掰弯我">别想掰弯我</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-14T12:04:26.000Z" title="发表于 2026-07-14 20:04:26">2026-07-14</time></span></div><div class="content">《别想掰弯我》作者：林七年 文案： 　　顾寄青作为清大数学系公认的美人，一副纯欲神颜勾得全校女生五迷三道，结果刚开学就坦言自己是个Gay，据说还掰弯了好几个直男。 　　周辞白作为清大建筑系公认的系草，凭借一米九的身高和爆棚的荷尔蒙气息被全校女生誉为行走的大总攻，却从开学第一天就恐同得明明白白。 　　于是顾寄青搬到周辞白宿舍的第一天，周辞白就咬着牙道：“顾寄青，我对男人没兴趣。” 　　顾寄青闻言心想，正好，他也不喜欢大型犬。 　　两人约法三章，本以为可以相安无事。 　　然而顾寄青洗澡忘记吹头发，周辞白会红着脸摔门而去，起床忘记穿裤子，周辞白会红着脸摔门而去，生病无意识地蹭掌心，周辞白还是会红着脸摔门而去。 　　顾寄青心想周辞白可能真的恐同恐得很严重。 　　直到某一天，他在酒吧被下了药，当着周辞白的面准备找一个年轻帅气干净的男生帮忙的时候，周辞白却摁住他的腰，咬牙切齿地说：“顾寄青，你是觉得我不够年轻不够帅还是觉得我不够干净？” 　　顾寄青才不解地抬起眼尾：“难道不是因为你不行？” 　　· 　　周辞白初中时候有个一见钟情的女神，却因为一个死缠烂打的Gay让他在女神面前丢尽了人，从此对...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/07/05/%E4%B9%A0%E6%80%9D%E6%83%B3%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="习思想期末复习">习思想期末复习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-07-05T14:47:35.000Z" title="发表于 2026-07-05 22:47:35">2026-07-05</time></span></div><div class="content">1.六个必须坚持（马克思主义世界观和方法论的新的时代内涵）P8 就是必须坚持人民至上、 必须坚持自信自立、 必须坚持守正创新、 必须坚持问题导向、 必须坚持系统观念、 必须坚持胸怀天下。  - 坚持人民至上是根本价值立场，体现了历史唯物主义群众史观； - 坚持自信自立是内在精神特质，提现了客观规律性和主观能动性的有机结合； - 坚持守正创新是鲜明理论品格，体现了变与不变、继承与发展的内在联系； - 坚持问题导向是重要实践要求，体现了矛盾的普遍性和客观性； - 坚持系统观念是基本思像和工作方法，体现了辩证唯物主义普遍联系的原理； - 坚持胸怀天下是中国共产党人的境界格局，体现了马克思主义追求人类进步和解放的崇高理想。  2.新时代的种子内涵 P23 中国特色社会主义新时代， 是承前启后、继往开来、在新的历史条件下继续夺取中国特色社会主义伟大胜利的时代， 是决胜全面建成小康社会、进而全面建设社会主义现代化强国的时代， 是全国各族人民团结奋斗、不断创造美好生活、逐步实现全体人民共同富裕的时代， 是全体中华儿女勠力同心、奋力实现中华民族伟大复兴中国梦的时代， 是我国不断为人类作出更大贡献...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/06/07/English-1-2/" title="English 1.2">English 1.2</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-06-07T15:51:01.000Z" title="发表于 2026-06-07 23:51:01">2026-06-07</time></span></div><div class="content">《The Dawn of Self-Growth》故事梗概 目录 1. 第一章 迷茫的校园时光：困在舒适区的书呆子 2. 第二章 山村的温暖邂逅：公益实践中的觉醒 3. 第三章 自我和解与成长：打破内心的枷锁 4. 第四章 友谊与并肩前行：双向奔赴的进步 5. 第五章 沉淀与未来远航：初心不改的逐梦路    第一章 迷茫的校园时光：困在舒适区的书呆子 社会学专业大二学生利亚姆曾经过着刻板单调的校园生活。他将所有社交都视为干扰学业的麻烦，固守僵化的学习模式，拒绝任何创新和改变。他片面地认为卷面成绩能主导一切，对微小的失败耿耿于怀，甚至禁止自己尝试新的学习方法。缺少社会实践的补充，他的认知片面狭隘，内心充满焦虑和自我怀疑，只能瞥见青春的浅表模样，无法为未来勾勒清晰的蓝图。直到一次偶然的刮伤让他停下脚步，窗外绝美的秋景融化了他冰封的心，他决定打破应试教育的枷锁，寻找志同道合的盟友，创造更有意义的大学生活。   第二章 山村的温暖邂逅：公益实践中的觉醒 新学期，利亚姆报名参加了乡村公益志愿活动，来到了一个群山环绕的偏远山村。这里独特的自然风光和淳朴的民风与城市截然不同，但也面临着教育资源...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/06/07/English-1-1/" title="English 1.1">English 1.1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-06-07T15:15:40.000Z" title="发表于 2026-06-07 23:15:40">2026-06-07</time></span></div><div class="content">The City of New Dawn（全四级高频词全覆盖英文故事） Liam was an ordinary college student who lived in a vibrant urban district of New Dawn City. Unlike the noisy downtown areas full of trivial chaos, his residential community was quiet and well-managed, with neat streets and green belts that softened the tense climate of the fast-paced modern city. Every morning, he would stroll along the sidewalk, watch the sunrise penetrate the thin mist, and adjust his mindset to embrace new daily challenges. He was not a...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/06/07/English-1/" title="English 1">English 1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-06-07T15:11:59.000Z" title="发表于 2026-06-07 23:11:59">2026-06-07</time></span></div><div class="content">The City of New Dawn（全四级高频词全覆盖英文故事） Liam was an ordinary college student who lived in a vibrant urban district of New Dawn City. Unlike the noisy downtown areas full of trivial chaos, his residential community was quiet and well-managed, with neat streets and green belts that softened the tense climate of the fast-paced modern city. Every morning, he would stroll along the sidewalk, watch the sunrise penetrate the thin mist, and adjust his mindset to embrace new daily challenges. He was not a...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/hexo-blog/2026/06/06/%E7%89%9B%E6%8E%B0%E7%9A%8411%E7%A7%8D%E6%95%B0/" title="牛掰的11种数">牛掰的11种数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2026-06-06T07:27:46.000Z" title="发表于 2026-06-06 15:27:46">2026-06-06</time></span></div><div class="content">行内公式：$S(n,k) = S(n-1,k-1) + k \cdot S(n-1,k)$ 块级公式： $$ S(n,k) = S(n-1,k-1) + k \cdot S(n-1,k) $$ 牛掰的11种树  算法常用组合数序列 · 精修详表    名称 核心定义（计数对象） 递推公式 封闭形式 / 生成函数 典型数值 (n=0…5) 典型算法场景     第二类斯特林数$S(n,k)$ 将 $n$ 个不同元素划分成 $k$ 个非空无标号子集（集合划分） $S(n,k)=S(n-1,k-1)+k,S(n-1,k)$ $\displaystyle S(n,k)=\frac{1}{k!}\sum_{i=0}^k(-1)^i\binom{k}{i}(k-i)^n$EGF：$\sum_{n\ge k}S(n,k)\frac{x^n}{n!}=\frac{(e^x-1)^k}{k!}$ n=3,k=2: 3 哈希冲突分析、DP 去重、聚类枚举   第一类斯特林数$c(n,k)$ 将 $n$ 个不同元素排成 $k$ 个圆排列（无向轮换） $c(n,k)=c(n-1,k-1)+(n-1)c(...</div></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/hexo-blog/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/hexo-blog/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/hexo-blog/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/hexo-blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">琉璃仙</div><div class="author-info-description">用Hexo + Butterfly搭建的个人博客</div><div class="site-data"><a href="/hexo-blog/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/hexo-blog/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/hexo-blog/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/23/hello-world/" title="Hello World">Hello World</a><time datetime="2026-07-23T17:20:16.286Z" title="发表于 2026-07-24 01:20:16">2026-07-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/23/qexo%E6%90%AD%E5%BB%BA/" title="qexo搭建">qexo搭建</a><time datetime="2026-07-23T17:20:16.286Z" title="发表于 2026-07-24 01:20:16">2026-07-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/15/%E4%B8%8D%E5%87%86%E8%B7%9F%E6%88%91%E8%AF%B4%E8%AF%9D/" title="不准跟我说话">不准跟我说话</a><time datetime="2026-07-15T05:27:10.000Z" title="发表于 2026-07-15 13:27:10">2026-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/15/%E5%88%AB%E5%92%8C%E6%88%91%E8%A3%85%E7%A9%B7/" title="别和我装穷">别和我装穷</a><time datetime="2026-07-15T05:18:10.000Z" title="发表于 2026-07-15 13:18:10">2026-07-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/hexo-blog/2026/07/14/%E5%88%AB%E6%83%B3%E6%8E%B0%E5%BC%AF%E6%88%91/" title="别想掰弯我">别想掰弯我</a><time datetime="2026-07-14T12:04:26.000Z" title="发表于 2026-07-14 20:04:26">2026-07-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/hexo-blog/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/"><span class="card-category-list-name">算法刷题</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/hexo-blog/tags/%E8%83%8C%E5%8C%85DP/" style="font-size: 1.1em; color: #999">背包DP</a> <a href="/hexo-blog/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" style="font-size: 1.1em; color: #999">并查集</a> <a href="/hexo-blog/tags/%E9%92%BB%E7%9F%B3%E9%A2%98/" style="font-size: 1.1em; color: #999">钻石题</a> <a href="/hexo-blog/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/05/">
+            <span class="card-archive-list-date">
+              五月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/hexo-blog/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">5</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">20</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-23T17:20:44.428Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 琉璃仙</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/hexo-blog/js/utils.js?v=5.5.4"></script><script src="/hexo-blog/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, {"typeSpeed":200,"backSpeed":100,"loop":true,"showCursor":true,"cursorChar":"✨"}))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@3.0.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["人间忽晚，山河已秋。","总以为来日方长，却忘了世事无常。"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["人间忽晚，山河已秋。","总以为来日方长，却忘了世事无常。"])
+}
+typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
